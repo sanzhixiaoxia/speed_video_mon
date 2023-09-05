@@ -63,7 +63,7 @@
     // 自定义样式
     function addStyle() {
         let customCss=`
-            #rangeId{z-index:99999999;position:fixed;top:100px;right:100px;width:60px;background-color:#E3EDCD;display:inline-block;text-align:center;padding:0 6px 0 7px;height:16px;line-height:16px;border-radius:9px;border:1px solid var(--brand_pink);outline: none;color:var(--brand_pink);font-size:12px;margin-right:4px;transition:background 0.3s,color 0.3s;flex-shrink:0;filter: opacity(1);}
+            #rangeId{z-index:99999999;position:fixed;top:100px;right:100px;width:55px;background-color:#E3EDCD;display:inline-block;text-align:center;padding:0 6px 0 7px;height:16px;line-height:16px;border-radius:9px;border:1px solid var(--brand_pink);outline: none;color:var(--brand_pink);font-size:12px;margin-right:4px;transition:background 0.3s,color 0.3s;flex-shrink:0;filter: opacity(1);cursor:move;user-select:none;}
             #rangeId:hover{filter: opacity(1);}
             .slider-container{display:flex;align-items:center;justify-content:flex-start;}
             .toggle-container{display:inline-block;position:relative;}
@@ -112,6 +112,53 @@
         element.addEventListener('mouseout', function() {
             element.style.opacity = 0.5;
         });
+
+        // 初始化按钮位置
+        var buttonPosition = localUtil.getGValue('buttonPosition');
+        if (buttonPosition) {
+            var position = JSON.parse(buttonPosition);
+            element.style.top = position.top + 'px';
+            element.style.left = position.left + 'px';
+        }
+
+        // 添加按钮拖动功能
+        element.addEventListener('mousedown', function(e) {
+            var offsetX = e.clientX - element.offsetLeft;
+            var offsetY = e.clientY - element.offsetTop;
+
+            document.addEventListener('mousemove', dragButton);
+
+            function dragButton(e) {
+                var left = e.clientX - offsetX;
+                var top = e.clientY - offsetY;
+
+                // 限制按钮不可移出屏幕
+                var windowWidth = window.innerWidth;
+                var windowHeight = window.innerHeight;
+                var buttonWidth = element.offsetWidth;
+                var buttonHeight = element.offsetHeight;
+
+                left = Math.max(15, Math.min(left, windowWidth - buttonWidth - 15));
+                top = Math.max(15, Math.min(top, windowHeight - buttonHeight - 15));
+
+                element.style.left = left + 'px';
+                element.style.top = top + 'px';
+            }
+
+            document.addEventListener('mouseup', function() {
+                document.removeEventListener('mousemove', dragButton);
+                saveButtonPosition();
+            });
+        });
+
+        // 保存按钮位置到本地存储
+        function saveButtonPosition() {
+            var position = {
+                top: element.offsetTop,
+                left: element.offsetLeft
+            };
+            localUtil.setGValue('buttonPosition', JSON.stringify(position));
+        }
     }
 
     // 监听快捷键
