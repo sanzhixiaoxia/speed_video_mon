@@ -63,7 +63,7 @@
     // 自定义样式
     function addStyle() {
         let customCss=`
-            #rangeId{z-index:99999999;position:fixed;top:100px;right:100px;width:55px;background-color:#E3EDCD;display:inline-block;text-align:center;padding:0 6px 0 7px;height:16px;line-height:16px;border-radius:9px;border:1px solid var(--brand_pink);outline: none;color:var(--brand_pink);font-size:12px;margin-right:4px;transition:background 0.3s,color 0.3s;flex-shrink:0;filter: opacity(1);cursor:move;user-select:none;}
+            #rangeId{z-index:99999999;position:fixed;top:100px;right:100px;width:55px;background-color:#E3EDCD;display:inline-block;text-align:center;padding:0 6px 0 7px;height:16px;line-height:16px;border-radius:9px;border:1px solid var(--brand_pink);outline: none;color:var(--brand_pink);font-size:12px;margin-right:4px;transition:background 0.3s,color 0.3s;flex-shrink:0;filter: opacity(0.7);cursor:move;user-select:none;}
             #rangeId:hover{filter: opacity(1);}
             .slider-container{display:flex;align-items:center;justify-content:flex-start;}
             .toggle-container{display:inline-block;position:relative;}
@@ -94,23 +94,18 @@
         $("body").prepend('<input id="rangeId" type="number" step="0.1" min="0.1" max="20" autofocus="autofocus" value=""  />');
 
         let element = document.getElementById('rangeId');
-        element.style.opacity = 0.5;
+        element.style.opacity = 0.7;
 
         element.addEventListener('change', function () {
             // 在这里执行 change 事件的处理逻辑
             element.style.opacity = 1;
             addToast("当前倍速：" + element.value);
-
-            // 设置一个定时器，在一秒后将opacity设置为0.5
-            // setTimeout(function() {
-            //     element.style.opacity = 0.5;
-            // }, 1000);
         });
         element.addEventListener('mouseover', function() {
             element.style.opacity = 1;
         });
         element.addEventListener('mouseout', function() {
-            element.style.opacity = 0.5;
+            element.style.opacity = 0.7;
         });
 
         // 初始化按钮位置
@@ -771,7 +766,7 @@
         // 倍速输入框
         if (switchId == "speed_switch_toggle1") {
             if(switchState){
-                $('#rangeId').css("opacity", "0.5");
+                $('#rangeId').css("opacity", "0.7");
             }else{
                 $('#rangeId').css("opacity", "0");
             }
