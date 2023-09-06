@@ -579,20 +579,20 @@
                 <div>
                 
                     <div style='padding: 20px;text-align: left'>
-                        <div>脚本使用方式</div>
+                        <div>功能简介：</div>
                         <br>
                         <div>
-                            <div>方式一：</div>
-                            <div style="text-indent: 2em;" >①调节右上角加速框右侧上下按钮即可调节倍率</div>
-                            <div style="text-indent: 2em;" >②在右上角的加速框内输入加速倍率,如2、4、8、16等</div>
+                            <div style="text-indent: 2em;" >方式一：</div>
+                            <div style="text-indent: 4em;" >①调节右上角加速框右侧上下按钮即可调节倍率</div>
+                            <div style="text-indent: 4em;" >②在右上角的加速框内输入加速倍率,如2、4、8、16等</div>
                         </div>
                         <br>
                         <div>
-                            <div>方式二：</div>
-                            <div style="text-indent: 2em;" >默认快捷键：‘x’, ‘c’, ‘z’</div>
-                            <div style="text-indent: 2em;" >x: 加速 0.1</div>
-                            <div style="text-indent: 2em;" >c: 减速 0.1</div>
-                            <div style="text-indent: 2em;" >z: 复位 1.0</div>
+                            <div style="text-indent: 2em;" >方式二：</div>
+                            <div style="text-indent: 4em;" >默认快捷键：‘x’, ‘c’, ‘z’</div>
+                            <div style="text-indent: 4em;" >x: 加速 0.1</div>
+                            <div style="text-indent: 4em;" >c: 减速 0.1</div>
+                            <div style="text-indent: 4em;" >z: 复位 1.0</div>
                         </div>                         
                     </div>
                     
