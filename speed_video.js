@@ -577,31 +577,38 @@
             title: " - - ☞ ☛ 视频倍速播放 ☚ ☜ - - ",
             html:`
                 <div>
-                     <div style='padding: 20px;text-align: left'>
-                          <div>
-                              <div>方式一：</div>
-                              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①调节右上角加速框右侧上下按钮即可调节倍率</div>
-                              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②在右上角的加速框内输入加速倍率,如2、4、8、16等</div>
-                          </div>
-                          <br>
-                          <div>
-                              <div>方式二：</div>
-                              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;默认快捷键：‘x’, ‘c’, ‘z’</div>
-                              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x: 加速 0.1</div>
-                              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c: 减速 0.1</div>
-                              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z: 复位 1.0</div>
-                          </div>
-                          <br>
-                          <div>
-                               <div>模式简介：</div>
-                               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;三分钟真男人模式：</div>
-                               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了响应国家节能减排，保护地球家园国策，脚本做了浅度检测（理论上够用了）</div>
-                               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是有一些比较特别的情况，脚本无法检测到视频，实现不了调整倍速的目的</div>
-                               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所以做了三分钟真男人模式，持续深入检测三分钟，增强脚本可用性</div>
-                          </div>
-                          <br>
+                
+                    <div style='padding: 20px;text-align: left'>
+                        <div>脚本使用方式</div>
+                        <br>
+                        <div>
+                            <div>方式一：</div>
+                            <div style="text-indent: 2em;" >①调节右上角加速框右侧上下按钮即可调节倍率</div>
+                            <div style="text-indent: 2em;" >②在右上角的加速框内输入加速倍率,如2、4、8、16等</div>
+                        </div>
+                        <br>
+                        <div>
+                            <div>方式二：</div>
+                            <div style="text-indent: 2em;" >默认快捷键：‘x’, ‘c’, ‘z’</div>
+                            <div style="text-indent: 2em;" >x: 加速 0.1</div>
+                            <div style="text-indent: 2em;" >c: 减速 0.1</div>
+                            <div style="text-indent: 2em;" >z: 复位 1.0</div>
+                        </div>                         
+                    </div>
+                    
+                    <div style='padding: 20px;text-align: left'>
+                        <div>模式简介：</div>
+                        <div>
+                            <div style="text-indent: 2em;" >三分钟真男人模式：</div>
+                            <div style="text-indent: 2em;" >为了响应国家节能减排，保护地球家园国策，脚本做了浅度检测（理论上够用了）</div>
+                            <div style="text-indent: 2em;" >但是有一些比较特别的情况，脚本无法检测到视频，实现不了调整倍速的目的</div>
+                            <div style="text-indent: 2em;" >所以做了三分钟真男人模式，持续深入检测三分钟，增强脚本可用性</div>
+                        </div>
                      </div>
+                     <br>
+
                      <span style="filter:grayscale(100%);">- 您身边的学习追剧好帮手 -</span>
+                     
                 </div>
             `,
             showConfirmButton: false,
