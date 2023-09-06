@@ -578,15 +578,23 @@
             html:`
                 <div>
                      <div style='padding: 20px;text-align: left'>
-                          <div>方式一：</div>
-                          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①调节右上角加速框右侧上下按钮即可调节倍率</div>
-                          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②在右上角的加速框内输入加速倍率,如2、4、8、16等</div>
+                          <div>
+                              <div>方式一：</div>
+                              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①调节右上角加速框右侧上下按钮即可调节倍率</div>
+                              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②在右上角的加速框内输入加速倍率,如2、4、8、16等</div>
+                          </div>
                           <br>
-                          <div>方式二：</div>
-                          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;默认快捷键：‘x’, ‘c’, ‘z’</div>
-                          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x: 加速 0.1</div>
-                          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c: 减速 0.1</div>
-                          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z: 复位 1.0</div>
+                          <div>
+                              <div>方式二：</div>
+                              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;默认快捷键：‘x’, ‘c’, ‘z’</div>
+                              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x: 加速 0.1</div>
+                              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c: 减速 0.1</div>
+                              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z: 复位 1.0</div>
+                          </div>
+                          <div>
+                               <div>模式简介：</div>
+                               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;三分钟真男人模式：‘x’, ‘c’, ‘z’</div>
+                          </div>
                           <br>
                      </div>
                      <span style="filter:grayscale(100%);">- 您身边的学习追剧好帮手 -</span>
@@ -642,6 +650,17 @@
                                             <span class="toggle-label"></span>
                                         </label>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td>三分钟真男人模式：</td>
+                                    <td>
+                                        <label class="toggle-container">
+                                            <input type="checkbox" class="toggle-input" id="speed_switch_toggle5">
+                                            <span class="toggle-label"></span>
+                                        </label>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             </table>
                         </div>
