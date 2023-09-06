@@ -405,7 +405,7 @@
      * 初始化跳过片头片尾
      */
     function initStartEnd() {
-        toSendCurrentTime();
+        window.setInterval(function() {toSendCurrentTime();}, 3000);
     }
 
     var stopFlag = true;
@@ -814,7 +814,6 @@
                     }
                     // 跳过视频的开始
                     video.currentTime = speed_skip_start;
-                    addToast("跳过片头：" + convertToMinutes(speed_skip_start));
 
                     // 当视频时间更新时
                     video.ontimeupdate = function () {
@@ -822,7 +821,6 @@
                         if (video.duration - video.currentTime <= speed_skip_end) {
                             // 跳转到视频末尾
                             video.currentTime = video.duration;
-                            addToast("跳过片尾：" + convertToMinutes(speed_skip_end));
                         }
                     };
                 }
