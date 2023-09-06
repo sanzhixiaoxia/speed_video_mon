@@ -591,9 +591,13 @@
                               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c: 减速 0.1</div>
                               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z: 复位 1.0</div>
                           </div>
+                          <br>
                           <div>
                                <div>模式简介：</div>
-                               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;三分钟真男人模式：‘x’, ‘c’, ‘z’</div>
+                               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;三分钟真男人模式：</div>
+                               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了响应国家节能减排，保护地球家园国策，脚本做了浅度检测（理论上够用了）</div>
+                               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是有一些比较特别的情况，脚本无法检测到视频，实现不了调整倍速的目的</div>
+                               <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所以做了三分钟真男人模式，持续深入检测三分钟，增强脚本可用性</div>
                           </div>
                           <br>
                      </div>
