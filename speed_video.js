@@ -971,7 +971,7 @@
                 clearInterval(initTimer);
                 main.init();
                 window.setInterval(function() {main.run();}, 1000);
-            } else if ((nowStamp - startStamp) > speed_three_male) {
+            } else if ((nowStamp - startStamp) >= speed_three_male) {
                 clearInterval(initTimer);
                 log.error('search video is long to stop...');
             } else {
