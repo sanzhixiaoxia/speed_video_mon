@@ -803,6 +803,15 @@
             }
         }
 
+        // 三分钟真男人模式
+        if (switchId == "speed_switch_toggle5") {
+            if(switchState){
+                localUtil.setGValue("speed_three_male",3*60*1000);
+            }else{
+                localUtil.setGValue("speed_three_male",30*1000);
+            }
+        }
+
     }
 
     // 神秘区域
@@ -953,6 +962,7 @@
         localStorage.setItem("speed_debug", "false");
         main.before();
 
+        var speed_three_male = localUtil.getGValue("speed_three_male")||30 * 1000;
         var startStamp = new Date().getTime();
         window.initTimer = setInterval(() => {
             var videos = document.querySelectorAll("video");
@@ -961,7 +971,7 @@
                 clearInterval(initTimer);
                 main.init();
                 window.setInterval(function() {main.run();}, 1000);
-            } else if ((nowStamp - startStamp) > 30 * 1000) {
+            } else if ((nowStamp - startStamp) > speed_three_male) {
                 clearInterval(initTimer);
                 log.error('search video is long to stop...');
             } else {
