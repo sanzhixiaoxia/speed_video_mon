@@ -227,8 +227,8 @@
 
         for (var i = 0; i < times; i++) {
             log.info(direction);
-            if (direction = "down") { speedFun("-"); }
-            if (direction = "up") { speedFun("+"); }
+            if (direction == "down") { speedFun("-"); }
+            if (direction == "up") { speedFun("+"); }
         }
 
         lastY = currentY;
