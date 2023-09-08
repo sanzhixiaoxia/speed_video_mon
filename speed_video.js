@@ -55,7 +55,7 @@
 // @note         版本更新	23-09-05 1.3.2  开关控制版本大升级
 // @note         版本更新	23-09-06 1.3.3  增加倍速框可拖动模式，修正跳过片头尾
 // @note         版本更新	23-09-07 1.3.4  增加三分钟真男人模式
-// @note         版本更新	23-09-08 1.3.5  优化代码
+// @note         版本更新	23-09-08 1.3.5  优化代码，修正滑动，跳过片头片尾
 
 // ==/UserScript==
 
@@ -403,18 +403,14 @@
         return `${paddedMinutes}:${paddedSeconds}`;
     }
 
-    /**
-     * 初始化跳过片头片尾
-     */
-    function initStartEnd() {
-        window.setInterval(function() {toSendCurrentTime();}, 3000);
-    }
-
     var stopFlag = true;
     /**
      * 执行引擎
      */
     function initRun(){
+
+        // 跳过片头片尾
+        initStartEnd();
 
         // 自动播放
         if(getSwitchValueById("speed_switch_toggle2")){
@@ -769,7 +765,7 @@
                         const data = {value,textContent};
 
                         localUtil.setSValue(this.id, JSON.stringify(data));
-                        toSendCurrentTime();
+                        initStartEnd();
                     });
                 });
                 //====================================调整跳过片头尾end================================================
@@ -871,11 +867,11 @@
     }
 
     /**
-     * 运行至当前时间
+     * 跳过片头片尾
      * @param speed_skip_start
      * @param speed_skip_end
      */
-    function toSendCurrentTime(){
+    function initStartEnd(){
 
         let speed_skip_start = 0;
         let speed_skip_end = 0;
@@ -951,7 +947,6 @@
         },
         init() {
             addDocument();
-            initStartEnd();
         },
         run() {
             initRun();
