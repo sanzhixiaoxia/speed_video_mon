@@ -886,7 +886,7 @@
             speed_skip_end = JSON.parse(storedData2).value;
         }
 
-        if (speed_skip_start >= 0 || speed_skip_end >= 0) {
+        if (speed_skip_start > 0 || speed_skip_end > 0) {
             toRunCurrentTime(speed_skip_start,speed_skip_end);
         }
     }
