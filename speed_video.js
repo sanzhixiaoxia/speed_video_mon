@@ -432,7 +432,7 @@
             has_icon: true,
             has_close_btn: true,
             fullscreen: false,
-            timeout: 600,
+            timeout: 1000,
             sticky: false,
             has_progress: true,
             rtl: false,
@@ -447,7 +447,7 @@
         GM_addStyle(GM_getResourceText("css2"));
         Toastify({
             text: msgText,
-            duration: 1500,
+            duration: 1000,
             newWindow: false,
             gravity: "bottom", // `top` or `bottom`
             position: "right", // `left`, `center` or `right`
