@@ -805,6 +805,15 @@
                             if (switchElement) {
                                 switchElement.checked = switchConfig[switchId];
                             }
+
+                            // 右下角消息提示框
+                            if (switchId == "speed_switch_toggle3") {
+                                if(switchConfig[switchId]){
+                                    $("input[name='toastMessage']").attr({"disabled":false,"readonly":false});
+                                }else{
+                                    $("input[name='toastMessage']").attr({"disabled":true,"readonly":true});
+                                }
+                            }
                         });
                     }
                 }
@@ -898,6 +907,15 @@
                 $('#rangeId').css("opacity", "0.7");
             }else{
                 $('#rangeId').css("opacity", "0");
+            }
+        }
+
+        // 右下角消息提示框
+        if (switchId == "speed_switch_toggle3") {
+            if(switchState){
+                $("input[name='toastMessage']").attr({"disabled":false,"readonly":false});
+            }else{
+                $("input[name='toastMessage']").attr({"disabled":true,"readonly":true});
             }
         }
 
