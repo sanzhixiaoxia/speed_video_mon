@@ -2,7 +2,7 @@
 // @name         视频倍速播放(追剧学习神器)
 // @namespace    http://tampermonkey.net/
 // @icon         https://img-blog.csdnimg.cn/20181221195058594.gif
-// @version      1.3.6
+// @version      1.3.7
 // @description  全网视频倍速播放，看视频播太慢，这能忍？直接倍速播放，最高速度20倍【食用方法】①调节右上角加速框右侧上下按钮即可调节倍率 ②在右上角的加速框内输入加速倍率,如2、4、8、16等。【快捷键】：①单手快捷键：“x”，“c” 恢复正常播放:“t”或“z”  ②双手快捷键：ctrl + 左右箭头
 // @author       wll
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
@@ -57,6 +57,7 @@
 // @note         版本更新	23-09-07 1.3.4  增加三分钟真男人模式
 // @note         版本更新	23-09-08 1.3.5  优化代码，修正滑动，跳过片头片尾
 // @note         版本更新	23-09-11 1.3.6  优化代码，修正跳过片尾，修正默认开关设置
+// @note         版本更新	23-09-13 1.3.7  修正自动播放
 
 // ==/UserScript==
 
