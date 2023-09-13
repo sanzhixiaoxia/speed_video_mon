@@ -6,9 +6,9 @@
 // @description  全网视频倍速播放，看视频播太慢，这能忍？直接倍速播放，最高速度20倍【食用方法】①调节右上角加速框右侧上下按钮即可调节倍率 ②在右上角的加速框内输入加速倍率,如2、4、8、16等。【快捷键】：①单手快捷键：“x”，“c” 恢复正常播放:“t”或“z”  ②双手快捷键：ctrl + 左右箭头
 // @author       wll
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js
 // @require      https://greasyfork.org/scripts/447214-toast-script/code/toastscript.js?version=1065649
 // @resource     css1 https://cdn.jsdelivr.net/gh/sanzhixiaoxia/statics@main/toast.style.css
-// @require      https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js
 // @require      https://greasyfork.org/scripts/471299-toastify-js/code/toastifyjs.js?version=1222923
 // @resource     css2 https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css
 // @grant        GM_getValue
