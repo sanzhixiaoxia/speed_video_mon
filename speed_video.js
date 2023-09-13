@@ -685,17 +685,17 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>消息提示（右下）：</td>
-                                    <td>
-                                        <label class="toggle-container">
-                                            <input type="checkbox" class="toggle-input" id="speed_switch_toggle3">
-                                            <span class="toggle-label"></span>
-                                        </label>
-                                    </td>
                                     <td>消息提示（左上）：</td>
                                     <td>
                                         <label class="toggle-container">
                                             <input type="checkbox" class="toggle-input" id="speed_switch_toggle4">
+                                            <span class="toggle-label"></span>
+                                        </label>
+                                    </td>
+                                    <td>消息提示（右下）：</td>
+                                    <td>
+                                        <label class="toggle-container">
+                                            <input type="checkbox" class="toggle-input" id="speed_switch_toggle3">
                                             <span class="toggle-label"></span>
                                         </label>
                                     </td>
