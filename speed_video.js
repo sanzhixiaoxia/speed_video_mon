@@ -740,12 +740,12 @@
                                         </label>
                                     </td>
                                      <td>
-                                        春：<input type="radio" name="toastMessage" id="tm01" value="tm01" style="padding-left: 2px">
-                                        花：<input type="radio" name="toastMessage" id="tm02" value="tm02" style="padding-left: 2px">
-                                        秋：<input type="radio" name="toastMessage" id="tm03" value="tm03" style="padding-left: 2px">
-                                        月：<input type="radio" name="toastMessage" id="tm04" value="tm04" style="padding-left: 2px">
+                                        <input type="radio" name="toastMessage" id="tm01" value="tm01">&nbsp;春
+                                        <input type="radio" name="toastMessage" id="tm02" value="tm02">&nbsp;花
+                                        <input type="radio" name="toastMessage" id="tm03" value="tm03">&nbsp;秋
+                                        <input type="radio" name="toastMessage" id="tm04" value="tm04">&nbsp;月
                                     </td>
-                                    <td>
+                                    <td></td>
                                 </tr>
                             </table>
                         </div>
