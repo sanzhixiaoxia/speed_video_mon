@@ -2,7 +2,7 @@
 // @name         视频倍速播放(追剧学习神器)
 // @namespace    http://tampermonkey.net/
 // @icon         https://img-blog.csdnimg.cn/20181221195058594.gif
-// @version      1.3.5
+// @version      1.3.6
 // @description  全网视频倍速播放，看视频播太慢，这能忍？直接倍速播放，最高速度20倍【食用方法】①调节右上角加速框右侧上下按钮即可调节倍率 ②在右上角的加速框内输入加速倍率,如2、4、8、16等。【快捷键】：①单手快捷键：“x”，“c” 恢复正常播放:“t”或“z”  ②双手快捷键：ctrl + 左右箭头
 // @author       wll
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
@@ -56,6 +56,7 @@
 // @note         版本更新	23-09-06 1.3.3  增加倍速框可拖动模式，修正跳过片头尾
 // @note         版本更新	23-09-07 1.3.4  增加三分钟真男人模式
 // @note         版本更新	23-09-08 1.3.5  优化代码，修正滑动，跳过片头片尾
+// @note         版本更新	23-09-11 1.3.6  优化代码，修正跳过片尾，修正默认开关设置
 
 // ==/UserScript==
 
@@ -852,14 +853,12 @@
                     // 跳过视频的开始
                     video.currentTime = speed_skip_start;
 
-                    // 当视频时间更新时
-                    video.ontimeupdate = function () {
-                        // 如果视频在跳过结束时间内
-                        if (video.duration - video.currentTime <= speed_skip_end) {
-                            // 跳转到视频末尾
-                            video.currentTime = video.duration;
-                        }
-                    };
+                }
+
+                // 如果视频在跳过结束时间内
+                if (video.duration - video.currentTime < parseInt(speed_skip_end)) {
+                    // 跳转到视频末尾
+                    video.currentTime = video.duration;
                 }
             }
         });
@@ -873,18 +872,10 @@
      */
     function initStartEnd(){
 
-        let speed_skip_start = 0;
-        let speed_skip_end = 0;
-
         var storedData1 = localUtil.getSValue("speed_slider_start");
-        if (storedData1) {
-            speed_skip_start = JSON.parse(storedData1).value;
-        }
-
         var storedData2 = localUtil.getSValue("speed_slider_end");
-        if (storedData2) {
-            speed_skip_end = JSON.parse(storedData2).value;
-        }
+        var speed_skip_start = storedData1 ? JSON.parse(storedData1).value : 0;
+        var speed_skip_end = storedData2 ? JSON.parse(storedData2).value : 0;
 
         if (speed_skip_start > 0 || speed_skip_end > 0) {
             toRunCurrentTime(speed_skip_start,speed_skip_end);
@@ -928,15 +919,14 @@
 
         let gloubConfig = {
             "speed_switch_toggle1": true,
+            "speed_switch_toggle2": true,
             "speed_switch_toggle3": true,
             "speed_switch_toggle4": true,
-            "speed_switch_toggle2": true
+            "speed_switch_toggle5": false
         };
 
-        let switchConfig = localUtil.getGValue('switchConfig');
-        if (switchConfig == null || switchConfig == undefined) {
-            localUtil.setGValue('switchConfig', JSON.stringify(gloubConfig));
-        }
+        let switchConfig = localUtil.getGValue('switchConfig') || JSON.stringify(gloubConfig);
+        localUtil.setGValue('switchConfig', switchConfig);
 
     }
     var main = {
