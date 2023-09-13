@@ -449,7 +449,11 @@
         // 自动播放
         if(getSwitchValueById("speed_switch_toggle2")){
             if (stopFlag) {
-                document.querySelector('video').play();
+                findNodeWithSelector('video', nodei => {
+                    if (nodei) {
+                        nodei.play();
+                    }
+                });
                 stopFlag = false;
             }
         }
