@@ -311,6 +311,45 @@
 
     }
 
+    // 创建一个函数来覆盖对象的指定属性的setter方法
+    function overrideSetter(object, property, desiredValue) {
+        // 保存原始的setter方法
+        var originalSetter = Object.getOwnPropertyDescriptor(object, property).set;
+
+        // 覆盖setter方法
+        Object.defineProperty(object, property, {
+            set: function(value) {
+                originalSetter.call(this, value);
+            }
+        });
+    }
+
+    function controlVideoProperty(propertyName, desiredValue) {
+
+        findNodeWithSelector('video', nodei => {
+            if (nodei) {
+                // 使用overrideSetter函数来覆盖HTMLMediaElement.prototype的指定属性的setter方法
+                overrideSetter(HTMLMediaElement.prototype, propertyName, desiredValue);
+
+                // 创建一个MutationObserver实例来监听指定属性的变化
+                var observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.type == 'attributes' && mutation.attributeName == propertyName && nodei[propertyName] != desiredValue) {
+                            nodei[propertyName] = desiredValue;  // 更改属性的值
+                        }
+                    });
+                });
+
+                // 配置观察器
+                var config = { attributes: true };
+
+                // 开始观察
+                observer.observe(nodei, config);
+            }
+        });
+
+    }
+
     // 消息提示
     function addToast(msgText) {
 
@@ -569,45 +608,6 @@
         //         callback(targetNode);
         //     }
         // });
-
-    }
-
-    // 创建一个函数来覆盖对象的指定属性的setter方法
-    function overrideSetter(object, property, desiredValue) {
-        // 保存原始的setter方法
-        var originalSetter = Object.getOwnPropertyDescriptor(object, property).set;
-
-        // 覆盖setter方法
-        Object.defineProperty(object, property, {
-            set: function(value) {
-                originalSetter.call(this, value);
-            }
-        });
-    }
-
-    function controlVideoProperty(propertyName, desiredValue) {
-
-        findNodeWithSelector('video', nodei => {
-            if (nodei) {
-                // 使用overrideSetter函数来覆盖HTMLMediaElement.prototype的指定属性的setter方法
-                overrideSetter(HTMLMediaElement.prototype, propertyName, desiredValue);
-
-                // 创建一个MutationObserver实例来监听指定属性的变化
-                var observer = new MutationObserver(function(mutations) {
-                    mutations.forEach(function(mutation) {
-                        if (mutation.type == 'attributes' && mutation.attributeName == propertyName && nodei[propertyName] != desiredValue) {
-                            nodei[propertyName] = desiredValue;  // 更改属性的值
-                        }
-                    });
-                });
-
-                // 配置观察器
-                var config = { attributes: true };
-
-                // 开始观察
-                observer.observe(nodei, config);
-            }
-        });
 
     }
 
