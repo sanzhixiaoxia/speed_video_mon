@@ -361,10 +361,25 @@
 
         // 消息提示（右下）
         if(getSwitchValueById("speed_switch_toggle3")){
-            showToastMessage(msgText);
-            showToastifyMessage(msgText);
-            showSweetMessage(msgText);
-            showOldJsMessage(msgText);
+            let toastMessage = localUtil.getGValue('toastMessage');
+            if (toastMessage) {
+                switch (toastMessage) {
+                    case "tm01":
+                        showToastMessage(msgText);
+                        break;
+                    case "tm02":
+                        showToastifyMessage(msgText);
+                        break;
+                    case "tm03":
+                        showSweetMessage(msgText);
+                        break;
+                    case "tm04":
+                        showOldJsMessage(msgText);
+                        break;
+                    default:
+                        showToastMessage(msgText);
+                }
+            }
         }
 
     }
@@ -723,10 +738,10 @@
                                         </label>
                                     </td>
                                      <td>
-                                        春：<input type="radio" name="toastMessage" value="tm01" style="padding-left: 2px">
-                                        花：<input type="radio" name="toastMessage" value="tm02" style="padding-left: 2px">
-                                        秋：<input type="radio" name="toastMessage" value="tm03" style="padding-left: 2px">
-                                        月：<input type="radio" name="toastMessage" value="tm04" style="padding-left: 2px">
+                                        春：<input type="radio" name="toastMessage" id="tm01" value="tm01" style="padding-left: 2px">
+                                        花：<input type="radio" name="toastMessage" id="tm02" value="tm02" style="padding-left: 2px">
+                                        秋：<input type="radio" name="toastMessage" id="tm03" value="tm03" style="padding-left: 2px">
+                                        月：<input type="radio" name="toastMessage" id="tm04" value="tm04" style="padding-left: 2px">
                                     </td>
                                     <td>
                                 </tr>
@@ -796,6 +811,30 @@
 
                 //====================================配置开关监听end================================================
 
+                //====================================消息提示单选start================================================
+                // 获取单选按钮组
+                var radioGroup = document.getElementsByName("toastMessage");
+
+                // 添加事件监听器
+                radioGroup.forEach(function(radio) {
+                    let toastMessage = localUtil.getGValue('toastMessage');
+                    if (toastMessage) {
+                        // 设置默认选中的单选按钮
+                        document.getElementById(toastMessage).checked = true;
+                    }else {
+                        let defaultToastMessage = "tm04";
+                        document.getElementById(defaultToastMessage).checked = true;
+                        localUtil.setGValue('toastMessage',defaultToastMessage);
+                    }
+                    radio.addEventListener("change", function() {
+                        // 获取选中的值
+                        let selectedValue = document.querySelector('input[name="toastMessage"]:checked').value;
+                        console.log("选中的值：" + selectedValue);
+                        localUtil.setGValue('toastMessage',selectedValue);
+                    });
+                });
+
+                //====================================消息提示单选end================================================
 
                 //====================================调整跳过片头尾start==============================================
                 // 选择要修改宽度的 input 元素
