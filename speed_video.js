@@ -301,12 +301,14 @@
     function addToast(msgText) {
         // 消息提示（右下）
         if(getSwitchValueById("speed_switch_toggle3")){
-            showtoastMessage(msgText);
+            // showtoastMessage(msgText);
+            showNotification(msgText);
         }
         // 消息提示（左上）
         if(getSwitchValueById("speed_switch_toggle4")){
             showVideoMessage(msgText);
         }
+
         // showtoast1Message( msgText);
         // showNotification("当前倍速：" + msgText);
     }
