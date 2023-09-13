@@ -97,6 +97,19 @@
         }
     };
 
+    /**
+     * 数值转换为分钟
+     * @param value
+     * @returns {string}
+     */
+    function convertToMinutes(value) {
+        const minutes = Math.floor(value / 60);
+        const seconds = value % 60;
+        const paddedMinutes = minutes.toString().padStart(2, "0");
+        const paddedSeconds = seconds.toString().padStart(2, "0");
+        return `${paddedMinutes}:${paddedSeconds}`;
+    }
+
     // 自定义样式
     function addStyle() {
         let customCss=`
@@ -438,19 +451,6 @@
         setTimeout(function() {
             messageElement.remove();
         }, 1000);
-    }
-
-    /**
-     * 数值转换为分钟
-     * @param value
-     * @returns {string}
-     */
-    function convertToMinutes(value) {
-        const minutes = Math.floor(value / 60);
-        const seconds = value % 60;
-        const paddedMinutes = minutes.toString().padStart(2, "0");
-        const paddedSeconds = seconds.toString().padStart(2, "0");
-        return `${paddedMinutes}:${paddedSeconds}`;
     }
 
     var stopFlag = true;
