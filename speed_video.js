@@ -300,50 +300,20 @@
 
     // 消息提示
     function addToast(msgText) {
-        // 消息提示（右下）
-        if(getSwitchValueById("speed_switch_toggle3")){
-            // showToastMessage( msgText);
-            // showToastifyMessage(msgText);
-            showSweetMessage(msgText);
-        }
+
         // 消息提示（左上）
         if(getSwitchValueById("speed_switch_toggle4")){
             showVideoMessage(msgText);
         }
 
+        // 消息提示（右下）
+        if(getSwitchValueById("speed_switch_toggle3")){
+            showToastMessage(msgText);
+            showToastifyMessage(msgText);
+            showSweetMessage(msgText);
+            showOldJsMessage(msgText);
+        }
 
-    }
-
-    /**
-     * toastify 消息提示
-     * @param msgText
-     */
-    function showToastifyMessage(msgText){
-        GM_addStyle(GM_getResourceText("css2"));
-        Toastify({
-            text: msgText,
-            duration: 1500,
-            newWindow: false,
-            gravity: "bottom", // `top` or `bottom`
-            position: "right", // `left`, `center` or `right`
-            style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-            }
-        }).showToast();
-    }
-
-    function showToastMessage(msgText){
-        GM_addStyle(GM_getResourceText("css1"));
-        $.Toast("当前倍速：", msgText, "success", {
-            //stack: true,
-            has_icon: true,
-            has_close_btn: true,
-            fullscreen: false,
-            timeout: 600,
-            sticky: false,
-            has_progress: true,
-            rtl: false,
-        });
     }
 
     /**
@@ -381,34 +351,41 @@
         showMessage(); // 显示消息框
     }
 
-    // function showMessage(message) {
-    //     // 创建消息提示元素
-    //     var messageElement = document.createElement('div');
-    //     messageElement.classList.add('message');
-    //     messageElement.innerText = message;
-    //
-    //     // 添加CSS样式
-    //     messageElement.style.position = 'fixed';
-    //     messageElement.style.bottom = '20px';
-    //     messageElement.style.right = '20px';
-    //     messageElement.style.padding = '10px';
-    //     messageElement.style.backgroundColor = '#333';
-    //     messageElement.style.color = '#fff';
-    //     messageElement.style.borderRadius = '5px';
-    //     messageElement.style.opacity = '0.9';
-    //     messageElement.style.transition = 'opacity 0.5s ease';
-    //
-    //     // 将消息提示元素添加到页面右下角
-    //     document.body.appendChild(messageElement);
-    //
-    //     // 一秒后自动消失
-    //     setTimeout(function() {
-    //         messageElement.remove();
-    //     }, 1000);
-    // }
-    //
-    // // 使用方法
-    // showMessage('这是一条消息提示');
+    /**
+     * Toast 消息提示
+     * @param msgText
+     */
+    function showToastMessage(msgText){
+        GM_addStyle(GM_getResourceText("css1"));
+        $.Toast("当前倍速：", msgText, "success", {
+            //stack: true,
+            has_icon: true,
+            has_close_btn: true,
+            fullscreen: false,
+            timeout: 600,
+            sticky: false,
+            has_progress: true,
+            rtl: false,
+        });
+    }
+
+    /**
+     * toastify 消息提示
+     * @param msgText
+     */
+    function showToastifyMessage(msgText){
+        GM_addStyle(GM_getResourceText("css2"));
+        Toastify({
+            text: msgText,
+            duration: 1500,
+            newWindow: false,
+            gravity: "bottom", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast();
+    }
 
     /**
      * sweetalert2 消息提示
@@ -431,6 +408,36 @@
             icon: 'info',
             title: message
         });
+    }
+
+    /**
+     * 原生js消息提示
+     * @param message
+     */
+    function showOldJsMessage(message) {
+        // 创建消息提示元素
+        var messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        messageElement.innerText = message;
+
+        // 添加CSS样式
+        messageElement.style.position = 'fixed';
+        messageElement.style.bottom = '20px';
+        messageElement.style.right = '20px';
+        messageElement.style.padding = '10px';
+        messageElement.style.backgroundColor = '#333';
+        messageElement.style.color = '#fff';
+        messageElement.style.borderRadius = '5px';
+        messageElement.style.opacity = '0.9';
+        messageElement.style.transition = 'opacity 0.5s ease';
+
+        // 将消息提示元素添加到页面右下角
+        document.body.appendChild(messageElement);
+
+        // 一秒后自动消失
+        setTimeout(function() {
+            messageElement.remove();
+        }, 1000);
     }
 
     /**
