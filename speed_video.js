@@ -301,23 +301,23 @@
     function addToast(msgText) {
         // 消息提示（右下）
         if(getSwitchValueById("speed_switch_toggle3")){
-            // showtoastMessage(msgText);
-            showNotification(msgText);
+            // showToastMessage( msgText);
+            // showToastifyMessage(msgText);
+            showSweetMessage(msgText);
         }
         // 消息提示（左上）
         if(getSwitchValueById("speed_switch_toggle4")){
             showVideoMessage(msgText);
         }
 
-        // showtoast1Message( msgText);
-        // showNotification("当前倍速：" + msgText);
+
     }
 
     /**
-     * 在页面右下角显示
+     * toastify 消息提示
      * @param msgText
      */
-    function showtoastMessage(msgText){
+    function showToastifyMessage(msgText){
         GM_addStyle(GM_getResourceText("css2"));
         Toastify({
             text: msgText,
@@ -331,7 +331,7 @@
         }).showToast();
     }
 
-    function showtoast1Message(msgText){
+    function showToastMessage(msgText){
         GM_addStyle(GM_getResourceText("css1"));
         $.Toast("当前倍速：", msgText, "success", {
             //stack: true,
@@ -409,7 +409,11 @@
     // // 使用方法
     // showMessage('这是一条消息提示');
 
-    function showNotification(message) {
+    /**
+     * sweetalert2 消息提示
+     * @param message
+     */
+    function showSweetMessage(message) {
         const toast = Swal.mixin({
             toast: true,
             position: 'bottom-end',
