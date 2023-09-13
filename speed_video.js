@@ -379,6 +379,8 @@
                     default:
                         showToastMessage(msgText);
                 }
+            } else {
+                showToastMessage(msgText);
             }
         }
 
@@ -822,7 +824,7 @@
                         // 设置默认选中的单选按钮
                         document.getElementById(toastMessage).checked = true;
                     }else {
-                        let defaultToastMessage = "tm04";
+                        let defaultToastMessage = "tm01";
                         document.getElementById(defaultToastMessage).checked = true;
                         localUtil.setGValue('toastMessage',defaultToastMessage);
                     }
