@@ -706,15 +706,6 @@
                                             <span class="toggle-label"></span>
                                         </label>
                                     </td>
-                                    <td>消息提示（右下）：</td>
-                                    <td>
-                                        <label class="toggle-container">
-                                            <input type="checkbox" class="toggle-input" id="speed_switch_toggle3">
-                                            <span class="toggle-label"></span>
-                                        </label>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td>三分钟真男人模式：</td>
                                     <td>
                                         <label class="toggle-container">
@@ -722,8 +713,22 @@
                                             <span class="toggle-label"></span>
                                         </label>
                                     </td>
-                                    <td></td>
-                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>消息提示（右下）：</td>
+                                    <td>
+                                        <label class="toggle-container">
+                                            <input type="checkbox" class="toggle-input" id="speed_switch_toggle3">
+                                            <span class="toggle-label"></span>
+                                        </label>
+                                    </td>
+                                     <td>
+                                        春：<input type="radio" name="toastMessage" value="tm01" style="padding-left: 2px">
+                                        花：<input type="radio" name="toastMessage" value="tm02" style="padding-left: 2px">
+                                        秋：<input type="radio" name="toastMessage" value="tm03" style="padding-left: 2px">
+                                        月：<input type="radio" name="toastMessage" value="tm04" style="padding-left: 2px">
+                                    </td>
+                                    <td>
                                 </tr>
                             </table>
                         </div>
