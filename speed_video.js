@@ -368,7 +368,8 @@
         });
 
         var hideMessage = function() {
-            messageElement.style.display = 'none';
+            // messageElement.style.display = 'none';
+            messageElement.remove();
         };
 
         var showMessage = function() {
