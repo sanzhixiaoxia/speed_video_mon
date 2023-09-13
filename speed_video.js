@@ -193,7 +193,8 @@
     }
 
     // 监听快捷键
-    document.addEventListener("keypress", handleKeyPress);
+    // document.addEventListener("keypress", handleKeyPress);
+    document.addEventListener("keydown", handleKeyPress);
 
     function handleKeyPress(e) {
         log.info("--->e.key:" + e.key);
