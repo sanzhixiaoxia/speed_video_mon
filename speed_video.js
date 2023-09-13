@@ -63,6 +63,38 @@
 (function() {
     'use strict';
 
+    // 本地存储封装
+    const localUtil = {
+        getSValue(name) {
+            return window.localStorage.getItem(name);
+        },
+        setSValue(name, value) {
+            window.localStorage.setItem(name, value);
+        },
+        getGValue(name) {
+            return window.GM_getValue(name);
+        },
+        setGValue(name, value) {
+            window.GM_setValue(name, value);
+        }
+    };
+
+    // 日志打印封装
+    const log = {
+        log: function (msg) {
+            if (localStorage.getItem("speed_debug") == "true") {console.log(msg);}
+        },
+        info: function (msg) {
+            if (localStorage.getItem("speed_debug") == "true") {console.info(msg);}
+        },
+        warn: function (msg) {
+            if (localStorage.getItem("speed_debug") == "true") {console.warn(msg);}
+        },
+        error: function (msg) {
+            if (localStorage.getItem("speed_debug") == "true") {console.error(msg);}
+        }
+    };
+
     // 自定义样式
     function addStyle() {
         let customCss=`
@@ -882,38 +914,6 @@
         }
     }
 
-    // 日志打印封装
-    var log = {
-        log: function (msg) {
-            if (localStorage.getItem("speed_debug") == "true") {console.log(msg);}
-        },
-        info: function (msg) {
-            if (localStorage.getItem("speed_debug") == "true") {console.info(msg);}
-        },
-        warn: function (msg) {
-            if (localStorage.getItem("speed_debug") == "true") {console.warn(msg);}
-        },
-        error: function (msg) {
-            if (localStorage.getItem("speed_debug") == "true") {console.error(msg);}
-        }
-    };
-
-    // 本地存储封装
-    var localUtil = {
-        getSValue(name) {
-            return window.localStorage.getItem(name);
-        },
-        setSValue(name, value) {
-            window.localStorage.setItem(name, value);
-        },
-        getGValue(name) {
-            return window.GM_getValue(name);
-        },
-        setGValue(name, value) {
-            window.GM_setValue(name, value);
-        }
-    }
-
     // 默认开关设置
     function initConfig(){
 
@@ -929,7 +929,8 @@
         localUtil.setGValue('switchConfig', switchConfig);
 
     }
-    var main = {
+
+    const main = {
         before() {
             addStyle();
             mokInitMenu();
@@ -941,7 +942,7 @@
         run() {
             initRun();
         }
-    }
+    };
 
     window.onload = function() {
 
