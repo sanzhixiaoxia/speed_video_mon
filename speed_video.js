@@ -512,11 +512,15 @@
         initStartEnd();
 
         // 自动播放
-        if(getSwitchValueById("speed_switch_toggle2")){
+        if (getSwitchValueById("speed_switch_toggle2")) {
             if (stopFlag) {
                 findNodeWithSelector('video', nodei => {
                     if (nodei) {
-                        nodei.play();
+                        try {
+                            nodei.play();
+                        } catch (e) {
+                            log.error("自动播放失败：" + e)
+                        }
                     }
                 });
                 stopFlag = false;
