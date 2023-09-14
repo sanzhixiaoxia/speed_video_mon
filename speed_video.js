@@ -59,7 +59,7 @@
 // @note         版本更新	23-09-11 1.3.6  优化代码，修正跳过片尾，修正默认开关设置
 // @note         版本更新	23-09-13 1.3.7  修正自动播放
 // @note         版本更新	23-09-14 1.3.8  消息提示多元化
-// @note         版本更新	23-09-14 1.3.9  baseIC,神秘区域上线
+// @note         版本更新	23-09-14 1.3.9  baseIC,优化css,神秘区域上线
 
 // ==/UserScript==
 
@@ -114,7 +114,7 @@
     // 自定义样式
     function addStyle() {
         let customCss=`
-            #rangeId{z-index:99999999;position:fixed;top:100px;right:100px;width:55px;background-color:#E3EDCD;display:inline-block;text-align:center;padding:0 6px 0 7px;height:16px;line-height:16px;border-radius:9px;border:1px solid var(--brand_pink);outline: none;color:var(--brand_pink);font-size:12px;margin-right:4px;transition:background 0.3s,color 0.3s;flex-shrink:0;filter: opacity(0.7);cursor:move;user-select:none;}
+            #rangeId{z-index:99999999;position:fixed;top:100px;right:100px;width:55px;background-color:#E3EDCD;display:inline-block;text-align:center;padding:0 6px 0 7px;height:16px;line-height:16px;border-radius:9px;border:1px solid;outline: none;color:var(--brand_pink);font-size:12px;margin-right:4px;transition:background 0.3s,color 0.3s;flex-shrink:0;filter: opacity(0.7);cursor:move;user-select:none;}
             #rangeId:hover{filter: opacity(1);}
             .slider-container{display:flex;align-items:center;justify-content:flex-start;}
             .toggle-container{display:inline-block;position:relative;}
