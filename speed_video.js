@@ -492,6 +492,7 @@
         messageElement.style.borderRadius = '5px';
         messageElement.style.opacity = '0.9';
         messageElement.style.transition = 'opacity 0.5s ease';
+        messageElement.style.zIndex = '9999';
 
         // 将消息提示元素添加到页面右下角
         document.body.appendChild(messageElement);
