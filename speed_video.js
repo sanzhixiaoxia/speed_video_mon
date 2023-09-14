@@ -339,7 +339,7 @@
     $(document).on('touchmove', function(e) {
         var currentY = e.originalEvent.touches[0].clientY;
         var deltaY = currentY - lastY;
-        var times = Math.abs(deltaY) / 100;
+        var times = Math.abs(deltaY) / 600;
 
         if (deltaY > 0) { direction = "down";} else { direction = "up";}
 
