@@ -841,7 +841,7 @@
                     radio.addEventListener("change", function() {
                         // 获取选中的值
                         let selectedValue = document.querySelector('input[name="toastMessage"]:checked').value;
-                        console.log("选中的值：" + selectedValue);
+                        log.info("选中的值：" + selectedValue);
                         localUtil.setGValue('toastMessage',selectedValue);
                     });
                 });
