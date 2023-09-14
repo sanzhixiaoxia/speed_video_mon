@@ -123,18 +123,9 @@
             .toggle-label:before{content:"";position:absolute;top:2px;left:2px;width:26px;height:26px;background-color:white;border-radius:50%;transition:left 0.3s;}
             .toggle-input:checked+.toggle-label{background-color:#66bb6a;}
             .toggle-input:checked+.toggle-label:before {left: calc(100% - 28px);}
-            #switch_table table {
-              width: 100%; /* 设置表格宽度为100% */
-              border-collapse: collapse; /* 合并表格边框 */
-            }
-            #switch_table table th, table td {
-              padding: 10px; /* 设置表头和单元格的内边距为10像素 */
-              white-space: nowrap; /* 设置文字不换行 */
-            }
-            #switch_table table th {
-              background-color: #f5f5f5; /* 设置表头的背景颜色为浅灰色 */
-              font-weight: bold; /* 设置表头文字加粗 */
-            }
+            .swal2-popup{font-family:"Arial",sans-serif;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.1);background-color:#fff;color:#333;}.swal2-title{font-size:24px;margin-bottom:10px;}.swal2-content{font-size:18px;margin-bottom:20px;}.swal2-actions{display:flex;justify-content:center;}.swal2-confirm,.swal2-cancel{font-size:18px;padding:10px 20px;border-radius:5px;background-color:#ffcc00;color:#fff;border:none;cursor:pointer;transition:background-color 0.3s;}.swal2-confirm:hover,.swal2-cancel:hover{background-color:#ffdd33;}
+            .swal2-close{font-size:20px;width:30px;height:30px;line-height:30px;padding:0;border-radius:50%;background-color:#fff;color:#000;}
+            #switch_table table{width:100%;border-collapse:collapse;}#switch_table table th,table td{padding:10px;white-space:nowrap;}#switch_table table th{background-color:#f5f5f5;font-weight:bold;}
         `;
         GM_addStyle(customCss);
     }
@@ -650,13 +641,11 @@
                 
                     <div style='padding: 20px;text-align: left'>
                         <div>功能简介：</div>
-                        <br>
                         <div>
                             <div style="text-indent: 2em;" >方式一：</div>
                             <div style="text-indent: 4em;" >①调节右上角加速框右侧上下按钮即可调节倍率</div>
                             <div style="text-indent: 4em;" >②在右上角的加速框内输入加速倍率,如2、4、8、16等</div>
                         </div>
-                        <br>
                         <div>
                             <div style="text-indent: 2em;" >方式二：</div>
                             <div style="text-indent: 4em;" >默认快捷键：‘x’, ‘c’, ‘z’</div>
