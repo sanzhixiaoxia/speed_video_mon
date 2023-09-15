@@ -252,7 +252,7 @@
     function controlVideoProperty(propertyName, desiredValue) {
 
         findNodeWithSelector('video', nodei => {
-            if (nodei) {
+            if (itIsVideo(nodei)) {
                 // 使用overrideSetter函数来覆盖HTMLMediaElement.prototype的指定属性的setter方法
                 overrideSetter(HTMLMediaElement.prototype, propertyName, desiredValue);
 
@@ -395,7 +395,7 @@
         messageElement.innerText = msgText;
 
         findNodeWithSelector('video', nodei => {
-            if (nodei) {
+            if (itIsVideo(nodei)) {
                 nodei.parentNode.appendChild(messageElement);
             }
         });
@@ -503,6 +503,17 @@
         }, 1000);
     }
 
+    /**
+     * 校验节点是否是视频
+     * @param nodei
+     */
+    function itIsVideo(nodei) {
+        if (nodei && nodei.nodeName === 'VIDEO' && nodei.src) { // 添加节点类型和src属性的校验
+            return true;
+        }
+        return false;
+    }
+
     var stopFlag = true;
     /**
      * 执行引擎
@@ -516,7 +527,7 @@
         if (getSwitchValueById("speed_switch_toggle2")) {
             if (stopFlag) {
                 findNodeWithSelector('video', nodei => {
-                    if (nodei) {
+                    if (itIsVideo(nodei)) {
                         try {
                             nodei.play();
                         } catch (e) {
@@ -554,7 +565,7 @@
         document.getElementById("rangeId").value = speed;
 
         findNodeWithSelector('video', nodei => {
-            if (nodei) {
+            if (itIsVideo(nodei)) {
                 nodei.playbackRate = speed;
             }
         });
@@ -961,7 +972,7 @@
     function toRunCurrentTime(speed_skip_start,speed_skip_end){
 
         findNodeWithSelector('video', video => {
-            if (video) {
+            if (itIsVideo(video)) {
                 // 如果视频的长度大于跳过的开始和结束时间
                 if (video.duration > parseInt(speed_skip_start) + parseInt(speed_skip_end)) {
 
