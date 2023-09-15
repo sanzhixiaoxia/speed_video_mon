@@ -574,9 +574,9 @@
                         let iframeDoc = "";
                         // 获取 <iframe> 的文档对象
                         try {
-                            iframeDoc = iframe.contentDocument;
-                        } catch (error) {
                             iframeDoc = iframe.contentWindow.document;
+                        } catch (error) {
+                            iframeDoc = iframe.contentDocument;
                         }
                         // 调用窗口对象的 focus() 方法
                         try {
