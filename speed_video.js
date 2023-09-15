@@ -67,6 +67,25 @@
 (function() {
     'use strict';
 
+    // 自定义样式
+    function addStyle() {
+        let customCss=`
+            #rangeId{z-index:99999999;position:fixed;top:100px;right:100px;width:55px;background-color:#E3EDCD;display:inline-block;text-align:center;padding:0 6px 0 7px;height:16px;line-height:16px;border-radius:9px;border:1px solid;outline: none;color:var(--brand_pink);font-size:12px;margin-right:4px;transition:background 0.3s,color 0.3s;flex-shrink:0;filter: opacity(0.7);cursor:move;user-select:none;}
+            #rangeId:hover{filter: opacity(1);}
+            .slider-container{display:flex;align-items:center;justify-content:flex-start;}
+            .toggle-container{display:inline-block;position:relative;}
+            .toggle-input{display:none;}
+            .toggle-label{display:block;width:60px;height:30px;background-color:#ddd;border-radius:15px;position:relative;cursor:pointer;transition:background-color 0.3s;}
+            .toggle-label:before{content:"";position:absolute;top:2px;left:2px;width:26px;height:26px;background-color:white;border-radius:50%;transition:left 0.3s;}
+            .toggle-input:checked+.toggle-label{background-color:#66bb6a;}
+            .toggle-input:checked+.toggle-label:before {left: calc(100% - 28px);}
+            .swal2-popup{font-family:"Arial",sans-serif;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.1);background-color:#fff;color:#333;}.swal2-title{font-size:24px;margin-bottom:10px;}.swal2-content{font-size:18px;margin-bottom:20px;}.swal2-actions{display:flex;justify-content:center;}.swal2-confirm,.swal2-cancel{font-size:18px;padding:10px 20px;border-radius:5px;background-color:#ffcc00;color:#fff;border:none;cursor:pointer;transition:background-color 0.3s;}.swal2-confirm:hover,.swal2-cancel:hover{background-color:#ffdd33;}
+            .swal2-close{font-size:20px;width:30px;height:30px;line-height:30px;padding:0;border-radius:50%;background-color:#fff;color:#000;}
+            #switch_table table{width:100%;border-collapse:collapse;}#switch_table table th,table td{padding:10px;white-space:nowrap;}#switch_table table th{background-color:#f5f5f5;font-weight:bold;}
+        `;
+        GM_addStyle(customCss);
+    }
+
     // 本地存储封装
     const localUtil = {
         getSValue(name) {
@@ -110,25 +129,6 @@
         const paddedMinutes = minutes.toString().padStart(2, "0");
         const paddedSeconds = seconds.toString().padStart(2, "0");
         return `${paddedMinutes}:${paddedSeconds}`;
-    }
-
-    // 自定义样式
-    function addStyle() {
-        let customCss=`
-            #rangeId{z-index:99999999;position:fixed;top:100px;right:100px;width:55px;background-color:#E3EDCD;display:inline-block;text-align:center;padding:0 6px 0 7px;height:16px;line-height:16px;border-radius:9px;border:1px solid;outline: none;color:var(--brand_pink);font-size:12px;margin-right:4px;transition:background 0.3s,color 0.3s;flex-shrink:0;filter: opacity(0.7);cursor:move;user-select:none;}
-            #rangeId:hover{filter: opacity(1);}
-            .slider-container{display:flex;align-items:center;justify-content:flex-start;}
-            .toggle-container{display:inline-block;position:relative;}
-            .toggle-input{display:none;}
-            .toggle-label{display:block;width:60px;height:30px;background-color:#ddd;border-radius:15px;position:relative;cursor:pointer;transition:background-color 0.3s;}
-            .toggle-label:before{content:"";position:absolute;top:2px;left:2px;width:26px;height:26px;background-color:white;border-radius:50%;transition:left 0.3s;}
-            .toggle-input:checked+.toggle-label{background-color:#66bb6a;}
-            .toggle-input:checked+.toggle-label:before {left: calc(100% - 28px);}
-            .swal2-popup{font-family:"Arial",sans-serif;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.1);background-color:#fff;color:#333;}.swal2-title{font-size:24px;margin-bottom:10px;}.swal2-content{font-size:18px;margin-bottom:20px;}.swal2-actions{display:flex;justify-content:center;}.swal2-confirm,.swal2-cancel{font-size:18px;padding:10px 20px;border-radius:5px;background-color:#ffcc00;color:#fff;border:none;cursor:pointer;transition:background-color 0.3s;}.swal2-confirm:hover,.swal2-cancel:hover{background-color:#ffdd33;}
-            .swal2-close{font-size:20px;width:30px;height:30px;line-height:30px;padding:0;border-radius:50%;background-color:#fff;color:#000;}
-            #switch_table table{width:100%;border-collapse:collapse;}#switch_table table th,table td{padding:10px;white-space:nowrap;}#switch_table table th{background-color:#f5f5f5;font-weight:bold;}
-        `;
-        GM_addStyle(customCss);
     }
 
     // 自定义节点
