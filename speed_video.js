@@ -14,6 +14,14 @@
 // @require      https://greasyfork.org/scripts/471299-toastify-js/code/toastifyjs.js?version=1222923
 // @resource     css2 https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css
 // @match        *://*/*
+// @match        *://ke.qq.com/*
+// @match        *://*.bilibili.com/*
+// @match        *://*.iqiyi.com/*
+// @match        *://*.ehuixue.cn/*
+// @match        *://*.chaoxing.com/*
+// @match        *://*.douyin.com/*
+// @match        *://*.youku.com/*
+// @match        *://*.tv.cctv.com/*
 // @run-at       document-end
 // @grant        GM_getValue
 // @grant        GM_setValue
