@@ -922,7 +922,7 @@
         // 三分钟真男人模式
         if (switchId == "speed_switch_toggle5") {
             if(switchState){
-                localUtil.setGValue("speed_three_male",3*60*1000);
+                localUtil.setGValue("speed_three_male",30*60*1000);
             }else{
                 localUtil.setGValue("speed_three_male",30*1000);
             }
@@ -1014,7 +1014,7 @@
             "speed_switch_toggle2": true,
             "speed_switch_toggle3": true,
             "speed_switch_toggle4": true,
-            "speed_switch_toggle5": false
+            "speed_switch_toggle5": true
         };
 
         let switchConfig = localUtil.getGValue('switchConfig') || JSON.stringify(gloubConfig);
