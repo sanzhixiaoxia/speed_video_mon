@@ -580,7 +580,9 @@
                         }
                         // 调用窗口对象的 focus() 方法
                         try {
-                            iframeDoc.focus();
+                            if(iframeDoc){
+                                iframeDoc.focus();
+                            }
                         } catch (error) {
                             log.error("聚焦失败：" + error);
                         }
