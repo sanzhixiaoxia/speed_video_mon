@@ -571,9 +571,19 @@
                 // 确保 <iframe> 加载完成后再访问其内容
                 iframe.addEventListener("load", () => {
                     try {
+                        let iframeDoc = "";
                         // 获取 <iframe> 的文档对象
-                        let iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-
+                        try {
+                            iframeDoc = iframe.contentDocument;
+                        } catch (error) {
+                            iframeDoc = iframe.contentWindow.document;
+                        }
+                        // 调用窗口对象的 focus() 方法
+                        try {
+                            iframeDoc.focus();
+                        } catch (error) {
+                            log.error("聚焦失败：" + error);
+                        }
                         // 在 <iframe> 的文档中查找节点并执行回调
                         let iframeDocElement = iframeDoc.querySelectorAll(selector);
                         if (iframeDocElement.length > 0) {
