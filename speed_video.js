@@ -679,10 +679,11 @@
                             <div style="text-indent: 2em;" >但是有一些比较特别的情况，脚本无法检测到视频，实现不了调整倍速的目的</div>
                             <div style="text-indent: 2em;" >所以做了三分钟真男人模式，持续深入检测三分钟，增强脚本可用性</div>
                         </div>
-                     </div>
-                     <br>
+                    </div>
+                     
+                    <br>
 
-                     <span style="filter:grayscale(100%);">- 您身边的学习追剧好帮手 -</span>
+                    <span style="filter:grayscale(100%);">- 您身边的学习追剧好帮手 -</span>
                      
                 </div>
             `,
