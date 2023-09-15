@@ -114,7 +114,17 @@
     // 自定义节点
     function addDocument(){
 
-        $("body").prepend('<input id="rangeId" type="number" step="0.1" min="0.1" max="20" autofocus="autofocus" value=""  />');
+        let videoElement = document.querySelector("video");
+        // 监听全屏切换事件
+        videoElement.addEventListener('fullscreenchange', () => {
+            if (document.fullscreenElement) {
+                // 进入全屏模式
+                videoElement.prepend('<input id="rangeId" type="number" step="0.1" min="0.1" max="20" autofocus="autofocus" value=""  />');
+            } else {
+                // 退出全屏模式
+                $("body").prepend('<input id="rangeId" type="number" step="0.1" min="0.1" max="20" autofocus="autofocus" value=""  />');
+            }
+        });
 
         let element = document.getElementById('rangeId');
         element.style.opacity = 0.7;
