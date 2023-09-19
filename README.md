@@ -15,7 +15,9 @@
 1. 单手快捷键：“x”，“c” 、恢复正常播放:“t”或“z”
 
 #### 视频讲解：
-1. [https://www.bilibili.com/video/BV1La411r7ra](https://www.bilibili.com/video/BV1La411r7ra)（[查看](https://www.bilibili.com/video/BV1La411r7ra)）
+1. Tampermonkey插件（[下载](https://www.tampermonkey.net/index.php)）
+2. 脚本使用视频 （[视频](https://www.bilibili.com/video/BV1La411r7ra)）
+3. 脚本安装地址 （[视频](https://greasyfork.org/zh-CN/scripts/421170)）
 
 #### 后记说明：
   你好，首先感谢您的使用，作者由于工作原因，不能及时进行维护，对此感到十分抱歉，由于一些特殊原因，最近更换了电脑，发现其他视频播放脚本与本脚本有所冲突，使用时可以先关闭其他视频播放脚本后，进行刷新尝试，最后对于您的使用与支持，再次表示感谢，祝好
