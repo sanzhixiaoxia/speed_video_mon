@@ -18,7 +18,7 @@
 #### 视频讲解：
 1. Tampermonkey插件 （[下载](https://www.tampermonkey.net/index.php)）
 2. 脚本安装地址      （[安装](https://greasyfork.org/zh-CN/scripts/421170)）
-3. 脚本使用视频      （[视频](https://www.bilibili.com/video/BV1La411r7ra)）
+3. 脚本使用视频      （[视频](https://www.bilibili.com/video/BV1La411r7ra)）  
 
 ## 脚本部分截图
 ### 脚本介绍：
