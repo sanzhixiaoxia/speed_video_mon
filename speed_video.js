@@ -116,17 +116,7 @@
     // 自定义节点
     function addDocument(){
 
-        let videoElement = document.querySelector("video");
-        // 监听全屏切换事件
-        videoElement.addEventListener('fullscreenchange', () => {
-            if (document.fullscreenElement) {
-                // 进入全屏模式
-                videoElement.prepend('<input id="rangeId" type="number" step="0.1" min="0.1" max="20" autofocus="autofocus" value=""  />');
-            } else {
-                // 退出全屏模式
-                $("body").prepend('<input id="rangeId" type="number" step="0.1" min="0.1" max="20" autofocus="autofocus" value=""  />');
-            }
-        });
+        $("body").prepend('<input id="rangeId" type="number" step="0.1" min="0.1" max="20" autofocus="autofocus" value=""  />');
 
         let element = document.getElementById('rangeId');
         element.style.opacity = 0.7;
@@ -659,7 +649,7 @@
             title: " - - ☞ ☛ 视频倍速播放 ☚ ☜ - - ",
             html:`
                 <div>
-                
+
                     <div style='padding: 20px;text-align: left'>
                         <div>功能简介：</div>
                         <div>
@@ -673,9 +663,9 @@
                             <div style="text-indent: 4em;" >x: 加速 0.1</div>
                             <div style="text-indent: 4em;" >c: 减速 0.1</div>
                             <div style="text-indent: 4em;" >z: 复位 1.0</div>
-                        </div>                         
+                        </div>
                     </div>
-                    
+
                     <div style='padding: 20px;text-align: left'>
                         <div>模式简介：</div>
                         <div>
@@ -685,11 +675,11 @@
                             <div style="text-indent: 2em;" >所以做了三分钟真男人模式，持续深入检测三分钟，增强脚本可用性</div>
                         </div>
                     </div>
-                     
+
                     <br>
 
                     <span style="filter:grayscale(100%);">- 您身边的学习追剧好帮手 -</span>
-                     
+
                 </div>
             `,
             showConfirmButton: false,
