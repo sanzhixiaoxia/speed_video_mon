@@ -22,11 +22,13 @@
 
 ## 脚本部分截图
 ### 插件安装
-![脚本使用](https://images.gitee.com/uploads/images/2020/0412/104741_f9e1190e_297689.png "debug.png")
+![插件安装](https://gitee.com/leiwang2010/speed_video_mon/raw/prod-1.4.7/showImgs/2023/0919/01.gif "01.gif")
 ### 脚本安装
-![脚本介绍](https://images.gitee.com/uploads/images/2020/0412/104521_e1eb3fbb_297689.png "list.png")
+![脚本安装](https://gitee.com/leiwang2010/speed_video_mon/raw/prod-1.4.7/showImgs/2023/0919/02.gif "02.gif")
 ### 脚本介绍
-![脚本设置](https://images.gitee.com/uploads/images/2020/0412/104659_b06dfbf0_297689.gif "test.gif")
+![脚本介绍](https://gitee.com/leiwang2010/speed_video_mon/raw/prod-1.4.7/showImgs/2023/0919/03.gif "03.gif")
+![脚本介绍](https://gitee.com/leiwang2010/speed_video_mon/raw/prod-1.4.7/showImgs/2023/0919/04.gif "04.gif")
+![脚本介绍](https://gitee.com/leiwang2010/speed_video_mon/raw/prod-1.4.7/showImgs/2023/0919/05.gif "05.gif")
 
 #### 后记说明：
   你好，首先感谢您的使用，作者由于工作原因，不能及时进行维护，对此感到十分抱歉，由于一些特殊原因，最近更换了电脑，发现其他视频播放脚本与本脚本有所冲突，使用时可以先关闭其他视频播放脚本后，进行刷新尝试，最后对于您的使用与支持，再次表示感谢，祝好
