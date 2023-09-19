@@ -7,7 +7,7 @@
 // @description  视频倍速,全网视频倍速播放脚本
 // @author       wll
 // @create       2021/2/4
-// @updateURL    http://example.com/my-script.user.js
+// @updateURL    https://gitee.com/leiwang2010/speed_video_mon/blob/master/all_net_speed_video_script.user.js
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
 // @require      https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js
 // @require      https://greasyfork.org/scripts/447214-toast-script/code/toastscript.js?version=1065649
