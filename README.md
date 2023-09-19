@@ -22,6 +22,8 @@
 
 ## 脚本部分截图
 ### 脚本介绍：
+<img alt="脚本介绍" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/03.gif"/>
+
 ![脚本介绍](https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/03.gif "03.gif")
 ### 脚本快捷键：
 ![脚本快捷键](https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/04.gif "04.gif")
