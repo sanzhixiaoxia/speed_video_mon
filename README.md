@@ -21,17 +21,17 @@
 3. 脚本使用视频      （[视频](https://www.bilibili.com/video/BV1La411r7ra)）
 
 ## 脚本部分截图
-### 脚本介绍
+### 脚本介绍：
 ![脚本介绍](https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/03.gif "03.gif")
-### 脚本快捷键
+### 脚本快捷键：
 ![脚本快捷键](https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/04.gif "04.gif")
-### 脚本设置
-![脚本设置](https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/05.gif "05.gif")
+### 脚本设置：
+![脚本设置](https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/05.gif "05.gif")  
 
 ## 插件及脚本安装
-### 插件安装
+### 插件安装：
 ![插件安装](https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/01.gif "01.gif")
-### 脚本安装
+### 脚本安装：
 ![脚本安装](https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/02.gif "02.gif")
 
 [comment]: <> (#### 后记说明：)
