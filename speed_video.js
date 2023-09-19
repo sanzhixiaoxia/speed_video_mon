@@ -34,6 +34,7 @@
 // @match        *://*.1905.com/*
 // @match        *://*.pptv.com/*
 // @match        *://*/*
+// @include      *:*
 // @run-at       document-end
 // @grant        GM_getValue
 // @grant        GM_setValue
