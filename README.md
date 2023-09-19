@@ -21,11 +21,11 @@
 3. 脚本使用视频      （[视频](https://www.bilibili.com/video/BV1La411r7ra)）
 
 ## 脚本部分截图
-### 脚本使用
+### 插件安装
 ![脚本使用](https://images.gitee.com/uploads/images/2020/0412/104741_f9e1190e_297689.png "debug.png")
-### 脚本介绍
+### 脚本安装
 ![脚本介绍](https://images.gitee.com/uploads/images/2020/0412/104521_e1eb3fbb_297689.png "list.png")
-### 脚本设置
+### 脚本介绍
 ![脚本设置](https://images.gitee.com/uploads/images/2020/0412/104659_b06dfbf0_297689.gif "test.gif")
 
 #### 后记说明：
