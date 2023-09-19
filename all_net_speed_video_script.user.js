@@ -6,7 +6,8 @@
 // @version      1.4.8
 // @description  视频倍速,全网视频倍速播放脚本
 // @author       wll
-// @updateURL    https://gitee.com/leiwang2010/speed_video_mon/raw/master/all_net_speed_video_script.user.js
+// @updateURL    https://greasyfork.org/zh-CN/scripts/421170
+// @downloadURL  https://greasyfork.org/zh-CN/scripts/421170
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
 // @require      https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js
 // @require      https://greasyfork.org/scripts/447214-toast-script/code/toastscript.js?version=1065649
