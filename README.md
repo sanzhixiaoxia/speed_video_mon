@@ -22,17 +22,17 @@
 
 ## 脚本部分截图
 ### 脚本介绍：
-<img alt="脚本介绍" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/03.gif"/>
+<img alt="脚本介绍" src="https://oscimg.oschina.net/oscnet/up-76be0be7b343cae01c31384d59f20acbea4.gif"/>
 
 ### 脚本快捷键：
-<img alt="脚本快捷键" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/04.gif"/>
+<img alt="脚本快捷键" src="https://oscimg.oschina.net/oscnet/up-39b4c913ac26cc0da296b8c98a3d62403f3.gif"/>
 
 ### 脚本设置：
-<img alt="脚本设置" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/05.gif"/>
+<img alt="脚本设置" src="https://oscimg.oschina.net/oscnet/up-c4ed1d2b8fb9f2ba843e790f3591d25c95b.gif"/>
 
 ## 插件及脚本安装
 ### 插件安装：
-<img alt="插件安装" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/01.gif"/>
+<img alt="插件安装" src="https://oscimg.oschina.net/oscnet/up-fa3890e1e0fef2b9710c65886ba4c9733ff.gif"/>
 
 ### 脚本安装：
-<img alt="脚本安装" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/02.gif"/>
+<img alt="脚本安装" src="https://oscimg.oschina.net/oscnet/up-899e1669c04d9d686b40dff0b7479ed70c8.gif"/>
