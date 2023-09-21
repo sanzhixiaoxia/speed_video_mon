@@ -32,19 +32,22 @@
         <td>快捷键</td>
     </tr>
     <tr>
-        <td><img alt="脚本介绍" src="https://github.com/sanzhixiaoxia/speed_video_mon/raw/b8b73241c33a361f6d422401385c6392bacc56a7/showImgs/2023/0919/03.gif"/></td>
-        <td><img alt="脚本快捷键" src="https://github.com/sanzhixiaoxia/speed_video_mon/raw/b8b73241c33a361f6d422401385c6392bacc56a7/showImgs/2023/0919/04.gif"/></td>
+        <td><img alt="脚本介绍" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/03.gif"/></td>
+        <td><img alt="脚本快捷键" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/04.gif"/></td>
     </tr>
+</table>
+
+## 脚本设置截图
+<table>
     <tr>
         <td>脚本设置</td>
         <td>健康观影</td>
     </tr>
     <tr>
-        <td><img alt="脚本设置" src="https://github.com/sanzhixiaoxia/speed_video_mon/raw/b8b73241c33a361f6d422401385c6392bacc56a7/showImgs/2023/0919/05.gif"/></td>
-        <td><img alt="健康观影" src="https://github.com/sanzhixiaoxia/speed_video_mon/raw/b8b73241c33a361f6d422401385c6392bacc56a7/showImgs/2023/0919/06.gif"/></td>
+        <td><img alt="脚本设置" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/05.gif"/></td>
+        <td><img alt="健康观影" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/06.gif"/></td>
     </tr>
 </table>
-
 
 ## 插件及脚本安装
 <table>
@@ -53,8 +56,8 @@
         <td>脚本安装</td>
     </tr>
     <tr>
-        <td><img alt="插件安装" src="https://github.com/sanzhixiaoxia/speed_video_mon/raw/b8b73241c33a361f6d422401385c6392bacc56a7/showImgs/2023/0919/01.gif"/></td>
-        <td><img alt="脚本安装" src="https://github.com/sanzhixiaoxia/speed_video_mon/raw/b8b73241c33a361f6d422401385c6392bacc56a7/showImgs/2023/0919/02.gif"/></td>
+        <td><img alt="插件安装" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/01.gif"/></td>
+        <td><img alt="脚本安装" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/02.gif"/></td>
     </tr>
 </table>
 
