@@ -14,6 +14,7 @@
 // @require      https://greasyfork.org/scripts/471299-toastify-js/code/toastifyjs.js?version=1222923
 // @resource     css2 https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css
 // @match        *://*/*
+// @exclude      https://www.baidu.com/
 // @run-at       document-end
 // @grant        GM_getValue
 // @grant        GM_setValue
