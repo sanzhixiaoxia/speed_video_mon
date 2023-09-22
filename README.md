@@ -68,7 +68,7 @@
 </table>
 
 ## 图片打不开？
-<a href="https://www.apache.org/licenses/LICENSE-2.0">
+<a href="https://gitee.com/leiwang2010/speed_video_mon/raw/master/operationMsg.md">
 图片打不开？点这里
 </a>
 
