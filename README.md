@@ -67,10 +67,7 @@
     </tr>
 </table>
 
-## 图片打不开？
-<a href="https://gitee.com/leiwang2010/speed_video_mon/raw/master/operationMsg.md">
-图片打不开？点这里
-</a>
+> 图片打不开？ <a href="https://gitee.com/leiwang2010/speed_video_mon/blob/master/operationMsg.md"> ☞ ☛ 点这里 ☚ ☜ </a>
 
 # 免责声明
 - 本脚本仅供日常学习交流使用，切勿滥用
