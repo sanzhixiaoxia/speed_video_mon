@@ -28,7 +28,7 @@
   - 2.在右上角的加速框内输入加速倍率,如2、4、8、16等。
    
 &nbsp; 快捷键：
-  - s单手快捷键：“x”，“c” 、恢复正常播放:“t”或“z”
+  - 单手快捷键：“x”，“c” 、恢复正常播放:“t”或“z”
 
 ## 视频讲解：
 1. Tampermonkey插件 （[下载](https://www.tampermonkey.net/index.php)）
