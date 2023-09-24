@@ -57,6 +57,10 @@
         <td><img alt="脚本设置" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/05.gif"/></td>
         <td><img alt="健康观影" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/06.gif"/></td>
     </tr>
+</table>
+
+## 脚本及插件
+<table>
     <tr>
         <td><b>插件安装</b></td>
         <td><b>脚本安装</b></td>
@@ -66,8 +70,6 @@
         <td><img alt="脚本安装" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/02.gif"/></td>
     </tr>
 </table>
-
-<br>
 
 > 图片打不开？ <a href="https://gitee.com/leiwang2010/speed_video_mon/blob/master/README.md"> ☞ ☛ 点这里 ☚ ☜ </a>
 
