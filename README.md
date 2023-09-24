@@ -76,7 +76,7 @@
 ## 支持作者
 <table>
     <tr>
-        <td><b>友情捐助，一瓶农夫?</b></td>
+        <td><b>友情捐助，支持一瓶农夫?</b></td>
     </tr>
     <tr>
         <td><img alt="友情捐助" width="260px" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/reward/img_v2.png"/></td>
