@@ -71,6 +71,16 @@
     </tr>
 </table>
 
+## 支持作者
+<table>
+    <tr>
+        <td><b>友情捐助</b></td>
+    </tr>
+    <tr>
+        <td><img alt="友情捐助" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/reward/img_v2.png"/></td>
+    </tr>
+</table>
+
 > 图片打不开？ <a href="https://gitee.com/leiwang2010/speed_video_mon/blob/master/README.md"> ☞ ☛ 点这里 ☚ ☜ </a>
 
 # 免责声明
