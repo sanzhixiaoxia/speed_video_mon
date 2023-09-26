@@ -11,8 +11,9 @@
 	<a href="https://www.apache.org/licenses/LICENSE-2.0">
         <img alt="code style" src="https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square">
     </a>
-    <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Android-blue.svg" alt="platform">
-    <img src="https://img.shields.io/badge/tamperMonkey-v4.1.8-brightgreen.svg" alt="tampermonkey">
+    <img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20Android-blue.svg" >
+    <img alt="tampermonkey" src="https://img.shields.io/badge/tamperMonkey-v4.1.8-brightgreen.svg" >
+    <img alt="rating" src="https://camo.githubusercontent.com/7d880f217d558a5183c9af2332c2517b00a6c4ff0b29297bd6881dd5bf867887/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f726174696e672d2545322539382538352545322539382538352545322539382538352545322539382538352545322539382538362d627269676874677265656e" >
 </p>
 
 ## 功能介绍：
