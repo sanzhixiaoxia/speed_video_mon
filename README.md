@@ -23,12 +23,12 @@
 5. 药不能停 O(∩_∩)O~~
 
 ## 使用方法：
-* 手动调节：
->   1. 调节右上角加速框右侧上下按钮即可调节倍率
->   2. 在右上角的加速框内输入加速倍率,如2、4、8、16等。
+&nbsp; 手动调节：
+  - 1.调节右上角加速框右侧上下按钮即可调节倍
+  - 2.在右上角的加速框内输入加速倍率,如2、4、8、16等。
    
-* 快捷键：
->   -   单手快捷键：“x”，“c” 、恢复正常播放:“t”或“z”
+&nbsp; 快捷键：
+  - 单手快捷键：“x”，“c” 、恢复正常播放:“t”或“z”
 
 ## 视频讲解：
 1. Tampermonkey插件 （[下载](https://www.tampermonkey.net/index.php)）
@@ -42,24 +42,28 @@
 ## 脚本截图
 <table>
     <tr>
-        <td>脚本介绍</td>
-        <td>快捷键</td>
+        <td><b>脚本介绍</b></td>
+        <td><b>快捷键</b></td>
     </tr>
     <tr>
         <td><img alt="脚本介绍" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/03.gif"/></td>
         <td><img alt="脚本快捷键" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/04.gif"/></td>
     </tr>
     <tr>
-        <td>脚本设置</td>
-        <td>健康观影</td>
+        <td><b>脚本设置</b></td>
+        <td><b>健康观影</b></td>
     </tr>
     <tr>
         <td><img alt="脚本设置" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/05.gif"/></td>
         <td><img alt="健康观影" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/06.gif"/></td>
     </tr>
+</table>
+
+## 脚本及插件
+<table>
     <tr>
-        <td>插件安装</td>
-        <td>脚本安装</td>
+        <td><b>插件安装</b></td>
+        <td><b>脚本安装</b></td>
     </tr>
     <tr>
         <td><img alt="插件安装" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/showImgs/2023/0919/01.gif"/></td>
@@ -67,7 +71,18 @@
     </tr>
 </table>
 
-> 图片打不开？ <a href="https://gitee.com/leiwang2010/speed_video_mon/blob/master/operationMsg.md"> ☞ ☛ 点这里 ☚ ☜ </a>
+## 支持作者
+<table>
+    <tr>
+        <td><b>友情捐助，支持一瓶农夫?</b></td>
+    </tr>
+    <tr>
+        <td><img alt="友情捐助" width="260px" src="https://gitee.com/leiwang2010/speed_video_mon/raw/master/reward/img_v2.png"/></td>
+    </tr>
+</table>
+
+> 图片打不开？ <a href="https://gitee.com/leiwang2010/speed_video_mon/blob/master/README.md"> ☞ ☛ 点这里 ☚ ☜ </a>
+
 
 # 免责声明
 - 本脚本仅供日常学习交流使用，切勿滥用
