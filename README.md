@@ -5,10 +5,10 @@
 </p>
 
 <p align="center">
-	<a href="https://greasyfork.org/zh-CN/scripts/421170">
+	<a target="_blank" href="https://greasyfork.org/zh-CN/scripts/421170">
         <img src="https://img.shields.io/badge/release-v1.5.2-brig1htgreen.svg">
     </a>
-	<a href="https://www.apache.org/licenses/LICENSE-2.0">
+	<a target="_blank" href="https://www.apache.org/licenses/LICENSE-2.0">
         <img alt="code style" src="https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square">
     </a>
     <img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20Android-blue.svg" >
@@ -82,7 +82,7 @@
     </tr>
 </table>
 
-> 图片打不开？ <a href="https://gitee.com/leiwang2010/speed_video_mon/blob/master/README.md"> ☞ ☛ 点这里 ☚ ☜ </a>
+> 图片打不开？ <a target="_blank" href="https://gitee.com/leiwang2010/speed_video_mon/blob/master/README.md"> ☞ ☛ 点这里 ☚ ☜ </a>
 
 
 # 免责声明
