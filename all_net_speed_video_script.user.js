@@ -552,6 +552,7 @@
                 findNodeWithSelector('video', nodei => {
                     if (itIsVideo(nodei)) {
                         nodei.playbackRate = speed;
+                        showVideoMessage("倍速提速中:"+speed);
                     }
                 });
             } catch (e) {
