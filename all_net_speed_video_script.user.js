@@ -102,6 +102,7 @@
 
         let element = document.getElementById('rangeId');
         element.style.opacity = 0.7;
+        element.style.zIndex = '2147483647'; // 设置倍速框的 z-index 值为最大值
 
         element.addEventListener('change', function () {
             // 在这里执行 change 事件的处理逻辑
