@@ -505,21 +505,42 @@
             }
         }
 
-        var step = document.getElementById("rangeId").value;
-        log.info("倍速播放方法启动,当前倍率为....." + step);
-        var speed_step_key = localUtil.getSValue("speed_step_key");
-        if ((step == null || step == '') && speed_step_key == null) {
-            changeSpeend(1);
-            return;
+        // var step = document.getElementById("rangeId").value;
+        // log.info("倍速播放方法启动,当前倍率为....." + step);
+        // var speed_step_key = localUtil.getSValue("speed_step_key");
+        // if ((step == null || step == '') && speed_step_key == null) {
+        //     changeSpeend(1);
+        //     return;
+        // }
+        // if ((step == null || step == '') && speed_step_key != null) {
+        //     changeSpeend(speed_step_key);
+        //     return;
+        // }
+        // if ((step != null && step != '' && step != speed_step_key) || (step == speed_step_key)) {
+        //     changeSpeend(step);
+        //     return;
+        // }
+
+        let rangeElement = document.getElementById("rangeId");
+        let step = rangeElement.value;
+        let speed_step_key = localUtil.getSValue("speed_step_key");
+
+        if (step == null || step === '') {
+            if (speed_step_key == null) {
+                changeSpeend(1);
+            } else {
+                changeSpeend(speed_step_key);
+            }
+        } else {
+            if (step !== speed_step_key) {
+                changeSpeend(step);
+            }
         }
-        if ((step == null || step == '') && speed_step_key != null) {
-            changeSpeend(speed_step_key);
-            return;
-        }
-        if ((step != null && step != '' && step != speed_step_key) || (step == speed_step_key)) {
-            changeSpeend(step);
-            return;
-        }
+
+        // 日志输出当前倍速
+        console.log("倍速播放方法启动，当前倍率为：" + step);
+
+
     }
 
     // 移动端长按支持
