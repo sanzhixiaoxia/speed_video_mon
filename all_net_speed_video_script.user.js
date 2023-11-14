@@ -1009,26 +1009,21 @@
      * @param speed_skip_start
      * @param speed_skip_end
      */
-    function toRunCurrentTime(speed_skip_start,speed_skip_end){
+    function speedSkipMethod(speed_skip_start,speed_skip_end){
+
+        speed_skip_start = parseInt(speed_skip_start);
+        speed_skip_end = parseInt(speed_skip_end);
 
         findNodeWithSelector('video', video => {
             if (itIsVideo(video)) {
-                // 如果视频的长度大于跳过的开始和结束时间
-                if (video.duration > parseInt(speed_skip_start) + parseInt(speed_skip_end)) {
-
-                    // 已经过了片头，则不进行跳过
-                    if (video.currentTime > parseInt(speed_skip_start)) {
-                        return;
+                if (parseInt(video.duration) > speed_skip_start + speed_skip_end) {
+                    // 跳转到视频末尾
+                    if (parseInt(video.duration) - parseInt(video.currentTime) < speed_skip_end) {
+                        video.currentTime = parseInt(video.duration);
                     }
                     // 跳过视频的开始
+                    if (video.currentTime > speed_skip_start) {return;}
                     video.currentTime = speed_skip_start;
-
-                }
-
-                // 如果视频在跳过结束时间内
-                if (video.duration - video.currentTime < parseInt(speed_skip_end)) {
-                    // 跳转到视频末尾
-                    video.currentTime = video.duration;
                 }
             }
         });
@@ -1042,13 +1037,13 @@
      */
     function initStartEnd(){
 
-        var storedData1 = localUtil.getSValue("speed_slider_start");
-        var storedData2 = localUtil.getSValue("speed_slider_end");
-        var speed_skip_start = storedData1 ? JSON.parse(storedData1).value : 0;
-        var speed_skip_end = storedData2 ? JSON.parse(storedData2).value : 0;
+        let storedData1 = localUtil.getSValue("speed_slider_start");
+        let storedData2 = localUtil.getSValue("speed_slider_end");
+        let speed_skip_start = storedData1 ? JSON.parse(storedData1).value : 0;
+        let speed_skip_end = storedData2 ? JSON.parse(storedData2).value : 0;
 
         if (speed_skip_start > 0 || speed_skip_end > 0) {
-            toRunCurrentTime(speed_skip_start,speed_skip_end);
+            speedSkipMethod(speed_skip_start,speed_skip_end);
         }
     }
 
