@@ -50,13 +50,34 @@
         GM_addStyle(customCss);
     }
 
+    function getLocalStorage() {
+        try {
+            if (window.self !== window.top) {
+                // 如果在iframe中，则使用最顶层的localStorage
+                return window.top.localStorage;
+            } else {
+                // 否则使用当前的localStorage
+                return window.localStorage;
+            }
+        } catch (error) {
+            console.error("无法访问localStorage。");
+            return null;
+        }
+    }
+
     // 本地存储封装
     const localUtil = {
         getSValue(name) {
-            return window.localStorage.getItem(name);
+            let localStorage = getLocalStorage();
+            if (localStorage) {
+                return localStorage.getItem(name);
+            }
         },
         setSValue(name, value) {
-            window.localStorage.setItem(name, value);
+            let localStorage = getLocalStorage();
+            if (localStorage) {
+                localStorage.setItem(name, value);
+            }
         },
         getGValue(name) {
             return window.GM_getValue(name);
@@ -117,29 +138,29 @@
         });
 
         // 初始化按钮位置
-        var buttonPosition = localUtil.getGValue('buttonPosition');
+        let buttonPosition = localUtil.getGValue('buttonPosition');
         if (buttonPosition) {
-            var position = JSON.parse(buttonPosition);
+            let position = JSON.parse(buttonPosition);
             element.style.top = position.top + 'px';
             element.style.left = position.left + 'px';
         }
 
         // 添加按钮拖动功能
         element.addEventListener('mousedown', function(e) {
-            var offsetX = e.clientX - element.offsetLeft;
-            var offsetY = e.clientY - element.offsetTop;
+            let offsetX = e.clientX - element.offsetLeft;
+            let offsetY = e.clientY - element.offsetTop;
 
             document.addEventListener('mousemove', dragButton);
 
             function dragButton(e) {
-                var left = e.clientX - offsetX;
-                var top = e.clientY - offsetY;
+                let left = e.clientX - offsetX;
+                let top = e.clientY - offsetY;
 
                 // 限制按钮不可移出屏幕
-                var windowWidth = window.innerWidth;
-                var windowHeight = window.innerHeight;
-                var buttonWidth = element.offsetWidth;
-                var buttonHeight = element.offsetHeight;
+                let windowWidth = window.innerWidth;
+                let windowHeight = window.innerHeight;
+                let buttonWidth = element.offsetWidth;
+                let buttonHeight = element.offsetHeight;
 
                 left = Math.max(15, Math.min(left, windowWidth - buttonWidth - 15));
                 top = Math.max(15, Math.min(top, windowHeight - buttonHeight - 15));
@@ -156,7 +177,7 @@
 
         // 保存按钮位置到本地存储
         function saveButtonPosition() {
-            var position = {
+            let position = {
                 top: element.offsetTop,
                 left: element.offsetLeft
             };
@@ -223,7 +244,7 @@
                 overrideSetter(HTMLMediaElement.prototype, propertyName, desiredValue);
 
                 // 创建一个MutationObserver实例来监听指定属性的变化
-                var observer = new MutationObserver(function(mutations) {
+                let observer = new MutationObserver(function(mutations) {
                     mutations.forEach(function(mutation) {
                         if (mutation.type == 'attributes' && mutation.attributeName == propertyName && nodei[propertyName] != desiredValue) {
                             nodei[propertyName] = desiredValue;  // 更改属性的值
@@ -232,7 +253,7 @@
                 });
 
                 // 配置观察器
-                var config = { attributes: true };
+                let config = { attributes: true };
 
                 // 开始观察
                 observer.observe(nodei, config);
@@ -244,7 +265,7 @@
     // 创建一个函数来覆盖对象的指定属性的setter方法
     function overrideSetter(object, property, desiredValue) {
         // 保存原始的setter方法
-        var originalSetter = Object.getOwnPropertyDescriptor(object, property).set;
+        let originalSetter = Object.getOwnPropertyDescriptor(object, property).set;
 
         // 覆盖setter方法
         Object.defineProperty(object, property, {
@@ -255,8 +276,8 @@
     }
 
     /* PC端滑动处理 */
-    var isMouseDown = false;
-    var startX, startY;
+    let isMouseDown = false;
+    let startX, startY;
     $(document).on('mousedown', function(event) {
         isMouseDown = true;
         startX = event.pageX;
@@ -264,14 +285,14 @@
     });
     $(document).on('mousemove', function(event) {
         if (isMouseDown) {
-            var currentX = event.pageX;
-            var currentY = event.pageY;
+            let currentX = event.pageX;
+            let currentY = event.pageY;
 
-            var distanceX = currentX - startX;
-            var distanceY = currentY - startY;
+            let distanceX = currentX - startX;
+            let distanceY = currentY - startY;
 
-            var times = Math.abs(distanceY) / 600;
-            for (var i = 0; i < times; i++) {
+            let times = Math.abs(distanceY) / 600;
+            for (let i = 0; i < times; i++) {
                 if (distanceY > 0) {
                     // speedFun("-");
                 } else {
@@ -286,21 +307,21 @@
 
 
     /* 移动端滑动处理 */
-    var lastY = 0;
-    var direction = ""; // 保存方向信息
+    let lastY = 0;
+    let direction = ""; // 保存方向信息
 
     $(document).on('touchstart', function(e) {
         lastY = e.originalEvent.touches[0].clientY;
     });
 
     $(document).on('touchmove', function(e) {
-        var currentY = e.originalEvent.touches[0].clientY;
-        var deltaY = currentY - lastY;
-        var times = Math.abs(deltaY) / 600;
+        let currentY = e.originalEvent.touches[0].clientY;
+        let deltaY = currentY - lastY;
+        let times = Math.abs(deltaY) / 600;
 
         if (deltaY > 0) { direction = "down";} else { direction = "up";}
 
-        for (var i = 0; i < times; i++) {
+        for (let i = 0; i < times; i++) {
             log.info(direction);
             if (direction == "down") { speedFun("-"); }
             if (direction == "up") { speedFun("+"); }
@@ -349,7 +370,7 @@
      * @param msgText
      */
     function showVideoMessage(msgText) {
-        var messageElement = document.createElement('div');
+        let messageElement = document.createElement('div');
         messageElement.style.position = 'absolute';
         messageElement.style.top = '10px';
         messageElement.style.left = '10px';
@@ -366,12 +387,12 @@
             }
         });
 
-        var hideMessage = function() {
+        let hideMessage = function() {
             // messageElement.style.display = 'none';
             messageElement.remove();
         };
 
-        var showMessage = function() {
+        let showMessage = function() {
             messageElement.style.display = 'block';
             setTimeout(hideMessage, 1000); // 一秒后隐藏消息
         };
@@ -444,7 +465,7 @@
      */
     function showOldJsMessage(message) {
         // 创建消息提示元素
-        var messageElement = document.createElement('div');
+        let messageElement = document.createElement('div');
         messageElement.classList.add('message');
         messageElement.innerText = message;
 
@@ -480,7 +501,7 @@
         return false;
     }
 
-    var stopFlag = true;
+    let stopFlag = true;
     /**
      * 执行引擎
      */
@@ -505,22 +526,6 @@
             }
         }
 
-        // var step = document.getElementById("rangeId").value;
-        // log.info("倍速播放方法启动,当前倍率为....." + step);
-        // var speed_step_key = localUtil.getSValue("speed_step_key");
-        // if ((step == null || step == '') && speed_step_key == null) {
-        //     changeSpeend(1);
-        //     return;
-        // }
-        // if ((step == null || step == '') && speed_step_key != null) {
-        //     changeSpeend(speed_step_key);
-        //     return;
-        // }
-        // if ((step != null && step != '' && step != speed_step_key) || (step == speed_step_key)) {
-        //     changeSpeend(step);
-        //     return;
-        // }
-
         let rangeElement = document.getElementById("rangeId");
         let step = rangeElement.value;
         let speed_step_key = localUtil.getSValue("speed_step_key");
@@ -538,8 +543,7 @@
         }
 
         // 日志输出当前倍速
-        console.log("倍速播放方法启动，当前倍率为：" + step);
-
+        log.info("倍速播放方法启动，当前倍率为：" + step);
 
     }
 
@@ -824,15 +828,15 @@
 
                 //====================================配置开关监听start==============================================
                 // 保存开关状态的配置
-                var switchConfig = {};
+                let switchConfig = {};
                 // 获取开关元素
-                var switches = document.querySelectorAll('.toggle-container input');
+                let switches = document.querySelectorAll('.toggle-container input');
 
                 // 遍历开关元素，添加事件监听器
                 switches.forEach(function(switchElement) {
                     switchElement.addEventListener('change', function(event) {
-                        var switchId = event.target.id;
-                        var switchState = event.target.checked;
+                        let switchId = event.target.id;
+                        let switchState = event.target.checked;
                         // 将开关状态保存到配置中
                         switchConfig[switchId] = switchState;
                         // 将配置保存到本地存储
@@ -843,11 +847,11 @@
 
                 // 加载配置并设置开关状态
                 function loadSwitchConfig() {
-                    var savedConfig = localUtil.getGValue('switchConfig');
+                    let savedConfig = localUtil.getGValue('switchConfig');
                     if (savedConfig) {
                         switchConfig = JSON.parse(savedConfig);
                         Object.keys(switchConfig).forEach(function(switchId) {
-                            var switchElement = document.getElementById(switchId);
+                            let switchElement = document.getElementById(switchId);
                             if (switchElement) {
                                 switchElement.checked = switchConfig[switchId];
                             }
@@ -870,7 +874,7 @@
 
                 //====================================消息提示单选start================================================
                 // 获取单选按钮组
-                var radioGroup = document.getElementsByName("toastMessage");
+                let radioGroup = document.getElementsByName("toastMessage");
 
                 // 添加事件监听器
                 radioGroup.forEach(function(radio) {
@@ -932,9 +936,9 @@
 
     // 根据 ID 查询开关状态值
     function getSwitchValueById(switchId) {
-        var savedConfig = localUtil.getGValue('switchConfig');
+        let savedConfig = localUtil.getGValue('switchConfig');
         if (savedConfig) {
-            var switchConfig = JSON.parse(savedConfig);
+            let switchConfig = JSON.parse(savedConfig);
             return switchConfig[switchId];
         }
         return null;
@@ -1090,11 +1094,11 @@
         localStorage.setItem("speed_debug", "false");
         main.before();
 
-        var speed_three_male = localUtil.getGValue("speed_three_male")||30 * 1000;
-        var startStamp = new Date().getTime();
+        let speed_three_male = localUtil.getGValue("speed_three_male")||30 * 1000;
+        let startStamp = new Date().getTime();
         window.initTimer = setInterval(() => {
-            var videos = document.querySelectorAll("video");
-            var nowStamp = new Date().getTime();
+            let videos = document.querySelectorAll("video");
+            let nowStamp = new Date().getTime();
             if (videos.length > 0) {
                 clearInterval(initTimer);
                 main.init();
