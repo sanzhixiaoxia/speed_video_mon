@@ -210,29 +210,23 @@
 
     // 更改倍速
     function speedFun(spee) {
-
         log.info("this speedFun is spee:" + spee);
-        controlVideoProperty('playbackRate', spee);  // 调用函数，设置播放速度为2.0
+        controlVideoProperty('playbackRate', spee);  // 调用函数，设置播放速度
 
-        if ("+" == spee) {
-            let numVal = parseFloat(parseFloat($("#rangeId").val()) + 0.1 > 20 ? 20 : parseFloat($("#rangeId").val()) + 0.1).toFixed(1);
-            addToast("当前倍速：" + numVal);
-            $("#rangeId").val(numVal).trigger("change");
-            return;
-        }
-        if ("-" == spee) {
-            let numVal = parseFloat(parseFloat($("#rangeId").val()) - 0.1 < 0.1 ? 0.1 : parseFloat($("#rangeId").val()) - 0.1).toFixed(1);
-            addToast("当前倍速：" + numVal);
-            $("#rangeId").val(numVal).trigger("change");
-            return;
-        }
-        if ("1" == spee) {
-            $("#rangeId").val(1.0);
-            addToast("当前倍速：" + 1.0);
+        const currentVal = parseFloat($("#rangeId").val());
+        let numVal;
+
+        if ("+" === spee) {
+            numVal = Math.min(20, currentVal + 0.1);
+        } else if ("-" === spee) {
+            numVal = Math.max(0.1, currentVal - 0.1);
+        } else if ("1" === spee) {
+            numVal = 1.0;
             localUtil.setSValue("speed_step_key", null);
-            return;
         }
 
+        $("#rangeId").val(numVal.toFixed(1)).trigger("change");
+        addToast("当前倍速：" + numVal.toFixed(1));
     }
 
     // 解锁元素属性
