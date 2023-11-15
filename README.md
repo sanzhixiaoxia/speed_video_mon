@@ -6,7 +6,7 @@
 
 <p align="center">
 	<a target="_blank" href="https://greasyfork.org/zh-CN/scripts/421170">
-        <img src="https://img.shields.io/badge/release-v1.5.2-brig1htgreen.svg">
+        <img src="https://img.shields.io/badge/release-v1.5.5-brig1htgreen.svg">
     </a>
 	<a target="_blank" href="https://www.apache.org/licenses/LICENSE-2.0">
         <img alt="code style" src="https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square">
