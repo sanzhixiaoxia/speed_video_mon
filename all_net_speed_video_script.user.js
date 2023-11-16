@@ -116,82 +116,393 @@
         return `${paddedMinutes}:${paddedSeconds}`;
     }
 
+    // // 自定义节点
+    // function addDocument(){
+    //
+    //     $("body").prepend('<input id="rangeId" type="number" step="0.1" min="0.1" max="20" autofocus="autofocus" value=""  />');
+    //
+    //     let element = document.getElementById('rangeId');
+    //     element.style.opacity = 0.7;
+    //     element.style.zIndex = '2147483647'; // 设置倍速框的 z-index 值为最大值
+    //
+    //     element.addEventListener('change', function () {
+    //         // 在这里执行 change 事件的处理逻辑
+    //         element.style.opacity = 1;
+    //         addToast("当前倍速：" + element.value);
+    //     });
+    //     element.addEventListener('mouseover', function() {
+    //         element.style.opacity = 1;
+    //     });
+    //     element.addEventListener('mouseout', function() {
+    //         element.style.opacity = 0.7;
+    //     });
+    //
+    //     // 初始化按钮位置
+    //     let buttonPosition = localUtil.getGValue('buttonPosition');
+    //     if (buttonPosition) {
+    //         let position = JSON.parse(buttonPosition);
+    //         element.style.top = position.top + 'px';
+    //         element.style.left = position.left + 'px';
+    //     }
+    //
+    //     // 添加按钮拖动功能
+    //     element.addEventListener('mousedown', function(e) {
+    //         let offsetX = e.clientX - element.offsetLeft;
+    //         let offsetY = e.clientY - element.offsetTop;
+    //
+    //         document.addEventListener('mousemove', dragButton);
+    //
+    //         function dragButton(e) {
+    //             let left = e.clientX - offsetX;
+    //             let top = e.clientY - offsetY;
+    //
+    //             // 限制按钮不可移出屏幕
+    //             let windowWidth = window.innerWidth;
+    //             let windowHeight = window.innerHeight;
+    //             let buttonWidth = element.offsetWidth;
+    //             let buttonHeight = element.offsetHeight;
+    //
+    //             left = Math.max(15, Math.min(left, windowWidth - buttonWidth - 15));
+    //             top = Math.max(15, Math.min(top, windowHeight - buttonHeight - 15));
+    //
+    //             element.style.left = left + 'px';
+    //             element.style.top = top + 'px';
+    //         }
+    //
+    //         document.addEventListener('mouseup', function() {
+    //             document.removeEventListener('mousemove', dragButton);
+    //             saveButtonPosition();
+    //         });
+    //     });
+    //
+    //     // 保存按钮位置到本地存储
+    //     function saveButtonPosition() {
+    //         let position = {
+    //             top: element.offsetTop,
+    //             left: element.offsetLeft
+    //         };
+    //         localUtil.setGValue('buttonPosition', JSON.stringify(position));
+    //     }
+    // }
+
     // 自定义节点
-    function addDocument(){
+    // function addDocument() {
+    //     const rangeId = "rangeId";
+    //     const buttonPositionKey = "buttonPosition";
+    //
+    //     const addButton = () => {
+    //         const rangeInput = `<input id="${rangeId}" type="number" step="0.1" min="0.1" max="20" autofocus="autofocus" value="" />`;
+    //         $("body").prepend(rangeInput);
+    //
+    //         const element = document.getElementById(rangeId);
+    //         element.style.opacity = 0.7;
+    //         element.style.zIndex = "2147483647";
+    //     };
+    //
+    //     const addListeners = () => {
+    //         const element = document.getElementById(rangeId);
+    //
+    //         const handleChange = () => {
+    //             element.style.opacity = 1;
+    //             addToast("当前倍速：" + element.value);
+    //         };
+    //
+    //         const handleMouseOver = () => {
+    //             element.style.opacity = 1;
+    //         };
+    //
+    //         const handleMouseOut = () => {
+    //             element.style.opacity = 0.7;
+    //         };
+    //
+    //         element.addEventListener("change", handleChange);
+    //         element.addEventListener("mouseover", handleMouseOver);
+    //         element.addEventListener("mouseout", handleMouseOut);
+    //
+    //         const handleMouseDown = (e) => {
+    //             const offsetX = e.clientX - element.offsetLeft;
+    //             const offsetY = e.clientY - element.offsetTop;
+    //
+    //             const dragButton = (e) => {
+    //                 let left = e.clientX - offsetX;
+    //                 let top = e.clientY - offsetY;
+    //
+    //                 const windowWidth = window.innerWidth;
+    //                 const windowHeight = window.innerHeight;
+    //                 const buttonWidth = element.offsetWidth;
+    //                 const buttonHeight = element.offsetHeight;
+    //
+    //                 left = Math.max(15, Math.min(left, windowWidth - buttonWidth - 15));
+    //                 top = Math.max(15, Math.min(top, windowHeight - buttonHeight - 15));
+    //
+    //                 element.style.left = left + "px";
+    //                 element.style.top = top + "px";
+    //             };
+    //
+    //             document.addEventListener("mousemove", dragButton);
+    //
+    //             const handleMouseUp = () => {
+    //                 document.removeEventListener("mousemove", dragButton);
+    //                 saveButtonPosition();
+    //             };
+    //
+    //             document.addEventListener("mouseup", handleMouseUp);
+    //         };
+    //
+    //         element.addEventListener("mousedown", handleMouseDown);
+    //     };
+    //
+    //     const saveButtonPosition = () => {
+    //         const element = document.getElementById(rangeId);
+    //         const position = {
+    //             top: element.offsetTop,
+    //             left: element.offsetLeft,
+    //         };
+    //
+    //         try {
+    //             localStorage.setItem(buttonPositionKey, JSON.stringify(position));
+    //         } catch (error) {
+    //             console.error("保存按钮位置失败: ", error);
+    //         }
+    //     };
+    //
+    //     const initializeButtonPosition = () => {
+    //         const element = document.getElementById(rangeId);
+    //         const buttonPosition = localStorage.getItem(buttonPositionKey);
+    //         if (buttonPosition) {
+    //             const position = JSON.parse(buttonPosition);
+    //             element.style.top = position.top + "px";
+    //             element.style.left = position.left + "px";
+    //         }
+    //     };
+    //
+    //     addButton();
+    //     addListeners();
+    //     initializeButtonPosition();
+    // }
 
-        $("body").prepend('<input id="rangeId" type="number" step="0.1" min="0.1" max="20" autofocus="autofocus" value=""  />');
+    // 自定义节点
+    function addDocument() {
+        const rangeId = "rangeId";
+        const buttonPositionKey = "buttonPosition";
 
-        let element = document.getElementById('rangeId');
-        element.style.opacity = 0.7;
-        element.style.zIndex = '2147483647'; // 设置倍速框的 z-index 值为最大值
-
-        element.addEventListener('change', function () {
-            // 在这里执行 change 事件的处理逻辑
-            element.style.opacity = 1;
-            addToast("当前倍速：" + element.value);
-        });
-        element.addEventListener('mouseover', function() {
-            element.style.opacity = 1;
-        });
-        element.addEventListener('mouseout', function() {
-            element.style.opacity = 0.7;
-        });
-
-        // 初始化按钮位置
-        let buttonPosition = localUtil.getGValue('buttonPosition');
-        if (buttonPosition) {
-            let position = JSON.parse(buttonPosition);
-            element.style.top = position.top + 'px';
-            element.style.left = position.left + 'px';
-        }
-
-        // 添加按钮拖动功能
-        element.addEventListener('mousedown', function(e) {
-            let offsetX = e.clientX - element.offsetLeft;
-            let offsetY = e.clientY - element.offsetTop;
-
-            document.addEventListener('mousemove', dragButton);
-
-            function dragButton(e) {
-                let left = e.clientX - offsetX;
-                let top = e.clientY - offsetY;
-
-                // 限制按钮不可移出屏幕
-                let windowWidth = window.innerWidth;
-                let windowHeight = window.innerHeight;
-                let buttonWidth = element.offsetWidth;
-                let buttonHeight = element.offsetHeight;
-
-                left = Math.max(15, Math.min(left, windowWidth - buttonWidth - 15));
-                top = Math.max(15, Math.min(top, windowHeight - buttonHeight - 15));
-
-                element.style.left = left + 'px';
-                element.style.top = top + 'px';
+        const addButton = () => {
+            const rangeInput = `<input id="${rangeId}" type="number" step="0.1" min="0.1" max="20" autofocus="autofocus" value="" />`;
+            if (window.self !== window.top) {
+                // 在iframe中
+                window.parent.postMessage({ type: "addButton" }, "*");
+            } else {
+                // 不在iframe中
+                $("body").prepend(rangeInput);
             }
 
-            document.addEventListener('mouseup', function() {
-                document.removeEventListener('mousemove', dragButton);
-                saveButtonPosition();
-            });
-        });
+            const element = document.getElementById(rangeId);
+            element.style.opacity = 0.7;
+            element.style.zIndex = "2147483647";
+        };
 
-        // 保存按钮位置到本地存储
-        function saveButtonPosition() {
-            let position = {
-                top: element.offsetTop,
-                left: element.offsetLeft
+        const addListeners = () => {
+            const element = document.getElementById(rangeId);
+
+            const handleChange = () => {
+                element.style.opacity = 1;
+                addToast("当前倍速：" + element.value);
             };
-            localUtil.setGValue('buttonPosition', JSON.stringify(position));
-        }
+
+            const handleMouseOver = () => {
+                element.style.opacity = 1;
+            };
+
+            const handleMouseOut = () => {
+                element.style.opacity = 0.7;
+            };
+
+            element.addEventListener("change", handleChange);
+            element.addEventListener("mouseover", handleMouseOver);
+            element.addEventListener("mouseout", handleMouseOut);
+
+            const handleMouseDown = (e) => {
+                const offsetX = e.clientX - element.offsetLeft;
+                const offsetY = e.clientY - element.offsetTop;
+
+                const dragButton = (e) => {
+                    let left = e.clientX - offsetX;
+                    let top = e.clientY - offsetY;
+
+                    const windowWidth = window.innerWidth;
+                    const windowHeight = window.innerHeight;
+                    const buttonWidth = element.offsetWidth;
+                    const buttonHeight = element.offsetHeight;
+
+                    left = Math.max(15, Math.min(left, windowWidth - buttonWidth - 15));
+                    top = Math.max(15, Math.min(top, windowHeight - buttonHeight - 15));
+
+                    element.style.left = left + "px";
+                    element.style.top = top + "px";
+                };
+
+                document.addEventListener("mousemove", dragButton);
+
+                const handleMouseUp = () => {
+                    document.removeEventListener("mousemove", dragButton);
+                    saveButtonPosition();
+                };
+
+                document.addEventListener("mouseup", handleMouseUp);
+            };
+
+            element.addEventListener("mousedown", handleMouseDown);
+        };
+
+        const saveButtonPosition = () => {
+            const element = document.getElementById(rangeId);
+            const position = {
+                top: element.offsetTop,
+                left: element.offsetLeft,
+            };
+
+            try {
+                localStorage.setItem(buttonPositionKey, JSON.stringify(position));
+            } catch (error) {
+                console.error("保存按钮位置失败: ", error);
+            }
+        };
+
+        const initializeButtonPosition = () => {
+            const element = document.getElementById(rangeId);
+            const buttonPosition = localStorage.getItem(buttonPositionKey);
+            if (buttonPosition) {
+                const position = JSON.parse(buttonPosition);
+                element.style.top = position.top + "px";
+                element.style.left = position.left + "px";
+            }
+        };
+
+        addButton();
+        addListeners();
+        initializeButtonPosition();
     }
+
+    // 在iframe中接收父级页面的消息，并执行添加按钮的操作
+    if (window.self !== window.top) {
+        window.addEventListener("message", (event) => {
+            if (event.data.type === "addButton") {
+                addDocument();
+            }
+        });
+    }
+
 
     // 监听快捷键
     // document.addEventListener("keypress", handleKeyPress);
-    document.addEventListener("keydown", handleKeyPress);
+    // document.addEventListener("keydown", handleKeyPress);
+    //
+    // function handleKeyPress(e) {
+    //     log.info("--->e.key:" + e.key);
+    //     let videos = document.querySelectorAll("video").length;
+    //     if (videos > 0) {
+    //         switch (e.key.toLowerCase()) {
+    //             case "x":
+    //                 speedFun("-");
+    //                 break;
+    //             case "c":
+    //                 speedFun("+");
+    //                 break;
+    //             case "t":
+    //             case "z":
+    //                 speedFun("1");
+    //                 break;
+    //         }
+    //     }
+    // }
+    //
+    // // 更改倍速
+    // function speedFun(spee) {
+    //     log.info("this speedFun is spee:" + spee);
+    //     controlVideoProperty('playbackRate', spee);  // 调用函数，设置播放速度
+    //
+    //     const currentVal = parseFloat($("#rangeId").val());
+    //     let numVal;
+    //
+    //     if ("+" === spee) {
+    //         numVal = Math.min(20, currentVal + 0.1);
+    //     } else if ("-" === spee) {
+    //         numVal = Math.max(0.1, currentVal - 0.1);
+    //     } else if ("1" === spee) {
+    //         numVal = 1.0;
+    //         localUtil.setSValue("speed_step_key", null);
+    //     }
+    //
+    //     $("#rangeId").val(numVal.toFixed(1)).trigger("change");
+    //     addToast("当前倍速：" + numVal.toFixed(1));
+    // }
+    //
+    // // 解锁元素属性
+    // function controlVideoProperty(propertyName, desiredValue) {
+    //
+    //     findNodeWithSelector('video', nodei => {
+    //         if (itIsVideo(nodei)) {
+    //             // 使用overrideSetter函数来覆盖HTMLMediaElement.prototype的指定属性的setter方法
+    //             overrideSetter(HTMLMediaElement.prototype, propertyName, desiredValue);
+    //
+    //             // 创建一个MutationObserver实例来监听指定属性的变化
+    //             let observer = new MutationObserver(function(mutations) {
+    //                 mutations.forEach(function(mutation) {
+    //                     if (mutation.type == 'attributes' && mutation.attributeName == propertyName && nodei[propertyName] != desiredValue) {
+    //                         nodei[propertyName] = desiredValue;  // 更改属性的值
+    //                     }
+    //                 });
+    //             });
+    //
+    //             // 配置观察器
+    //             let config = { attributes: true };
+    //
+    //             // 开始观察
+    //             observer.observe(nodei, config);
+    //         }
+    //     });
+    //
+    // }
+    //
+    // // 创建一个函数来覆盖对象的指定属性的setter方法
+    // function overrideSetter(object, property, desiredValue) {
+    //     // 保存原始的setter方法
+    //     let originalSetter = Object.getOwnPropertyDescriptor(object, property).set;
+    //
+    //     // 覆盖setter方法
+    //     Object.defineProperty(object, property, {
+    //         set: function(value) {
+    //             originalSetter.call(this, value);
+    //         }
+    //     });
+    // }
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    if (window.self !== window.top) {
+        window.addEventListener("keydown", handleParentKeyPress);
+    }
+
+    if (window.self !== window.top) {
+        window.addEventListener("message", (event) => {
+            if (event.data.type === "keyPress") {
+                const { key } = event.data;
+                handleKeyPress({ key });
+            }
+        });
+    }
+
+    function handleParentKeyPress(e) {
+        const videos = document.querySelectorAll("video").length;
+
+        if (videos > 0) {
+            window.parent.postMessage({ type: "keyPress", key: e.key }, "*");
+        }
+    }
 
     function handleKeyPress(e) {
-        log.info("--->e.key:" + e.key);
-        let videos = document.querySelectorAll("video").length;
+        const videos = document.querySelectorAll("video").length;
+
         if (videos > 0) {
             switch (e.key.toLowerCase()) {
                 case "x":
@@ -208,65 +519,68 @@
         }
     }
 
-    // 更改倍速
     function speedFun(spee) {
-        log.info("this speedFun is spee:" + spee);
-        controlVideoProperty('playbackRate', spee);  // 调用函数，设置播放速度
-
         const currentVal = parseFloat($("#rangeId").val());
         let numVal;
 
-        if ("+" === spee) {
+        if (spee === "+") {
             numVal = Math.min(20, currentVal + 0.1);
-        } else if ("-" === spee) {
+        } else if (spee === "-") {
             numVal = Math.max(0.1, currentVal - 0.1);
-        } else if ("1" === spee) {
+        } else if (spee === "1") {
             numVal = 1.0;
             localUtil.setSValue("speed_step_key", null);
         }
 
+        controlVideoProperty("playbackRate", spee);
+
         $("#rangeId").val(numVal.toFixed(1)).trigger("change");
-        addToast("当前倍速：" + numVal.toFixed(1));
+        addToast(`当前倍速：${numVal.toFixed(1)}`);
     }
 
-    // 解锁元素属性
     function controlVideoProperty(propertyName, desiredValue) {
+        const videos = document.querySelectorAll("video");
 
-        findNodeWithSelector('video', nodei => {
-            if (itIsVideo(nodei)) {
-                // 使用overrideSetter函数来覆盖HTMLMediaElement.prototype的指定属性的setter方法
-                overrideSetter(HTMLMediaElement.prototype, propertyName, desiredValue);
+        if (videos.length > 0) {
+            videos.forEach((video) => {
+                if (checkVideoValidity(video)) {
+                    overrideSetter(video, propertyName, desiredValue);
 
-                // 创建一个MutationObserver实例来监听指定属性的变化
-                let observer = new MutationObserver(function(mutations) {
-                    mutations.forEach(function(mutation) {
-                        if (mutation.type == 'attributes' && mutation.attributeName == propertyName && nodei[propertyName] != desiredValue) {
-                            nodei[propertyName] = desiredValue;  // 更改属性的值
-                        }
+                    const observer = new MutationObserver(function (mutations) {
+                        mutations.forEach(function (mutation) {
+                            if (
+                                mutation.type === "attributes" &&
+                                mutation.attributeName === propertyName &&
+                                video[propertyName] !== desiredValue
+                            ) {
+                                video[propertyName] = desiredValue;
+                            }
+                        });
                     });
-                });
 
-                // 配置观察器
-                let config = { attributes: true };
-
-                // 开始观察
-                observer.observe(nodei, config);
-            }
-        });
-
+                    const config = { attributes: true };
+                    observer.observe(video, config);
+                }
+            });
+        }
     }
 
-    // 创建一个函数来覆盖对象的指定属性的setter方法
-    function overrideSetter(object, property, desiredValue) {
-        // 保存原始的setter方法
-        let originalSetter = Object.getOwnPropertyDescriptor(object, property).set;
+    function overrideSetter(obj, prop, value) {
+        const descriptor = Object.getOwnPropertyDescriptor(obj, prop);
 
-        // 覆盖setter方法
-        Object.defineProperty(object, property, {
-            set: function(value) {
-                originalSetter.call(this, value);
-            }
-        });
+        if (descriptor && descriptor.set) {
+            const originalSetter = descriptor.set;
+
+            Object.defineProperty(obj, prop, {
+                set: function (newValue) {
+                    if (newValue !== value) {
+                        originalSetter.call(obj, newValue);
+                    }
+                },
+            });
+        } else {
+            log.error(`Property '${prop}' does not have a setter.`);
+        }
     }
 
     /* PC端滑动处理 */
@@ -376,7 +690,7 @@
         messageElement.innerText = msgText;
 
         findNodeWithSelector('video', nodei => {
-            if (itIsVideo(nodei)) {
+            if (checkVideoValidity(nodei)) {
                 nodei.parentNode.appendChild(messageElement);
             }
         });
@@ -488,11 +802,15 @@
      * 校验节点是否是视频
      * @param nodei
      */
-    function itIsVideo(nodei) {
-        if (nodei && nodei.nodeName === 'VIDEO' && nodei.src) { // 添加节点类型和src属性的校验
-            return true;
-        }
-        return false;
+    // function itIsVideo(nodei) {
+    //     if (nodei && nodei.nodeName === 'VIDEO' && nodei.src) { // 添加节点类型和src属性的校验
+    //         return true;
+    //     }
+    //     return false;
+    // }
+
+    function checkVideoValidity(video) {
+        return video instanceof HTMLVideoElement && video.readyState >= 2;
     }
 
     let stopFlag = true;
@@ -508,7 +826,7 @@
         if (getSwitchValueById("speed_switch_toggle2")) {
             if (stopFlag) {
                 findNodeWithSelector('video', nodei => {
-                    if (itIsVideo(nodei)) {
+                    if (checkVideoValidity(nodei)) {
                         try {
                             nodei.play();
                         } catch (e) {
@@ -570,7 +888,7 @@
             log.warn("当前设备是移动端speed is:" + speed);
             try {
                 findNodeWithSelector('video', nodei => {
-                    if (itIsVideo(nodei)) {
+                    if (checkVideoValidity(nodei)) {
                         nodei.playbackRate = speed;
                         showVideoMessage("倍速提速中:"+speed);
                     }
@@ -590,7 +908,7 @@
         document.getElementById("rangeId").value = speed;
 
         findNodeWithSelector('video', nodei => {
-            if (itIsVideo(nodei)) {
+            if (checkVideoValidity(nodei)) {
                 nodei.playbackRate = speed;
             }
         });
@@ -1014,7 +1332,7 @@
         speed_skip_end = parseInt(speed_skip_end);
 
         findNodeWithSelector('video', video => {
-            if (itIsVideo(video)) {
+            if (checkVideoValidity(video)) {
                 if (parseInt(video.duration) > speed_skip_start + speed_skip_end) {
                     // 跳转到视频末尾
                     if (parseInt(video.duration) - parseInt(video.currentTime) < speed_skip_end) {
