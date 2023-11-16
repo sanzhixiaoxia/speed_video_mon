@@ -627,7 +627,6 @@
         let deltaY = currentY - lastY;
         let times = Math.abs(deltaY) / 600;
 
-        if (deltaY > 0) { direction = "down";} else { direction = "up";}
         direction = deltaY > 0 ? "down" : "up";
 
         for (let i = 0; i < times; i++) {
