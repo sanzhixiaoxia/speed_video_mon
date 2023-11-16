@@ -816,6 +816,20 @@
                 stopFlag = false;
             }
         }
+        if (!getSwitchValueById("speed_switch_toggle2")) {
+            if(!stopFlag){
+                findNodeWithSelector('video', nodei => {
+                    if (isVideoValid(nodei)) {
+                        try {
+                            nodei.pause();
+                        } catch (e) {
+                            log.error("停止播放失败：" + e);
+                        }
+                    }
+                });
+                stopFlag = true;
+            }
+        }
 
         let rangeElement = document.getElementById("rangeId");
         let step = rangeElement.value;
