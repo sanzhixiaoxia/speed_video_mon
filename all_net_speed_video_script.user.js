@@ -628,15 +628,31 @@
         let times = Math.abs(deltaY) / 600;
 
         if (deltaY > 0) { direction = "down";} else { direction = "up";}
+        direction = deltaY > 0 ? "down" : "up";
 
         for (let i = 0; i < times; i++) {
             log.info(direction);
-            if (direction == "down") { speedFun("-"); }
-            if (direction == "up") { speedFun("+"); }
+            if (isVideoFullscreen()) {
+                if (direction == "down") { speedFun("-"); }
+                if (direction == "up") { speedFun("+"); }
+            }
         }
 
         lastY = currentY;
     });
+
+    function isVideoFullscreen() {
+        const videoElement = document.querySelector('video');
+        if (videoElement) {
+            return (
+                document.fullscreenElement === videoElement ||
+                document.webkitFullscreenElement === videoElement ||
+                document.mozFullscreenElement === videoElement ||
+                document.msFullscreenElement === videoElement
+            );
+        }
+        return false;
+    }
 
     // 消息提示
     function addToast(msgText) {
