@@ -859,45 +859,88 @@
 
     }
 
-    // 移动端长按支持
+    // // 移动端长按支持
+    // let timer;
+    // function startLongPress(event) {
+    //     try {
+    //         event.preventDefault(); // 阻止touchmove事件的默认行为
+    //     }catch (e) {
+    //         log.error("阻止touchmove事件失败："+e)
+    //     }
+    //     timer = setTimeout(function() {
+    //         log.info("长按操作开始...");
+    //         changeMobileSpeed(2);
+    //     }, 1500); // 设置长按时间，单位为毫秒
+    // }
+    //
+    // function endLongPress() {
+    //     clearTimeout(timer);
+    //     changeMobileSpeed(1);
+    //     log.info("长按操作结束...");
+    // }
+    //
+    // document.addEventListener("touchstart", startLongPress);
+    // document.addEventListener("touchmove", endLongPress);
+    // document.addEventListener("touchend", endLongPress);
+    //
+    // function changeMobileSpeed(speed) {
+    //     if (isMobileDevice()) {
+    //         log.warn("当前设备是移动端speed is:" + speed);
+    //         try {
+    //             findNodeWithSelector('video', nodei => {
+    //                 if (checkVideoValidity(nodei)) {
+    //                     nodei.playbackRate = speed;
+    //                     showVideoMessage("倍速提速中:"+speed);
+    //                 }
+    //             });
+    //         } catch (e) {
+    //             log.error("移动端设置失败：" + e);
+    //         }
+    //     }
+    // }
+
     let timer;
-    function startLongPress(event) {
+
+    const startLongPress = (event) => {
         try {
             event.preventDefault(); // 阻止touchmove事件的默认行为
-        }catch (e) {
-            log.error("阻止touchmove事件失败："+e)
+        } catch (e) {
+            log.error("阻止touchmove事件失败：" + e);
         }
-        timer = setTimeout(function() {
+
+        timer = setTimeout(() => {
             log.info("长按操作开始...");
             changeMobileSpeed(2);
         }, 1500); // 设置长按时间，单位为毫秒
-    }
+    };
 
-    function endLongPress() {
+    const endLongPress = () => {
         clearTimeout(timer);
         changeMobileSpeed(1);
         log.info("长按操作结束...");
-    }
+    };
 
-    document.addEventListener("touchstart", startLongPress);
-    document.addEventListener("touchmove", endLongPress);
-    document.addEventListener("touchend", endLongPress);
+    const changeMobileSpeed = (speed) => {
+        const isMobile = isMobileDevice();
 
-    function changeMobileSpeed(speed) {
-        if (isMobileDevice()) {
+        if (isMobile) {
             log.warn("当前设备是移动端speed is:" + speed);
             try {
                 findNodeWithSelector('video', nodei => {
                     if (checkVideoValidity(nodei)) {
                         nodei.playbackRate = speed;
-                        showVideoMessage("倍速提速中:"+speed);
+                        showVideoMessage("倍速提速中:" + speed);
                     }
                 });
             } catch (e) {
                 log.error("移动端设置失败：" + e);
             }
         }
-    }
+    };
+
+    document.addEventListener("touchstart", startLongPress);
+    document.addEventListener("touchmove", endLongPress);
+    document.addEventListener("touchend", endLongPress);
 
     /**
      * 更改倍速
