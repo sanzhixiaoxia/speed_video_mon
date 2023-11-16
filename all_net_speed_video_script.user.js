@@ -583,37 +583,6 @@
         }
     }
 
-    /* PC端滑动处理 */
-    let isMouseDown = false;
-    let startX, startY;
-    $(document).on('mousedown', function(event) {
-        isMouseDown = true;
-        startX = event.pageX;
-        startY = event.pageY;
-    });
-    $(document).on('mousemove', function(event) {
-        if (isMouseDown) {
-            let currentX = event.pageX;
-            let currentY = event.pageY;
-
-            let distanceX = currentX - startX;
-            let distanceY = currentY - startY;
-
-            let times = Math.abs(distanceY) / 600;
-            for (let i = 0; i < times; i++) {
-                if (distanceY > 0) {
-                    // speedFun("-");
-                } else {
-                    // speedFun("+");
-                }
-            }
-        }
-    });
-    $(document).on('mouseup', function(event) {
-        isMouseDown = false;
-    });
-
-
     /* 移动端滑动处理 */
     let lastY = 0;
     let direction = ""; // 保存方向信息
@@ -636,7 +605,6 @@
                 if (direction == "up") { speedFun("+"); }
             }
         }
-
         lastY = currentY;
     });
 
@@ -817,13 +785,6 @@
      * 校验节点是否是视频
      * @param nodei
      */
-    // function itIsVideo(nodei) {
-    //     if (nodei && nodei.nodeName === 'VIDEO' && nodei.src) { // 添加节点类型和src属性的校验
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
     function checkVideoValidity(video) {
         return video instanceof HTMLVideoElement && video.readyState >= 2;
     }
@@ -1438,11 +1399,6 @@
 
     }
 
-    // 设备判断：pc/移动
-    function isMobileDevice() {
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    }
-
     const main = {
         before() {
             addStyle();
@@ -1453,12 +1409,14 @@
             addDocument();
         },
         run() {
-            if (!isMobileDevice()) {
-                log.warn("当前设备是PC端");
-                initRun();
-            }
+            initRun();
         }
     };
+
+    // 设备判断：pc/移动
+    function isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
 
     window.onload = function() {
 
@@ -1477,6 +1435,9 @@
             } else if ((nowStamp - startStamp) >= speed_three_male) {
                 clearInterval(initTimer);
                 log.error('search video is long to stop...');
+            }else if (isMobileDevice()){
+                clearInterval(initTimer);
+                log.error('check device is mobile to stop pc mode ...');
             } else {
                 log.error('search video waiting...');
             }
