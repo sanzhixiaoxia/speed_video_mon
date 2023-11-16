@@ -543,7 +543,7 @@
 
         if (videos.length > 0) {
             videos.forEach((video) => {
-                if (checkVideoValidity(video)) {
+                if (isVideoValid(video)) {
                     overrideSetter(video, propertyName, desiredValue);
 
                     const observer = new MutationObserver(function (mutations) {
@@ -673,7 +673,7 @@
         messageElement.innerText = msgText;
 
         findNodeWithSelector('video', nodei => {
-            if (checkVideoValidity(nodei)) {
+            if (isVideoValid(nodei)) {
                 nodei.parentNode.appendChild(messageElement);
             }
         });
@@ -785,8 +785,11 @@
      * 校验节点是否是视频
      * @param nodei
      */
-    function checkVideoValidity(video) {
-        return video instanceof HTMLVideoElement && video.readyState >= 2;
+    function isVideoValid(nodei) {
+        if (nodei && nodei.nodeName === 'VIDEO' && nodei.src) { // 添加节点类型和src属性的校验
+            return true;
+        }
+        return false;
     }
 
     let stopFlag = true;
@@ -802,7 +805,7 @@
         if (getSwitchValueById("speed_switch_toggle2")) {
             if (stopFlag) {
                 findNodeWithSelector('video', nodei => {
-                    if (checkVideoValidity(nodei)) {
+                    if (isVideoValid(nodei)) {
                         try {
                             nodei.play();
                         } catch (e) {
@@ -864,7 +867,7 @@
     //         log.warn("当前设备是移动端speed is:" + speed);
     //         try {
     //             findNodeWithSelector('video', nodei => {
-    //                 if (checkVideoValidity(nodei)) {
+    //                 if (isVideoValid(nodei)) {
     //                     nodei.playbackRate = speed;
     //                     showVideoMessage("倍速提速中:"+speed);
     //                 }
@@ -903,7 +906,7 @@
             log.warn("当前设备是移动端speed is:" + speed);
             try {
                 findNodeWithSelector('video', nodei => {
-                    if (checkVideoValidity(nodei)) {
+                    if (isVideoValid(nodei)) {
                         nodei.playbackRate = speed;
                         showVideoMessage("倍速提速中:" + speed);
                     }
@@ -927,7 +930,7 @@
         document.getElementById("rangeId").value = speed;
 
         findNodeWithSelector('video', nodei => {
-            if (checkVideoValidity(nodei)) {
+            if (isVideoValid(nodei)) {
                 nodei.playbackRate = speed;
             }
         });
@@ -1351,7 +1354,7 @@
         speed_skip_end = parseInt(speed_skip_end);
 
         findNodeWithSelector('video', video => {
-            if (checkVideoValidity(video)) {
+            if (isVideoValid(video)) {
                 if (parseInt(video.duration) > speed_skip_start + speed_skip_end) {
                     // 跳转到视频末尾
                     if (parseInt(video.duration) - parseInt(video.currentTime) < speed_skip_end) {
