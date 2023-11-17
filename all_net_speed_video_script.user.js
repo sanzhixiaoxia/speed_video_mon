@@ -938,8 +938,11 @@
      * @param speed
      */
     function changeSpeend(speed) {
-
-        document.getElementById("rangeId").value = speed;
+        try {
+            document.getElementById("rangeId").value = speed;
+        } catch (e) {
+            log.error("设置倍速框失败：" + e);
+        }
 
         findNodeWithSelector('video', nodei => {
             if (isVideoValid(nodei)) {
@@ -947,14 +950,7 @@
             }
         });
 
-        // findNodeWithSelector('video', function (nodei) {
-        //     if (nodei) {
-        //         nodei.playbackRate = speed;
-        //     }
-        // });
-
         localUtil.setSValue("speed_step_key", speed);
-
     }
 
     /**
