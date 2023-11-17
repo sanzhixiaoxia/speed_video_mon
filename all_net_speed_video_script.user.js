@@ -801,34 +801,32 @@
         // 跳过片头片尾
         initStartEnd();
 
-        // 自动播放
-        if (getSwitchValueById("speed_switch_toggle2")) {
-            if (stopFlag) {
-                findNodeWithSelector('video', nodei => {
-                    if (isVideoValid(nodei)) {
-                        try {
-                            nodei.play();
-                        } catch (e) {
-                            log.error("自动播放失败：" + e)
-                        }
+        // 自动播放-开关
+        let speedSwitchOn = getSwitchValueById("speed_switch_toggle2");
+
+        if (speedSwitchOn && stopFlag) {
+            findNodeWithSelector('video', nodei => {
+                if (isVideoValid(nodei)) {
+                    try {
+                        nodei.play();
+                    } catch (e) {
+                        log.error("自动播放失败：" + e)
                     }
-                });
-                stopFlag = false;
-            }
+                }
+            });
+            stopFlag = false;
         }
-        if (!getSwitchValueById("speed_switch_toggle2")) {
-            if(!stopFlag){
-                findNodeWithSelector('video', nodei => {
-                    if (isVideoValid(nodei)) {
-                        try {
-                            nodei.pause();
-                        } catch (e) {
-                            log.error("停止播放失败：" + e);
-                        }
+        if (!speedSwitchOn && !stopFlag) {
+            findNodeWithSelector('video', nodei => {
+                if (isVideoValid(nodei)) {
+                    try {
+                        nodei.pause();
+                    } catch (e) {
+                        log.error("停止播放失败：" + e);
                     }
-                });
-                stopFlag = true;
-            }
+                }
+            });
+            stopFlag = true;
         }
 
         let rangeElement = document.getElementById("rangeId");
