@@ -112,13 +112,11 @@
         window.parent.postMessage({type: 'changeSpeed', speed: playbackRate,},'*');
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
+    window.onload = function() {
         const videos = document.querySelectorAll('video');
         videos.forEach((video) => {
-            video.addEventListener('loadedmetadata', () => {
-                video.playbackRate = playbackRate.toFixed(1);
-            });
+            video.playbackRate = playbackRate.toFixed(1);
         });
-    });
+    }
 
 })();
