@@ -98,6 +98,8 @@
     };
 
     const handleKeyPress = (event) => {
+        let videos = document.querySelectorAll("video");
+        if (!videos.length > 0) {return;}
         const { key } = event;
 
         if (key === 'x') {
@@ -110,6 +112,8 @@
     };
 
     const handleIframeMessage = (event) => {
+        let videos = document.querySelectorAll("video");
+        if (!videos.length > 0) {return;}
         const { data } = event;
         if (data && data.type === 'changeSpeed' && typeof data.speed === 'number') {
             changeSpeed(data.speed);
