@@ -15,26 +15,26 @@
 (function () {
     'use strict';
 
+    const SPEED_STEP = 0.1;
+    const MIN_PLAYBACK_RATE = 0.1;
+
     function saveHostName(key, val) {
-        const { hostname } = new URL(window.location.href).hostname;
-        let saveKV = window.GM_getValue(hostname) || {}; // 获取已保存的数据，如果不存在则初始化为空对象
-        saveKV[key] = val; // 更新对应的键值对
-        window.GM_setValue(hostname, saveKV); // 保存更新后的数据
+        const hostname = new URL(window.location.href).hostname;
+        let saveKV = window.GM_getValue(hostname) || {};
+        saveKV[key] = val;
+        window.GM_setValue(hostname, saveKV);
     }
 
-
     function getHostName(key) {
-        const { hostname } = new URL(window.location.href).hostname;
+        const hostname = new URL(window.location.href).hostname;
         const saveKV = window.GM_getValue(hostname);
         if (saveKV && saveKV[key]) {
             return saveKV[key];
         } else {
-            return null; // 或其他默认返回值
+            return null;
         }
     }
 
-
-    const speedStep = 0.1;
     let playbackRate = parseFloat(getHostName('playbackRate')) || 1;
     let videoIsValid = true;
 
@@ -54,11 +54,14 @@
     };
 
     const updateSpeedBar = (speedText) => {
-        const speedBar = document.getElementById('speedBar');
-        if (speedBar) {
-            speedBar.innerText = speedText;
+        if (typeof speedText === 'string') {
+            const speedBar = document.getElementById('speedBar');
+            if (speedBar) {
+                speedBar.innerText = speedText;
+            }
         }
     };
+
 
     const showSpeedToast = (speedText) => {
         updateSpeedBar(speedText);
@@ -86,47 +89,48 @@
     const handleKeyPress = (event) => {
         const { key } = event;
 
-        if (key === 'c') {
-            changeSpeed(Math.max(Math.round((playbackRate + speedStep) * 10) / 10, 0.1));
-        } else if (key === 'x') {
-            changeSpeed(Math.max(Math.round((playbackRate - speedStep) * 10) / 10, 0.1));
-        } else if (key === 'z') {
+        const increaseKey = 'c';
+        const decreaseKey = 'x';
+        const resetKey = 'z';
+
+        if (key === increaseKey) {
+            changeSpeed(Math.max(Math.round((playbackRate + SPEED_STEP) * 10) / 10, MIN_PLAYBACK_RATE));
+        } else if (key === decreaseKey) {
+            changeSpeed(Math.max(Math.round((playbackRate - SPEED_STEP) * 10) / 10, MIN_PLAYBACK_RATE));
+        } else if (key === resetKey) {
             changeSpeed(1);
         }
     };
 
     const handleIframeMessage = (event) => {
-        if (event.data.type === 'changeSpeed') {
-            changeSpeed(event.data.speed);
+        const { data } = event;
+
+        if (data && data.type === 'changeSpeed' && typeof data.speed === 'number') {
+            changeSpeed(data.speed);
         }
     };
+
 
     document.addEventListener('keydown', handleKeyPress);
     window.addEventListener('message', handleIframeMessage);
 
     const lang = window.navigator.language.toLowerCase();
-    let i18n = {};
-
-    if (lang.includes('zh')) {
-        // 中文语言包
-        i18n = {
+    const i18n = {
+        zh: {
             speedText: '当前速度：',
             invalidVideoText: '视频无效，倍速设置失效',
-        };
-    } else {
-        // 英文语言包
-        i18n = {
+        },
+        en: {
             speedText: 'Current Speed: ',
             invalidVideoText: 'Invalid Video, Playback Speed Setting Disabled',
-        };
-    }
+        },
+    };
 
     const speedBar = createSpeedBar();
     document.body.appendChild(speedBar);
 
-    updateSpeedBar(`${i18n.speedText}${playbackRate.toFixed(1)}`);
+    updateSpeedBar(`${i18n[lang]?.speedText || i18n.en.speedText}${playbackRate.toFixed(1)}`);
 
-    // 向父级页面发送当前倍速信息
     if (window.self !== window.top) {
         window.parent.postMessage(
             {
@@ -138,13 +142,13 @@
     }
 
     setInterval(() => {
-        if (!videoIsValid) {
-            showSpeedToast(i18n.invalidVideoText);
+        const invalidVideoText = i18n[lang]?.invalidVideoText || i18n.en.invalidVideoText;
+        if (!videoIsValid && invalidVideoText) {
+            showSpeedToast(invalidVideoText);
             videoIsValid = true;
         }
     }, 1000);
 
-    // 监听视频的 loadedmetadata 事件，在刷新页面后重新设置当前倍速
     window.addEventListener('DOMContentLoaded', () => {
         const videos = document.querySelectorAll('video');
         videos.forEach((video) => {
@@ -154,9 +158,8 @@
         });
     });
 
-    // 监听全屏变化事件，在视频全屏模式下隐藏消息提示栏
     document.addEventListener('fullscreenchange', () => {
-        const fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+        const fullscreenElement = document.fullscreenElement;
 
         if (fullscreenElement) {
             speedBar.style.display = 'none';
