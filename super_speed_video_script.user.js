@@ -15,8 +15,27 @@
 (function () {
     'use strict';
 
-    const SPEED_STEP = 0.1;
-    const MIN_PLAYBACK_RATE = 0.1;
+    const curLang = navigator.language.slice(0, 2);
+
+    // 在此处添加您的国际化提示内容
+    const messages = {
+        en: {
+            speedOptions: ['1x', '1.5x', '2x'],  // 英文提示内容
+            speedChanged: 'Playback speed changed to:',  // 英文提示内容
+        },
+        zh: {
+            speedOptions: ['1倍速', '1.5倍速', '2倍速'],  // 中文提示内容
+            speedChanged: '播放速度已更改为：',  // 中文提示内容
+        }
+    };
+
+
+    // if (curLang.startsWith('zh')) {
+    //     lang = 'zh';  // 如果当前语言是中文或者以中文开始，则设置为中文
+    // } else {
+    //     lang = 'en';  // 否则设置为英文
+    // }
+
 
     function saveHostName(key, val) {
         const hostname = new URL(window.location.href).hostname;
@@ -36,68 +55,57 @@
     }
 
     let playbackRate = parseFloat(getHostName('playbackRate')) || 1;
-    let videoIsValid = true;
 
-    const createSpeedBar = () => {
-        const speedBar = document.createElement('div');
-        speedBar.style.position = 'fixed';
-        speedBar.style.top = '10px';
-        speedBar.style.left = '10px';
-        speedBar.style.padding = '5px';
-        speedBar.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
-        speedBar.style.color = '#fff';
-        speedBar.style.fontSize = '16px';
-        speedBar.style.fontWeight = 'bold';
-        speedBar.style.zIndex = '9999';
-        speedBar.setAttribute('id', 'speedBar');
-        return speedBar;
-    };
+    // 创建消息提示元素
+    function showOldJsMessage(message) {
+        let messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        messageElement.innerText = message;
+        messageElement.style.position = 'fixed';
+        messageElement.style.bottom = '20px';
+        messageElement.style.right = '20px';
+        messageElement.style.padding = '10px';
+        messageElement.style.backgroundColor = '#333';
+        messageElement.style.color = '#fff';
+        messageElement.style.borderRadius = '5px';
+        messageElement.style.opacity = '0.9';
+        messageElement.style.transition = 'opacity 0.5s ease';
+        messageElement.style.zIndex = '2147483647';
 
-    const updateSpeedBar = (speedText) => {
-        if (typeof speedText === 'string') {
-            const speedBar = document.getElementById('speedBar');
-            if (speedBar) {
-                speedBar.innerText = speedText;
-            }
-        }
-    };
+        // 将消息提示元素添加到页面右下角
+        document.body.appendChild(messageElement);
 
-
-    const showSpeedToast = (speedText) => {
-        updateSpeedBar(speedText);
-        setTimeout(() => {
-            updateSpeedBar('');
-        }, 2000);
-    };
+        // 一秒后自动消失
+        setTimeout(function() {
+            messageElement.remove();
+        }, 1000);
+    }
 
     const changeSpeed = (newSpeed) => {
+        debugger;
         const videos = document.querySelectorAll('video');
 
         videos.forEach((video) => {
-            if (video.readyState > 0 && !video.paused) {
-                video.playbackRate = newSpeed.toFixed(1);
-            } else {
-                videoIsValid = false;
-            }
+            video.playbackRate = newSpeed.toFixed(1);
         });
 
         playbackRate = newSpeed;
         saveHostName('playbackRate', newSpeed);
-        showSpeedToast(`Current Speed: ${newSpeed.toFixed(1)}`);
+        // 获取国际化提示内容
+        // const speedChangedMessage = messages[lang].speedChanged;
+
+        // showOldJsMessage(speedChangedMessage + ' ' + newSpeed.toFixed(1));
+        showOldJsMessage(newSpeed.toFixed(1));
     };
 
     const handleKeyPress = (event) => {
         const { key } = event;
 
-        const increaseKey = 'c';
-        const decreaseKey = 'x';
-        const resetKey = 'z';
-
-        if (key === increaseKey) {
-            changeSpeed(Math.max(Math.round((playbackRate + SPEED_STEP) * 10) / 10, MIN_PLAYBACK_RATE));
-        } else if (key === decreaseKey) {
-            changeSpeed(Math.max(Math.round((playbackRate - SPEED_STEP) * 10) / 10, MIN_PLAYBACK_RATE));
-        } else if (key === resetKey) {
+        if (key === 'x') {
+            changeSpeed(Math.max(playbackRate - 0.1, 0.1));
+        } else if (key ==='c' ) {
+            changeSpeed(Math.min(playbackRate + 0.1, 20));
+        } else if (key === 'z') {
             changeSpeed(1);
         }
     };
@@ -126,10 +134,7 @@
         },
     };
 
-    const speedBar = createSpeedBar();
-    document.body.appendChild(speedBar);
 
-    updateSpeedBar(`${i18n[lang]?.speedText || i18n.en.speedText}${playbackRate.toFixed(1)}`);
 
     if (window.self !== window.top) {
         window.parent.postMessage(
@@ -140,14 +145,6 @@
             '*'
         );
     }
-
-    setInterval(() => {
-        const invalidVideoText = i18n[lang]?.invalidVideoText || i18n.en.invalidVideoText;
-        if (!videoIsValid && invalidVideoText) {
-            showSpeedToast(invalidVideoText);
-            videoIsValid = true;
-        }
-    }, 1000);
 
     window.addEventListener('DOMContentLoaded', () => {
         const videos = document.querySelectorAll('video');
