@@ -6,7 +6,7 @@
 // @author       wll
 // @description  控制浏览器视频播放速度，支持快捷键操作和国际化（中文和英文），并记忆当前倍速
 // @match        *://*/*
-// @run-at       document-end
+// @run-at       document-start
 // @grant        GM_getValue
 // @grant        GM_setValue
 // @license      GPL-3.0-or-later
@@ -15,27 +15,18 @@
 (function () {
     'use strict';
 
-    const curLang = navigator.language.slice(0, 2);
-
-    // 在此处添加您的国际化提示内容
     const messages = {
-        en: {
-            speedOptions: ['1x', '1.5x', '2x'],  // 英文提示内容
-            speedChanged: 'Playback speed changed to:',  // 英文提示内容
+        'zh': {
+            'speedText': '当前速度：',
+            'speedChanged': '当前速度：'
         },
-        zh: {
-            speedOptions: ['1倍速', '1.5倍速', '2倍速'],  // 中文提示内容
-            speedChanged: '播放速度已更改为：',  // 中文提示内容
+        'en': {
+            'speedText': 'Current Speed: ',
+            'speedChanged': 'Current speed：'
         }
     };
-
-
-    // if (curLang.startsWith('zh')) {
-    //     lang = 'zh';  // 如果当前语言是中文或者以中文开始，则设置为中文
-    // } else {
-    //     lang = 'en';  // 否则设置为英文
-    // }
-
+    const curLang = navigator.language.slice(0, 2);
+    const MSG = messages[curLang] || messages.en;
 
     function saveHostName(key, val) {
         const hostname = new URL(window.location.href).hostname;
@@ -91,11 +82,7 @@
 
         playbackRate = newSpeed;
         saveHostName('playbackRate', newSpeed);
-        // 获取国际化提示内容
-        // const speedChangedMessage = messages[lang].speedChanged;
-
-        // showOldJsMessage(speedChangedMessage + ' ' + newSpeed.toFixed(1));
-        showOldJsMessage(newSpeed.toFixed(1));
+        showOldJsMessage(MSG.speedText + newSpeed.toFixed(1));
     };
 
     const handleKeyPress = (event) => {
@@ -112,7 +99,6 @@
 
     const handleIframeMessage = (event) => {
         const { data } = event;
-
         if (data && data.type === 'changeSpeed' && typeof data.speed === 'number') {
             changeSpeed(data.speed);
         }
@@ -122,28 +108,8 @@
     document.addEventListener('keydown', handleKeyPress);
     window.addEventListener('message', handleIframeMessage);
 
-    const lang = window.navigator.language.toLowerCase();
-    const i18n = {
-        zh: {
-            speedText: '当前速度：',
-            invalidVideoText: '视频无效，倍速设置失效',
-        },
-        en: {
-            speedText: 'Current Speed: ',
-            invalidVideoText: 'Invalid Video, Playback Speed Setting Disabled',
-        },
-    };
-
-
-
     if (window.self !== window.top) {
-        window.parent.postMessage(
-            {
-                type: 'changeSpeed',
-                speed: playbackRate,
-            },
-            '*'
-        );
+        window.parent.postMessage({type: 'changeSpeed', speed: playbackRate,},'*');
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -155,13 +121,4 @@
         });
     });
 
-    document.addEventListener('fullscreenchange', () => {
-        const fullscreenElement = document.fullscreenElement;
-
-        if (fullscreenElement) {
-            speedBar.style.display = 'none';
-        } else {
-            speedBar.style.display = 'block';
-        }
-    });
 })();
