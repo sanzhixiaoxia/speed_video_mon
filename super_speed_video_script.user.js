@@ -1,144 +1,164 @@
 // ==UserScript==
-// @name         视频倍速播放调整脚本
+// @name         控制视频播放速度
 // @namespace    your-namespace
 // @version      1.0
-// @description  在网页视频中实现倍速播放功能和快捷键控制
+// @description  控制浏览器视频播放速度，支持快捷键操作和国际化（中文和英文），并记忆当前倍速
 // @match        *://*/*
-// @grant        GM_setValue
+// @run-at       document-end
 // @grant        GM_getValue
+// @grant        GM_setValue
 // ==/UserScript==
 
-(function() {
+(function () {
     'use strict';
 
-    // 检查网页视频是否有效，是否支持倍速播放
-    function checkVideoValidity(video) {
-        if (video && video.playbackRate !== undefined) {
-            return true;
-        }
-        return false;
+    function saveHostName(key, val) {
+        const { hostname } = new URL(window.location.href);
+        let saveKV = window.GM_getValue(hostname) || {}; // 获取已保存的数据，如果不存在则初始化为空对象
+        saveKV[key] = val; // 更新对应的键值对
+        window.GM_setValue(hostname, saveKV); // 保存更新后的数据
     }
 
-    // 获取网页视频
-    function getVideoElement() {
+
+    function getHostName(key) {
+        const { hostname } = new URL(window.location.href);
+        const saveKV = window.GM_getValue(hostname);
+        if (saveKV && saveKV[key]) {
+            return saveKV[key];
+        } else {
+            return null; // 或其他默认返回值
+        }
+    }
+
+
+    const speedStep = 0.1;
+    let playbackRate = parseFloat(localStorage.getItem('playbackRate')) || 1;
+    let videoIsValid = true;
+
+    const createSpeedBar = () => {
+        const speedBar = document.createElement('div');
+        speedBar.style.position = 'fixed';
+        speedBar.style.top = '10px';
+        speedBar.style.left = '10px';
+        speedBar.style.padding = '5px';
+        speedBar.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+        speedBar.style.color = '#fff';
+        speedBar.style.fontSize = '16px';
+        speedBar.style.fontWeight = 'bold';
+        speedBar.style.zIndex = '9999';
+        speedBar.setAttribute('id', 'speedBar');
+        return speedBar;
+    };
+
+    const updateSpeedBar = (speedText) => {
+        const speedBar = document.getElementById('speedBar');
+        if (speedBar) {
+            speedBar.innerText = speedText;
+        }
+    };
+
+    const showSpeedToast = (speedText) => {
+        updateSpeedBar(speedText);
+        setTimeout(() => {
+            updateSpeedBar('');
+        }, 2000);
+    };
+
+    const changeSpeed = (newSpeed) => {
         const videos = document.querySelectorAll('video');
-        for (let i = 0; i < videos.length; i++) {
-            if (checkVideoValidity(videos[i])) {
-                return videos[i];
-            }
-        }
-        return null;
-    }
 
-    // 增加快捷键控制
-    function addShortcutControls(video) {
-        window.addEventListener('keydown', function(e) {
-            const key = e.key;
-            const playbackRate = video.playbackRate;
-
-            if (key === 'x') {
-                // 倍速-0.1
-                video.playbackRate = Math.max(playbackRate - 0.1, 0.1);
-            } else if (key === 'c') {
-                // 倍速+0.1
-                video.playbackRate = Math.min(playbackRate + 0.1, 2.0);
-            } else if (key === 'z') {
-                // 恢复正常播放
-                video.playbackRate = 1.0;
+        videos.forEach((video) => {
+            if (video.readyState > 0 && !video.paused) {
+                video.playbackRate = newSpeed.toFixed(1);
+            } else {
+                videoIsValid = false;
             }
         });
-    }
 
-    // 在视频的右上角给出当前调整的倍速提示
-    function showPlaybackRateIndicator(video) {
-        const indicator = document.createElement('div');
-        indicator.style.position = 'fixed';
-        indicator.style.top = '10px';
-        indicator.style.right = '10px';
-        indicator.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-        indicator.style.color = '#fff';
-        indicator.style.padding = '5px 10px';
-        indicator.style.borderRadius = '5px';
-        indicator.style.zIndex = '9999';
+        playbackRate = newSpeed;
+        localStorage.setItem('playbackRate', newSpeed);
+        showSpeedToast(`Current Speed: ${newSpeed.toFixed(1)}`);
+    };
 
-        document.body.appendChild(indicator);
+    const handleKeyPress = (event) => {
+        const { key } = event;
 
-        function updateIndicator() {
-            indicator.textContent = `当前倍速: ${video.playbackRate.toFixed(1)}`;
+        if (key === 'c') {
+            changeSpeed(Math.max(Math.round((playbackRate + speedStep) * 10) / 10, 0.1));
+        } else if (key === 'x') {
+            changeSpeed(Math.max(Math.round((playbackRate - speedStep) * 10) / 10, 0.1));
+        } else if (key === 'z') {
+            changeSpeed(1);
         }
+    };
 
-        updateIndicator();
-
-        video.addEventListener('ratechange', updateIndicator);
-    }
-
-    // 保存每个网站设置的倍速
-    function savePlaybackRate(video) {
-        const url = window.location.href;
-        const playbackRate = video.playbackRate;
-        GM_setValue(url, playbackRate);
-    }
-
-    // 获取上次网站设置的倍速
-    function getSavedPlaybackRate(video) {
-        const url = window.location.href;
-        const defaultPlaybackRate = 1.0;
-        const savedPlaybackRate = GM_getValue(url, defaultPlaybackRate);
-        video.playbackRate = savedPlaybackRate;
-    }
-
-    // 保存每个网站设置的倍速
-    function savePlaybackRate(video) {
-        const url = new URL(window.location.href);
-        const hostname = url.hostname.split('.').slice(-2).join('.');
-        const playbackRate = video.playbackRate;
-        GM_setValue(hostname, playbackRate);
-    }
-
-// 获取上次网站设置的倍速
-    function getSavedPlaybackRate(video) {
-        const url = new URL(window.location.href);
-        const hostname = url.hostname.split('.').slice(-2).join('.');
-        const defaultPlaybackRate = 1.0;
-        const savedPlaybackRate = GM_getValue(hostname, defaultPlaybackRate);
-        video.playbackRate = savedPlaybackRate;
-    }
-
-
-    // 获取包含视频的iframe
-    function getVideoIframe(video) {
-        let parentElement = video.parentElement;
-        while (parentElement) {
-            if (parentElement.tagName === 'IFRAME') {
-                return parentElement;
-            }
-            parentElement = parentElement.parentElement;
+    const handleIframeMessage = (event) => {
+        if (event.data.type === 'changeSpeed') {
+            changeSpeed(event.data.speed);
         }
-        return null;
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+    window.addEventListener('message', handleIframeMessage);
+
+    const lang = window.navigator.language.toLowerCase();
+    let i18n = {};
+
+    if (lang.includes('zh')) {
+        // 中文语言包
+        i18n = {
+            speedText: '当前速度：',
+            invalidVideoText: '视频无效，倍速设置失效',
+        };
+    } else {
+        // 英文语言包
+        i18n = {
+            speedText: 'Current Speed: ',
+            invalidVideoText: 'Invalid Video, Playback Speed Setting Disabled',
+        };
     }
 
-    // 兼容iframe下倍速记忆失效问题
-    function handleIframeCompatibility(video) {
-        const videoIframe = getVideoIframe(video);
-        if (videoIframe) {
-            videoIframe.addEventListener('beforeunload', function() {
-                savePlaybackRate(video);
+    const speedBar = createSpeedBar();
+    document.body.appendChild(speedBar);
+
+    updateSpeedBar(`${i18n.speedText}${playbackRate.toFixed(1)}`);
+
+    // 向父级页面发送当前倍速信息
+    if (window.self !== window.top) {
+        window.parent.postMessage(
+            {
+                type: 'changeSpeed',
+                speed: playbackRate,
+            },
+            '*'
+        );
+    }
+
+    setInterval(() => {
+        if (!videoIsValid) {
+            showSpeedToast(i18n.invalidVideoText);
+            videoIsValid = true;
+        }
+    }, 1000);
+
+    // 监听视频的 loadedmetadata 事件，在刷新页面后重新设置当前倍速
+    window.addEventListener('DOMContentLoaded', () => {
+        const videos = document.querySelectorAll('video');
+        videos.forEach((video) => {
+            video.addEventListener('loadedmetadata', () => {
+                video.playbackRate = playbackRate.toFixed(1);
             });
-            window.addEventListener('DOMContentLoaded', function() {
-                getSavedPlaybackRate(video);
-            });
-        }
-    }
+        });
+    });
 
-    // 主逻辑
-    function main() {
-        const video = getVideoElement();
-        if (video) {
-            addShortcutControls(video);
-            showPlaybackRateIndicator(video);
-            handleIframeCompatibility(video);
-        }
-    }
+    // 监听全屏变化事件，在视频全屏模式下隐藏消息提示栏
+    document.addEventListener('fullscreenchange', () => {
+        const fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
 
-    main();
+        if (fullscreenElement) {
+            speedBar.style.display = 'none';
+        } else {
+            speedBar.style.display = 'block';
+        }
+    });
 })();
