@@ -31,14 +31,24 @@
     const MSG = messages[curLang] || messages.en;
 
     function saveHostName(key, val) {
-        const hostname = new URL(window.location.href).hostname;
+        let hostname = "";
+        if (window.self !== window.top) {
+            hostname = new URL(window.parent.location.href).hostname;;
+        }else{
+            hostname = new URL(window.location.href).hostname;
+        }
         let saveKV = window.GM_getValue(hostname) || {};
         saveKV[key] = val;
         window.GM_setValue(hostname, saveKV);
     }
 
     function getHostName(key) {
-        const hostname = new URL(window.location.href).hostname;
+        let hostname = "";
+        if (window.self !== window.top) {
+            hostname = new URL(window.parent.location.href).hostname;;
+        }else{
+            hostname = new URL(window.location.href).hostname;
+        }
         const saveKV = window.GM_getValue(hostname);
         if (saveKV && saveKV[key]) {
             return saveKV[key];
