@@ -13,7 +13,7 @@
     'use strict';
 
     function saveHostName(key, val) {
-        const { hostname } = new URL(window.location.href);
+        const { hostname } = new URL(window.location.href).hostname;
         let saveKV = window.GM_getValue(hostname) || {}; // 获取已保存的数据，如果不存在则初始化为空对象
         saveKV[key] = val; // 更新对应的键值对
         window.GM_setValue(hostname, saveKV); // 保存更新后的数据
@@ -21,7 +21,7 @@
 
 
     function getHostName(key) {
-        const { hostname } = new URL(window.location.href);
+        const { hostname } = new URL(window.location.href).hostname;
         const saveKV = window.GM_getValue(hostname);
         if (saveKV && saveKV[key]) {
             return saveKV[key];
