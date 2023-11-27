@@ -5,8 +5,6 @@
 // @version      1.5.5
 // @description  视频倍速,全网视频倍速播放脚本
 // @author       wll
-// @updateURL    https://greasyfork.org/zh-CN/scripts/421170
-// @downloadURL  https://greasyfork.org/zh-CN/scripts/421170
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
 // @require      https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js
 // @require      https://greasyfork.org/scripts/447214-toast-script/code/toastscript.js?version=1065649
@@ -21,7 +19,9 @@
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
 // @grant        GM_registerMenuCommand
-// @license      End-User License Agreement
+// @license      GPL-3.0-or-later
+// @downloadURL  https://update.greasyfork.org/scripts/421170/%E8%A7%86%E9%A2%91%E5%80%8D%E9%80%9F%E6%92%AD%E6%94%BE%28%E8%BF%BD%E5%89%A7%E5%AD%A6%E4%B9%A0%E7%A5%9E%E5%99%A8%29.user.js
+// @updateURL    https://update.greasyfork.org/scripts/421170/%E8%A7%86%E9%A2%91%E5%80%8D%E9%80%9F%E6%92%AD%E6%94%BE%28%E8%BF%BD%E5%89%A7%E5%AD%A6%E4%B9%A0%E7%A5%9E%E5%99%A8%29.meta.js
 
 // ==/UserScript==
 
