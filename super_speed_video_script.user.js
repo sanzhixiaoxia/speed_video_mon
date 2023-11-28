@@ -30,11 +30,28 @@
     const curLang = navigator.language.slice(0, 2);
     const MSG = messages[curLang] || messages.en;
 
+    function checkExistVideo() {
+        let videos = document.querySelectorAll("video");
+        if (videos.length > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function checkInIframe(){
+        if (window.self !== window.top) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     function saveHostName(key, val) {
         let hostname = "";
-        if (window.self !== window.top) {
-            hostname = new URL(window.parent.location.href).hostname;;
-        }else{
+        if (checkInIframe()) {
+            hostname = new URL(window.parent.location.href).hostname;
+        } else {
             hostname = new URL(window.location.href).hostname;
         }
         let saveKV = window.GM_getValue(hostname) || {};
@@ -44,9 +61,9 @@
 
     function getHostName(key) {
         let hostname = "";
-        if (window.self !== window.top) {
-            hostname = new URL(window.parent.location.href).hostname;;
-        }else{
+        if (checkInIframe()) {
+            hostname = new URL(window.parent.location.href).hostname;
+        } else {
             hostname = new URL(window.location.href).hostname;
         }
         const saveKV = window.GM_getValue(hostname);
@@ -60,7 +77,7 @@
     let playbackRate = parseFloat(getHostName('playbackRate')) || 1;
 
     // 创建消息提示元素
-    function showOldJsMessage(message) {
+    function showMsg(message) {
         let messageElement = document.createElement('div');
         messageElement.classList.add('message');
         messageElement.innerText = message;
@@ -79,7 +96,7 @@
         document.body.appendChild(messageElement);
 
         // 一秒后自动消失
-        setTimeout(function() {
+        setTimeout(function () {
             messageElement.remove();
         }, 1000);
     }
@@ -94,17 +111,16 @@
 
         playbackRate = newSpeed;
         saveHostName('playbackRate', newSpeed);
-        showOldJsMessage(MSG.speedText + newSpeed.toFixed(1));
+        showMsg(MSG.speedText + newSpeed.toFixed(1));
     };
 
     const handleKeyPress = (event) => {
-        let videos = document.querySelectorAll("video");
-        if (!videos.length > 0) {return;}
-        const { key } = event;
+        if (!checkExistVideo()){return;}
 
+        const {key} = event;
         if (key === 'x') {
             changeSpeed(Math.max(playbackRate - 0.1, 0.1));
-        } else if (key ==='c' ) {
+        } else if (key === 'c') {
             changeSpeed(Math.min(playbackRate + 0.1, 20));
         } else if (key === 'z') {
             changeSpeed(1);
@@ -112,9 +128,9 @@
     };
 
     const handleIframeMessage = (event) => {
-        let videos = document.querySelectorAll("video");
-        if (!videos.length > 0) {return;}
-        const { data } = event;
+        if (!checkExistVideo()){return;}
+
+        const {data} = event;
         if (data && data.type === 'changeSpeed' && typeof data.speed === 'number') {
             changeSpeed(data.speed);
         }
@@ -124,11 +140,11 @@
     document.addEventListener('keydown', handleKeyPress);
     window.addEventListener('message', handleIframeMessage);
 
-    if (window.self !== window.top) {
-        window.parent.postMessage({type: 'changeSpeed', speed: playbackRate,},'*');
+    if (checkInIframe()) {
+        window.parent.postMessage({type: 'changeSpeed', speed: playbackRate,}, '*');
     }
 
-    window.onload = function() {
+    window.onload = function () {
         const videos = document.querySelectorAll('video');
         videos.forEach((video) => {
             video.playbackRate = playbackRate.toFixed(1);
