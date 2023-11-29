@@ -77,28 +77,32 @@
     let playbackRate = parseFloat(getHostName('playbackRate')) || 1;
 
     // 创建消息提示元素
-    function showMsg(message) {
+    function showMsg(msgText) {
         let messageElement = document.createElement('div');
-        messageElement.classList.add('message');
-        messageElement.innerText = message;
-        messageElement.style.position = 'fixed';
-        messageElement.style.bottom = '20px';
-        messageElement.style.right = '20px';
+        messageElement.style.position = 'absolute';
+        messageElement.style.top = '10px';
+        messageElement.style.left = '10px';
         messageElement.style.padding = '10px';
         messageElement.style.backgroundColor = '#333';
-        messageElement.style.color = '#fff';
+        messageElement.style.color = 'white';
         messageElement.style.borderRadius = '5px';
         messageElement.style.opacity = '0.9';
         messageElement.style.transition = 'opacity 0.5s ease';
         messageElement.style.zIndex = '2147483647';
+        messageElement.style.fontSize = '16px';
+        messageElement.style.fontFamily = 'Arial, sans-serif';
+        messageElement.innerText = msgText;
 
-        // 将消息提示元素添加到页面右下角
-        document.body.appendChild(messageElement);
+        try {
+            document.querySelector('video').parentNode.appendChild(messageElement);
+        }catch (e) {
+            document.body.appendChild(messageElement);
+        }finally {
+            setTimeout(function () {
+                messageElement.remove();
+            }, 1000);
+        }
 
-        // 一秒后自动消失
-        setTimeout(function () {
-            messageElement.remove();
-        }, 1000);
     }
 
     const changeSpeed = (newSpeed) => {
