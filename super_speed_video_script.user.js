@@ -102,11 +102,9 @@
                 messageElement.remove();
             }, 1000);
         }
-
     }
 
     const changeSpeed = (newSpeed) => {
-        debugger;
         const videos = document.querySelectorAll('video');
 
         videos.forEach((video) => {
@@ -130,6 +128,7 @@
             changeSpeed(1);
         }
     };
+    document.addEventListener('keydown', handleKeyPress);
 
     const handleIframeMessage = (event) => {
         if (!checkExistVideo()){return;}
@@ -139,9 +138,6 @@
             changeSpeed(data.speed);
         }
     };
-
-
-    document.addEventListener('keydown', handleKeyPress);
     window.addEventListener('message', handleIframeMessage);
 
     if (checkInIframe()) {
