@@ -19,6 +19,7 @@
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
 // @grant        GM_registerMenuCommand
+// @grant        GM_openInTab
 // @license      GPL-3.0-or-later
 // @downloadURL  https://update.greasyfork.org/scripts/421170/%E8%A7%86%E9%A2%91%E5%80%8D%E9%80%9F%E6%92%AD%E6%94%BE%28%E8%BF%BD%E5%89%A7%E5%AD%A6%E4%B9%A0%E7%A5%9E%E5%99%A8%29.user.js
 // @updateURL    https://update.greasyfork.org/scripts/421170/%E8%A7%86%E9%A2%91%E5%80%8D%E9%80%9F%E6%92%AD%E6%94%BE%28%E8%BF%BD%E5%89%A7%E5%AD%A6%E4%B9%A0%E7%A5%9E%E5%99%A8%29.meta.js
@@ -774,6 +775,8 @@
         GM_registerMenuCommand('功能简介：', scriptInfor);
         GM_registerMenuCommand('脚本设置：', scriptSetup);
         GM_registerMenuCommand('神秘区域：', scriptPlay);
+
+        GM_registerMenuCommand(`最新版本 ✈ :`, function () {window.GM_openInTab('https://greasyfork.org/zh-CN/scripts/421170', {active: true,insert: true,setParent: true});});
 
     }
 
