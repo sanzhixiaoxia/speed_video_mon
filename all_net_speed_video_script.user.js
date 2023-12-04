@@ -59,25 +59,30 @@
         }
     }
 
-    function saveHostName(key, val) {
+    function getStorageKey() {
         let hostname = "";
-        if (checkInIframe()) {
-            hostname = new URL(window.parent.location.href).hostname;
-        } else {
+        try {
+            if (checkInIframe()) {
+                hostname = new URL(window.parent.location.href).hostname;
+            } else {
+                hostname = new URL(window.location.href).hostname;
+            }
+        } catch (e) {
             hostname = new URL(window.location.href).hostname;
+        } finally {
+            return hostname;
         }
+    }
+
+    function saveHostName(key, val) {
+        let hostname = getStorageKey();
         let saveKV = window.GM_getValue(hostname) || {};
         saveKV[key] = val;
         window.GM_setValue(hostname, saveKV);
     }
 
     function getHostName(key) {
-        let hostname = "";
-        if (checkInIframe()) {
-            hostname = new URL(window.parent.location.href).hostname;
-        } else {
-            hostname = new URL(window.location.href).hostname;
-        }
+        let hostname = getStorageKey();
         const saveKV = window.GM_getValue(hostname);
         if (saveKV && saveKV[key]) {
             return saveKV[key];
