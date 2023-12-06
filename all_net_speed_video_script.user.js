@@ -20,7 +20,7 @@
 // @grant        GM_getResourceText
 // @grant        GM_registerMenuCommand
 // @grant        GM_openInTab
-// @license      GPL-3.0
+// @license      AGPL-3.0-or-later
 // @downloadURL  https://update.greasyfork.org/scripts/421170/%E8%A7%86%E9%A2%91%E5%80%8D%E9%80%9F%E6%92%AD%E6%94%BE%28%E8%BF%BD%E5%89%A7%E5%AD%A6%E4%B9%A0%E7%A5%9E%E5%99%A8%29.user.js
 // @updateURL    https://update.greasyfork.org/scripts/421170/%E8%A7%86%E9%A2%91%E5%80%8D%E9%80%9F%E6%92%AD%E6%94%BE%28%E8%BF%BD%E5%89%A7%E5%AD%A6%E4%B9%A0%E7%A5%9E%E5%99%A8%29.meta.js
 
