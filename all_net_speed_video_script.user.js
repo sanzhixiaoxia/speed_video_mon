@@ -851,6 +851,10 @@
                                 </div>
                             </div>
                         </div>
+                        <br>
+                        <div>
+                            <span style="filter:grayscale(100%);">- - 一直被模仿，从未被超越 - -</span>
+                        </div>
                     </div>
                     `,
             showConfirmButton: false,
