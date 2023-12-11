@@ -742,10 +742,7 @@
                         </div>
                         <div>
                             <div style="text-indent: 2em;" >方式二：</div>
-                            <div style="text-indent: 4em;" >默认快捷键：‘x’, ‘c’, ‘z’</div>
-                            <div style="text-indent: 4em;" >x: 加速 0.1</div>
-                            <div style="text-indent: 4em;" >c: 减速 0.1</div>
-                            <div style="text-indent: 4em;" >z: 复位 1.0</div>
+                            <div style="text-indent: 4em;" >默认快捷键： x:加速 0.1, c:减速 0.1, z:复位 1.0</div>
                         </div>
                     </div>
 
@@ -756,6 +753,18 @@
                             <div style="text-indent: 2em;" >为了响应国家节能减排，保护地球家园国策，脚本做了浅度检测（理论上够用了）</div>
                             <div style="text-indent: 2em;" >但是有一些比较特别的情况，脚本无法检测到视频，实现不了调整倍速的目的</div>
                             <div style="text-indent: 2em;" >所以做了三分钟真男人模式，持续深入检测三分钟，增强脚本可用性</div>
+                        </div>
+                    </div>
+                    
+                    <div style='padding: 20px;text-align: left'>
+                        <div>手动更新：</div>
+                        <div>
+                            <div style="text-indent: 2em;" >&nbsp;&nbsp;</div>
+                            <div style="text-indent: 2em;" >
+                                <a target="_blank" href="https://update.greasyfork.org/scripts/421170/%E8%A7%86%E9%A2%91%E5%80%8D%E9%80%9F%E6%92%AD%E6%94%BE%28%E8%BF%BD%E5%89%A7%E5%AD%A6%E4%B9%A0%E7%A5%9E%E5%99%A8%29.user.js">
+                                    <img src="https://img.shields.io/badge/Latest%20version-%E5%AE%89%E8%A3%85-brig1htgreen.svg">
+                                </a>
+                            </div>
                         </div>
                     </div>
 
