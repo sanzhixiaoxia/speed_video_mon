@@ -47,6 +47,7 @@
             #switch_table table{width:100%;border-collapse:collapse;}
             #switch_table table th, td{padding:10px;white-space:nowrap;}
             #switch_table table th{background-color:#f5f5f5;font-weight:bold;}
+            .message-content-sweetalert2{text-align:left;max-height:200px;overflow-y:auto;}
         `;
         GM_addStyle(customCss);
     }
