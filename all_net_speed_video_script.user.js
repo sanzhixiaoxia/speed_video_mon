@@ -29,6 +29,21 @@
 (function() {
     'use strict';
 
+    const messages = {
+        'zh': {
+            'speedChanged': '当前速度：',
+            'speedUpdating': '倍速中...',
+            'speedVersion': '最新版本 ✈ :'
+        },
+        'en': {
+            'speedChanged': 'Current speed：',
+            'speedUpdating': 'Updating speed...',
+            'speedVersion': 'new version ✈ :'
+        }
+    };
+    const curLang = navigator.language.slice(0, 2);
+    const MSG = messages[curLang] || messages.en;
+
     // 自定义样式
     function addStyle() {
         let customCss=`
@@ -576,6 +591,62 @@
         // 日志输出当前倍速
         log.info("倍速播放方法启动，当前倍率为：" + step);
 
+    }
+
+    // 创建消息提示元素
+    function showMsg(msgText) {
+        let messageElement = document.createElement('div');
+        messageElement.style.position = 'absolute';
+        messageElement.style.top = '10px';
+        messageElement.style.left = '10px';
+        messageElement.style.padding = '10px';
+        messageElement.style.backgroundColor = '#333';
+        messageElement.style.color = 'white';
+        messageElement.style.borderRadius = '5px';
+        messageElement.style.opacity = '0.9';
+        messageElement.style.transition = 'opacity 0.5s ease';
+        messageElement.style.zIndex = '2147483647';
+        messageElement.style.fontSize = '16px';
+        messageElement.style.fontFamily = 'Arial, sans-serif';
+        messageElement.innerText = msgText;
+
+        try {
+            document.querySelector('video').parentNode.appendChild(messageElement);
+        }catch (e) {
+            document.body.appendChild(messageElement);
+        }finally {
+            setTimeout(function () {
+                messageElement.remove();
+            }, 1000);
+        }
+    }
+
+    let longPressTimer = null;
+    let longPressSpeed = 2.0;
+
+    function handleLongPressStart() {
+        showMsg(MSG.speedUpdating);
+        longPressTimer = setInterval(() => {
+            changeSpeend(longPressSpeed);
+        }, 1000);
+    }
+
+    function handleLongPressEnd() {
+        clearInterval(longPressTimer);
+        changeSpeend(1);
+    }
+
+    let playbackRate = localUtil.getSValue("speed_step_key")||1;
+
+    function initTouch(){
+        const videos = document.querySelectorAll('video');
+        videos.forEach((video) => {
+            video.playbackRate = playbackRate.toFixed(1);
+            showMsg(MSG.speedChanged + playbackRate.toFixed(1));
+
+            video.addEventListener('touchstart', handleLongPressStart);
+            video.addEventListener('touchend', handleLongPressEnd);
+        });
     }
 
 
@@ -1128,6 +1199,7 @@
         },
         run() {
             initRun();
+            initTouch();
         }
     };
 
