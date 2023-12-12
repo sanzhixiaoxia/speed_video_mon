@@ -6,3 +6,4 @@ replace - .git - config
 	fetch = +refs/heads/*:refs/remotes/origin/*
 
 https://img.shields.io/badge/%20-%20-white?logo=nodedotjs
+https://img.shields.io/badge/%20-%20-black?logo=googleplay
