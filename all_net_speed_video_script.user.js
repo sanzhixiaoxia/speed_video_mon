@@ -1123,7 +1123,6 @@
             if (videos.length > 0) {
                 clearInterval(initTimer);
                 main.init();
-                initTouch();
                 window.setInterval(function() {main.run();}, 1000);
             } else if ((nowStamp - startStamp) >= speed_three_male) {
                 clearInterval(initTimer);
