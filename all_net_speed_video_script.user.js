@@ -274,7 +274,8 @@
     }
 
     function speedFun(spee) {
-        const currentVal = parseFloat($("#rangeId").val());
+        // 没取到倍速框数据，则从记忆中获取
+        const currentVal = $("#rangeId").val() == undefined ? parseFloat(localUtil.getSValue("speed_step_key")) : parseFloat($("#rangeId").val());
         let numVal;
 
         if (spee === "+") {
@@ -288,7 +289,11 @@
 
         controlVideoProperty("playbackRate", spee);
 
-        $("#rangeId").val(numVal.toFixed(1)).trigger("change");
+        try {
+            $("#rangeId").val(numVal.toFixed(1)).trigger("change");
+        }catch (e) {
+            log.error("query rangeId is error :"+e)
+        }
         addToast(`当前倍速：${numVal.toFixed(1)}`);
     }
 
