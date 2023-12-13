@@ -526,24 +526,23 @@
             stopFlag = true;
         }
 
-        let rangeElement = document.getElementById("rangeId");
-        let step = rangeElement.value;
-        let speed_step_key = localUtil.getSValue("speed_step_key");
+        let control_step_key = $("#rangeId").val() == undefined ? parseFloat(localUtil.getSValue("speed_step_key")) : parseFloat($("#rangeId").val());
+        let local_step_key = localUtil.getSValue("speed_step_key");
 
-        if (step == null || step === '') {
-            if (speed_step_key == null) {
+        if (control_step_key == null || control_step_key === '') {
+            if (local_step_key == null) {
                 changeSpeend(1);
             } else {
-                changeSpeend(speed_step_key);
+                changeSpeend(local_step_key);
             }
         } else {
-            if (step !== speed_step_key) {
-                changeSpeend(step);
+            if (control_step_key !== local_step_key) {
+                changeSpeend(control_step_key);
             }
         }
 
         // 日志输出当前倍速
-        log.info("倍速播放方法启动，当前倍率为：" + step);
+        log.info("倍速播放方法启动，当前倍率为：" + control_step_key);
 
     }
 
