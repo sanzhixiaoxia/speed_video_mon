@@ -518,27 +518,11 @@
         let speedSwitchOn = getSwitchValueById("speed_switch_toggle2");
 
         if (speedSwitchOn && stopFlag) {
-            findNodeWithSelector('video', nodei => {
-                if (isVideoValid(nodei)) {
-                    try {
-                        nodei.play();
-                    } catch (e) {
-                        log.error("自动播放失败：" + e)
-                    }
-                }
-            });
+            findNodeWithSelector('video', nodei => {if(isVideoValid(nodei)){try{nodei.play();}catch(e){log.error("自动播放失败：" + e)}}});
             stopFlag = false;
         }
         if (!speedSwitchOn && !stopFlag) {
-            findNodeWithSelector('video', nodei => {
-                if (isVideoValid(nodei)) {
-                    try {
-                        nodei.pause();
-                    } catch (e) {
-                        log.error("停止播放失败：" + e);
-                    }
-                }
-            });
+            findNodeWithSelector('video', nodei => {if(isVideoValid(nodei)) {try{nodei.pause();}catch(e){log.error("停止播放失败：" + e)}}});
             stopFlag = true;
         }
 
