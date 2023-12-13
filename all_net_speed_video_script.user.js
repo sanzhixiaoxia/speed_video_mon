@@ -31,7 +31,7 @@
 
     const messages = {
         'zh': {
-            'speedChanged': '当前速度：',
+            'speedChanged': '当前倍速：',
             'speedUpdating': '倍速中...',
             'speedVersion': '最新版本 ✈ :'
         },
@@ -145,7 +145,7 @@
 
             const handleChange = () => {
                 element.style.opacity = 1;
-                addToast("当前倍速：" + element.value);
+                addToast(MSG.speedChanged + element.value);
             };
 
             const handleMouseOver = () => {
@@ -201,7 +201,7 @@
             };
 
             try {
-                localStorage.setItem(buttonPositionKey, JSON.stringify(position));
+                localUtil.setGValue(buttonPositionKey, JSON.stringify(position));
             } catch (error) {
                 console.error("保存按钮位置失败: ", error);
             }
@@ -209,7 +209,7 @@
 
         const initializeButtonPosition = () => {
             const element = document.getElementById(rangeId);
-            const buttonPosition = localStorage.getItem(buttonPositionKey);
+            const buttonPosition = localUtil.getGValue(buttonPositionKey);
             if (buttonPosition) {
                 const position = JSON.parse(buttonPosition);
                 element.style.top = position.top + "px";
@@ -273,28 +273,28 @@
         }
     }
 
-    function speedFun(spee) {
+    function speedFun(speed) {
         // 没取到倍速框数据，则从记忆中获取
         const currentVal = $("#rangeId").val() == undefined ? parseFloat(localUtil.getSValue("speed_step_key")) : parseFloat($("#rangeId").val());
         let numVal;
 
-        if (spee === "+") {
+        if (speed === "+") {
             numVal = Math.min(20, currentVal + 0.1);
-        } else if (spee === "-") {
+        } else if (speed === "-") {
             numVal = Math.max(0.1, currentVal - 0.1);
-        } else if (spee === "1") {
+        } else if (speed === "1") {
             numVal = 1.0;
             localUtil.setSValue("speed_step_key", null);
         }
 
-        controlVideoProperty("playbackRate", spee);
+        controlVideoProperty("playbackRate", speed);
 
         try {
             $("#rangeId").val(numVal.toFixed(1)).trigger("change");
         }catch (e) {
             log.error("query rangeId is error :"+e)
         }
-        addToast(`当前倍速：${numVal.toFixed(1)}`);
+        addToast(MSG.speedChanged + `${numVal.toFixed(1)}`);
     }
 
     function controlVideoProperty(propertyName, desiredValue) {
@@ -410,7 +410,7 @@
      */
     function showToastMessage(msgText){
         GM_addStyle(GM_getResourceText("css1"));
-        $.Toast("当前倍速：", msgText, "success", {
+        $.Toast(MSG.speedChanged, msgText, "success", {
             //stack: true,
             has_icon: true,
             has_close_btn: true,
@@ -541,7 +541,6 @@
             }
         }
 
-        // 日志输出当前倍速
         log.info("倍速播放方法启动，当前倍率为：" + control_step_key);
 
     }
