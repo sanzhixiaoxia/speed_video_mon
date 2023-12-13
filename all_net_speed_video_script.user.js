@@ -31,11 +31,17 @@
 
     const messages = {
         'zh': {
+            'scriptInformation': '功能简介：',
+            'scriptSettings': '脚本设置：',
+            'scriptMysterious': '神秘区域：',
             'speedChanged': '当前倍速：',
             'speedUpdating': '倍速中...',
             'speedVersion': '最新版本 ✈ :'
         },
         'en': {
+            'scriptInformation': 'Script Information：',
+            'scriptSettings': 'Script settings：',
+            'scriptMysterious': 'Mysterious area：',
             'speedChanged': 'Current speed：',
             'speedUpdating': 'Updating speed...',
             'speedVersion': 'new version ✈ :'
@@ -626,9 +632,9 @@
      */
     function mokInitMenu(){
 
-        GM_registerMenuCommand('功能简介：', scriptInfor);
-        GM_registerMenuCommand('脚本设置：', scriptSetup);
-        GM_registerMenuCommand('神秘区域：', scriptPlay);
+        GM_registerMenuCommand(MSG.scriptInformation, scriptInfor);
+        GM_registerMenuCommand(MSG.scriptSettings, scriptSetup);
+        GM_registerMenuCommand(MSG.scriptMysterious, scriptPlay);
 
         GM_registerMenuCommand(MSG.speedVersion, function () {window.GM_openInTab('https://greasyfork.org/zh-CN/scripts/421170', {active: true,insert: true,setParent: true});});
 
