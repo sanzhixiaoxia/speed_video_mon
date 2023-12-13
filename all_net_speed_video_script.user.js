@@ -94,16 +94,16 @@
     // 日志打印封装
     const log = {
         log: function (msg) {
-            if (localStorage.getItem("speed_debug") == "true") {console.log(msg);}
+            if (localStorage.getItem("speed_debug") == "true") {console.log(" ---> speed_debug: " + msg);}
         },
         info: function (msg) {
-            if (localStorage.getItem("speed_debug") == "true") {console.info(msg);}
+            if (localStorage.getItem("speed_debug") == "true") {console.info(" ---> speed_debug: " + msg);}
         },
         warn: function (msg) {
-            if (localStorage.getItem("speed_debug") == "true") {console.warn(msg);}
+            if (localStorage.getItem("speed_debug") == "true") {console.warn(" ---> speed_debug: " + msg);}
         },
         error: function (msg) {
-            if (localStorage.getItem("speed_debug") == "true") {console.error(msg);}
+            if (localStorage.getItem("speed_debug") == "true") {console.error(" ---> speed_debug: " + msg);}
         }
     };
 
@@ -1049,12 +1049,17 @@
 
     // ====================================== mobile start==================================================
 
-    let playbackRate = localUtil.getSValue("speed_step_key")||1;
+    let playbackRate = parseFloat(localUtil.getSValue("speed_step_key")) || 1.0;
     let longPressTimer = null;
     let longPressSpeed = 2.0;
 
+    let lastY = 0;
+    let direction = ""; // 保存方向信息
+
     // 长按开始
-    function handleLongPressStart() {
+    function handleLongPressStart(e) {
+        lastY = e.touches[0].clientY;
+
         showVideoMessage(MSG.speedUpdating);
         longPressTimer = setInterval(() => {
             showVideoMessage(MSG.speedChanged + longPressSpeed);
@@ -1066,6 +1071,32 @@
     function handleLongPressEnd() {
         clearInterval(longPressTimer);
         changeSpeend(MSG.speedChanged + 1);
+    }
+
+    // 滑动变速
+    function handleSlidePress(e){
+        let currentY = e.touches[0].clientY;
+        let deltaY = currentY - lastY;
+        let times = Math.abs(deltaY) / 600;
+
+        direction = deltaY > 0 ? "down" : "up";
+
+        for (let i = 0; i < times; i++) {
+            log.info(direction);
+            if (isVideoFullscreen()) {
+                if (direction == "down") { speedFun("-"); }
+                if (direction == "up") { speedFun("+"); }
+            }
+        }
+        lastY = currentY;
+    }
+
+    function isVideoFullscreen() {
+        const videoElement = document.querySelector('video');
+        if (videoElement) {
+            return (document.fullscreenElement === videoElement || document.webkitFullscreenElement === videoElement || document.mozFullscreenElement === videoElement || document.msFullscreenElement === videoElement);
+        }
+        return false;
     }
 
     /**
@@ -1080,40 +1111,8 @@
             log.warn(`init touch is mobile to : ${video}`);
             video.addEventListener('touchstart', handleLongPressStart);
             video.addEventListener('touchend', handleLongPressEnd);
+            video.addEventListener('touchmove', handleSlidePress);
         });
-    }
-
-    /* 移动端滑动处理 */
-    let lastY = 0;
-    let direction = ""; // 保存方向信息
-
-    $(document).on('touchstart', function(e) {
-        lastY = e.originalEvent.touches[0].clientY;
-    });
-
-    $(document).on('touchmove', function(e) {
-        let currentY = e.originalEvent.touches[0].clientY;
-        let deltaY = currentY - lastY;
-        let times = Math.abs(deltaY) / 600;
-
-        direction = deltaY > 0 ? "down" : "up";
-
-        for (let i = 0; i < times; i++) {
-            log.info(direction);
-            if (isVideoFullscreen()) {
-                if (direction == "down") { speedFun("-"); }
-                if (direction == "up") { speedFun("+"); }
-            }
-        }
-        lastY = currentY;
-    });
-
-    function isVideoFullscreen() {
-        const videoElement = document.querySelector('video');
-        if (videoElement) {
-            return (document.fullscreenElement === videoElement || document.webkitFullscreenElement === videoElement || document.mozFullscreenElement === videoElement || document.msFullscreenElement === videoElement);
-        }
-        return false;
     }
 
     // ====================================== mobile end===================================================
@@ -1150,6 +1149,7 @@
             if (videos.length > 0) {
                 clearInterval(initTimer);
                 main.init();
+                initTouch();
                 window.setInterval(function() {main.run();}, 1000);
             } else if ((nowStamp - startStamp) >= speed_three_male) {
                 clearInterval(initTimer);
