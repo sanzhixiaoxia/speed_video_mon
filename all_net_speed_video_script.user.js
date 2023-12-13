@@ -333,44 +333,6 @@
         }
     }
 
-    /* 移动端滑动处理 */
-    let lastY = 0;
-    let direction = ""; // 保存方向信息
-
-    $(document).on('touchstart', function(e) {
-        lastY = e.originalEvent.touches[0].clientY;
-    });
-
-    $(document).on('touchmove', function(e) {
-        let currentY = e.originalEvent.touches[0].clientY;
-        let deltaY = currentY - lastY;
-        let times = Math.abs(deltaY) / 600;
-
-        direction = deltaY > 0 ? "down" : "up";
-
-        for (let i = 0; i < times; i++) {
-            log.info(direction);
-            if (isVideoFullscreen()) {
-                if (direction == "down") { speedFun("-"); }
-                if (direction == "up") { speedFun("+"); }
-            }
-        }
-        lastY = currentY;
-    });
-
-    function isVideoFullscreen() {
-        const videoElement = document.querySelector('video');
-        if (videoElement) {
-            return (
-                document.fullscreenElement === videoElement ||
-                document.webkitFullscreenElement === videoElement ||
-                document.mozFullscreenElement === videoElement ||
-                document.msFullscreenElement === videoElement
-            );
-        }
-        return false;
-    }
-
     // 消息提示
     function addToast(msgText) {
 
@@ -415,23 +377,26 @@
         messageElement.style.position = 'absolute';
         messageElement.style.top = '10px';
         messageElement.style.left = '10px';
-        messageElement.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        messageElement.style.color = 'white';
         messageElement.style.padding = '10px';
-        messageElement.style.fontFamily = 'Arial, sans-serif';
+        messageElement.style.backgroundColor = '#333';
+        messageElement.style.color = 'white';
+        messageElement.style.borderRadius = '5px';
+        messageElement.style.opacity = '0.9';
+        messageElement.style.transition = 'opacity 0.5s ease';
+        messageElement.style.zIndex = '2147483647';
         messageElement.style.fontSize = '16px';
+        messageElement.style.fontFamily = 'Arial, sans-serif';
         messageElement.innerText = msgText;
-        messageElement.style.display = 'block';
 
-        findNodeWithSelector('video', nodei => {
-            if (isVideoValid(nodei)) {
-                nodei.parentNode.appendChild(messageElement);
-            }
-        });
-
-        setTimeout(function() {
-            messageElement.remove();
-        }, 1000);
+        try {
+            document.querySelector('video').parentNode.appendChild(messageElement);
+        }catch (e) {
+            document.body.appendChild(messageElement);
+        }finally {
+            setTimeout(function () {
+                messageElement.remove();
+            }, 1000);
+        }
     }
 
     /**
@@ -593,106 +558,6 @@
 
     }
 
-    // 创建消息提示元素
-    function showMsg(msgText) {
-        let messageElement = document.createElement('div');
-        messageElement.style.position = 'absolute';
-        messageElement.style.top = '10px';
-        messageElement.style.left = '10px';
-        messageElement.style.padding = '10px';
-        messageElement.style.backgroundColor = '#333';
-        messageElement.style.color = 'white';
-        messageElement.style.borderRadius = '5px';
-        messageElement.style.opacity = '0.9';
-        messageElement.style.transition = 'opacity 0.5s ease';
-        messageElement.style.zIndex = '2147483647';
-        messageElement.style.fontSize = '16px';
-        messageElement.style.fontFamily = 'Arial, sans-serif';
-        messageElement.innerText = msgText;
-
-        try {
-            document.querySelector('video').parentNode.appendChild(messageElement);
-        }catch (e) {
-            document.body.appendChild(messageElement);
-        }finally {
-            setTimeout(function () {
-                messageElement.remove();
-            }, 1000);
-        }
-    }
-
-    let longPressTimer = null;
-    let longPressSpeed = 2.0;
-
-    function handleLongPressStart() {
-        showMsg(MSG.speedUpdating);
-        longPressTimer = setInterval(() => {
-            changeSpeend(longPressSpeed);
-        }, 1000);
-    }
-
-    function handleLongPressEnd() {
-        clearInterval(longPressTimer);
-        changeSpeend(1);
-    }
-
-    let playbackRate = localUtil.getSValue("speed_step_key")||1;
-
-    function initTouch(){
-        const videos = document.querySelectorAll('video');
-        videos.forEach((video) => {
-            video.playbackRate = playbackRate.toFixed(1);
-            showMsg(MSG.speedChanged + playbackRate.toFixed(1));
-
-            video.addEventListener('touchstart', handleLongPressStart);
-            video.addEventListener('touchend', handleLongPressEnd);
-        });
-    }
-
-
-    let timer;
-
-    const startLongPress = (event) => {
-        try {
-            event.preventDefault(); // 阻止touchmove事件的默认行为
-        } catch (e) {
-            log.error("阻止touchmove事件失败：" + e);
-        }
-
-        timer = setTimeout(() => {
-            log.info("长按操作开始...");
-            changeMobileSpeed(2);
-        }, 1500); // 设置长按时间，单位为毫秒
-    };
-
-    const endLongPress = () => {
-        clearTimeout(timer);
-        changeMobileSpeed(1);
-        log.info("长按操作结束...");
-    };
-
-    const changeMobileSpeed = (speed) => {
-        const isMobile = isMobileDevice();
-
-        if (isMobile) {
-            log.warn("当前设备是移动端speed is:" + speed);
-            try {
-                findNodeWithSelector('video', nodei => {
-                    if (isVideoValid(nodei)) {
-                        nodei.playbackRate = speed;
-                        showVideoMessage("倍速提速中:" + speed);
-                    }
-                });
-            } catch (e) {
-                log.error("移动端设置失败：" + e);
-            }
-        }
-    };
-
-    document.addEventListener("touchstart", startLongPress);
-    document.addEventListener("touchmove", endLongPress);
-    document.addEventListener("touchend", endLongPress);
-
     /**
      * 更改倍速
      * @param speed
@@ -706,12 +571,6 @@
                 nodei.playbackRate = speed;
             }
         });
-
-        // findNodeWithSelector('video', function (nodei) {
-        //     if (nodei) {
-        //         nodei.playbackRate = speed;
-        //     }
-        // });
 
         localUtil.setSValue("speed_step_key", speed);
     }
@@ -1188,6 +1047,43 @@
 
     }
 
+    // ====================================== mobile start==================================================
+
+    let playbackRate = localUtil.getSValue("speed_step_key")||1;
+    let longPressTimer = null;
+    let longPressSpeed = 2.0;
+
+    // 长按开始
+    function handleLongPressStart() {
+        showVideoMessage(MSG.speedUpdating);
+        longPressTimer = setInterval(() => {
+            showVideoMessage(MSG.speedChanged + longPressSpeed);
+            changeSpeend(longPressSpeed);
+        }, 1000);
+    }
+
+    // 长按结束
+    function handleLongPressEnd() {
+        clearInterval(longPressTimer);
+        changeSpeend(MSG.speedChanged + 1);
+    }
+
+    /**
+     * 初始化长按倍速
+     */
+    function initTouch(){
+        const videos = document.querySelectorAll('video');
+        videos.forEach((video) => {
+            video.playbackRate = playbackRate.toFixed(1);
+            showVideoMessage(MSG.speedChanged + playbackRate.toFixed(1));
+
+            log.warn(`init touch is mobile to : ${video}`);
+            video.addEventListener('touchstart', handleLongPressStart);
+            video.addEventListener('touchend', handleLongPressEnd);
+        });
+    }
+    // ====================================== mobile end===================================================
+
     const main = {
         before() {
             addStyle();
@@ -1199,7 +1095,6 @@
         },
         run() {
             initRun();
-            initTouch();
         }
     };
 
@@ -1227,9 +1122,10 @@
                 log.error('search video is long to stop...');
             }else if (isMobileDevice()){
                 clearInterval(initTimer);
-                log.error('check device is mobile to stop pc mode ...');
+                initTouch();
+                log.error('check device is mobile switch to mobile ...');
             } else {
-                log.error('search video waiting...');
+                log.error('search video is waiting ...');
             }
         }, 1000);
 
