@@ -261,9 +261,10 @@
     }
 
     function speedFun(speed) {
-        debugger;
+
         // 没取到倍速框数据，则从记忆中获取
-        const currentVal = ($("#rangeId").val() == undefined||$("#rangeId").val() == "") ? parseFloat(localUtil.getSValue("speed_step_key")) : parseFloat($("#rangeId").val());
+        let local_step_key = localUtil.getSValue("speed_step_key");
+        let currentVal = (local_step_key == undefined || local_step_key == "" || local_step_key == null) ? 1 : parseFloat(local_step_key);
         let numVal;
 
         if (speed === "+") {
@@ -272,16 +273,11 @@
             numVal = Math.max(0.1, currentVal - 0.1);
         } else if (speed === "1") {
             numVal = 1.0;
-            localUtil.setSValue("speed_step_key", null);
         }
 
-        controlVideoProperty("playbackRate", speed);
+        controlVideoProperty("playbackRate", numVal);
 
-        try {
-            $("#rangeId").val(numVal.toFixed(1)).trigger("change");
-        }catch (e) {
-            log.error("query rangeId is error :"+e)
-        }
+        changeSpeend(numVal);
         addToast(MSG.speedChanged + `${numVal.toFixed(1)}`);
     }
 
@@ -542,7 +538,7 @@
     function changeSpeend(speed) {
 
         try {
-            $("#rangeId").val(speed);
+            $("#rangeId").val(speed.toFixed(1));
         }catch (e) {
             log.error("write back is error :"+e)
         }
