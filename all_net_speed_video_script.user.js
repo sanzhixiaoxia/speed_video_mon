@@ -630,7 +630,7 @@
         GM_registerMenuCommand('脚本设置：', scriptSetup);
         GM_registerMenuCommand('神秘区域：', scriptPlay);
 
-        GM_registerMenuCommand(`最新版本 ✈ :`, function () {window.GM_openInTab('https://greasyfork.org/zh-CN/scripts/421170', {active: true,insert: true,setParent: true});});
+        GM_registerMenuCommand(MSG.speedVersion, function () {window.GM_openInTab('https://greasyfork.org/zh-CN/scripts/421170', {active: true,insert: true,setParent: true});});
 
     }
 
