@@ -510,12 +510,10 @@
             stopFlag = true;
         }
 
-        // let control_step_key = ($("#rangeId").val() == undefined || $("#rangeId").val() == "") ? parseFloat(localUtil.getSValue("speed_step_key"))||1 : parseFloat($("#rangeId").val());
-        // let control_step_key = $("#rangeId").val() == undefined ? parseFloat(localUtil.getSValue("speed_step_key")) : parseFloat($("#rangeId").val());
         let control_step_key = $("#rangeId").val();
         let local_step_key = localUtil.getSValue("speed_step_key");
 
-        if (control_step_key == null || control_step_key === '') {
+        if (control_step_key == null || control_step_key == ''|| control_step_key == undefined) {
             if (local_step_key == null) {
                 changeSpeend(1);
             } else {
@@ -536,9 +534,10 @@
      * @param speed
      */
     function changeSpeend(speed) {
+        speed = parseFloat(speed).toFixed(1);
 
         try {
-            $("#rangeId").val(speed.toFixed(1));
+            $("#rangeId").val(speed);
         }catch (e) {
             log.error("write back is error :"+e)
         }
