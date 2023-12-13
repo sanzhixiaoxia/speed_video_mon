@@ -276,8 +276,9 @@
     }
 
     function speedFun(speed) {
+        debugger;
         // 没取到倍速框数据，则从记忆中获取
-        const currentVal = $("#rangeId").val() == undefined ? parseFloat(localUtil.getSValue("speed_step_key")) : parseFloat($("#rangeId").val());
+        const currentVal = ($("#rangeId").val() == undefined||$("#rangeId").val() == "") ? parseFloat(localUtil.getSValue("speed_step_key")) : parseFloat($("#rangeId").val());
         let numVal;
 
         if (speed === "+") {
@@ -528,7 +529,9 @@
             stopFlag = true;
         }
 
-        let control_step_key = $("#rangeId").val() == undefined ? parseFloat(localUtil.getSValue("speed_step_key")) : parseFloat($("#rangeId").val());
+        // let control_step_key = ($("#rangeId").val() == undefined || $("#rangeId").val() == "") ? parseFloat(localUtil.getSValue("speed_step_key"))||1 : parseFloat($("#rangeId").val());
+        // let control_step_key = $("#rangeId").val() == undefined ? parseFloat(localUtil.getSValue("speed_step_key")) : parseFloat($("#rangeId").val());
+        let control_step_key = $("#rangeId").val();
         let local_step_key = localUtil.getSValue("speed_step_key");
 
         if (control_step_key == null || control_step_key === '') {
@@ -554,7 +557,7 @@
     function changeSpeend(speed) {
 
         try {
-            document.getElementById("rangeId").value = speed;
+            $("#rangeId").val(speed);
         }catch (e) {
             log.error("write back is error :"+e)
         }
