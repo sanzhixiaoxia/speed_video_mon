@@ -552,7 +552,11 @@
      */
     function changeSpeend(speed) {
 
-        document.getElementById("rangeId").value = speed;
+        try {
+            document.getElementById("rangeId").value = speed;
+        }catch (e) {
+            log.error("write back is error :"+e)
+        }
 
         findNodeWithSelector('video', nodei => {
             if (isVideoValid(nodei)) {
