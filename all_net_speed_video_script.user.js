@@ -1082,6 +1082,40 @@
             video.addEventListener('touchend', handleLongPressEnd);
         });
     }
+
+    /* 移动端滑动处理 */
+    let lastY = 0;
+    let direction = ""; // 保存方向信息
+
+    $(document).on('touchstart', function(e) {
+        lastY = e.originalEvent.touches[0].clientY;
+    });
+
+    $(document).on('touchmove', function(e) {
+        let currentY = e.originalEvent.touches[0].clientY;
+        let deltaY = currentY - lastY;
+        let times = Math.abs(deltaY) / 600;
+
+        direction = deltaY > 0 ? "down" : "up";
+
+        for (let i = 0; i < times; i++) {
+            log.info(direction);
+            if (isVideoFullscreen()) {
+                if (direction == "down") { speedFun("-"); }
+                if (direction == "up") { speedFun("+"); }
+            }
+        }
+        lastY = currentY;
+    });
+
+    function isVideoFullscreen() {
+        const videoElement = document.querySelector('video');
+        if (videoElement) {
+            return (document.fullscreenElement === videoElement || document.webkitFullscreenElement === videoElement || document.mozFullscreenElement === videoElement || document.msFullscreenElement === videoElement);
+        }
+        return false;
+    }
+
     // ====================================== mobile end===================================================
 
     const main = {
