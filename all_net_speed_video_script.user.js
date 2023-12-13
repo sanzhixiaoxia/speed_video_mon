@@ -233,21 +233,6 @@
         });
     }
 
-    window.addEventListener("keydown", handleKeyPress);
-
-    if (checkInIframe()) {
-        window.addEventListener("keydown", handleParentKeyPress);
-    }
-
-    if (checkInIframe()) {
-        window.addEventListener("message", (event) => {
-            if (event.data.type === "keyPress") {
-                const { key } = event.data;
-                handleKeyPress({ key });
-            }
-        });
-    }
-
     function handleParentKeyPress(e) {
         const videos = document.querySelectorAll("video").length;
 
@@ -1081,6 +1066,21 @@
     }
 
     // ====================================== mobile end===================================================
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    if (checkInIframe()) {
+        window.addEventListener("keydown", handleParentKeyPress);
+    }
+
+    if (checkInIframe()) {
+        window.addEventListener("message", (event) => {
+            if (event.data.type === "keyPress") {
+                const { key } = event.data;
+                handleKeyPress({ key });
+            }
+        });
+    }
 
     const main = {
         before() {
