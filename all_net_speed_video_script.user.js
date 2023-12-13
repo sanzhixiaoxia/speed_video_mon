@@ -554,6 +554,7 @@
             if (isVideoValid(nodei)) {
                 nodei.playbackRate = speed;
                 nodei.focus(); // 聚焦到视频元素
+                nodei.preload = 'auto';// 设置preload属性为"auto"
             }
         });
 
