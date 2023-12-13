@@ -1053,13 +1053,8 @@
     let longPressTimer = null;
     let longPressSpeed = 2.0;
 
-    let lastY = 0;
-    let direction = ""; // 保存方向信息
-
     // 长按开始
-    function handleLongPressStart(e) {
-        lastY = e.touches[0].clientY;
-
+    function handleLongPressStart() {
         showVideoMessage(MSG.speedUpdating);
         longPressTimer = setInterval(() => {
             showVideoMessage(MSG.speedChanged + longPressSpeed);
@@ -1070,33 +1065,8 @@
     // 长按结束
     function handleLongPressEnd() {
         clearInterval(longPressTimer);
-        changeSpeend(MSG.speedChanged + 1);
-    }
-
-    // 滑动变速
-    function handleSlidePress(e){
-        let currentY = e.touches[0].clientY;
-        let deltaY = currentY - lastY;
-        let times = Math.abs(deltaY) / 600;
-
-        direction = deltaY > 0 ? "down" : "up";
-
-        for (let i = 0; i < times; i++) {
-            log.info(direction);
-            if (isVideoFullscreen()) {
-                if (direction == "down") { speedFun("-"); }
-                if (direction == "up") { speedFun("+"); }
-            }
-        }
-        lastY = currentY;
-    }
-
-    function isVideoFullscreen() {
-        const videoElement = document.querySelector('video');
-        if (videoElement) {
-            return (document.fullscreenElement === videoElement || document.webkitFullscreenElement === videoElement || document.mozFullscreenElement === videoElement || document.msFullscreenElement === videoElement);
-        }
-        return false;
+        showVideoMessage(MSG.speedChanged + playbackRate);
+        changeSpeend(playbackRate);
     }
 
     /**
@@ -1111,7 +1081,6 @@
             log.warn(`init touch is mobile to : ${video}`);
             video.addEventListener('touchstart', handleLongPressStart);
             video.addEventListener('touchend', handleLongPressEnd);
-            video.addEventListener('touchmove', handleSlidePress);
         });
     }
 
