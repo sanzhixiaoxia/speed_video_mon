@@ -545,6 +545,7 @@
         findNodeWithSelector('video', nodei => {
             if (isVideoValid(nodei)) {
                 nodei.playbackRate = speed;
+                nodei.focus(); // 聚焦到视频元素
             }
         });
 
