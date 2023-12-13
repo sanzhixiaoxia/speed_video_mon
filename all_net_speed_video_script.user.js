@@ -78,9 +78,11 @@
     // 本地存储封装
     const localUtil = {
         getSValue(name) {
+            // return localStorage.getItem(name);
             return window.GM_getValue(name);
         },
         setSValue(name, value) {
+            // localStorage.setItem(name, value);
             window.GM_setValue(name, value);
         },
         getGValue(name) {
