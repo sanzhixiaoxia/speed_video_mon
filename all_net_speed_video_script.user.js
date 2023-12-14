@@ -52,6 +52,10 @@
     const curLang = navigator.language.slice(0, 2);
     const MSG = messages[curLang] || messages.en;
 
+    // 本地存储数组
+    // new URL(window.location.href).hostname;
+    let localUrlDataArray = ["www.bilibili.com", "www.iqiyi.com", "www.youtube.com", "", "5"];
+
     // 自定义样式
     function addStyle() {
         let customCss=`
@@ -82,8 +86,6 @@
             return false;
         }
     }
-
-    let localUrlDataArray = ["", "2", "3", "", "5"]; // 示例数组
 
     // 本地存储封装
     const localUtil = {
@@ -287,7 +289,7 @@
     function speedFun(speed) {
 
         // 没取到倍速框数据，则从记忆中获取
-        let local_step_key = localUtil.getSValue("speed_step_key");
+        let local_step_key = localUtil.getAutoValue("speed_step_key");
         let currentVal = (local_step_key == undefined || local_step_key == "" || local_step_key == null) ? 1 : parseFloat(local_step_key);
         let numVal;
 
@@ -535,7 +537,7 @@
         }
 
         let control_step_key = $("#rangeId").val();
-        let local_step_key = localUtil.getSValue("speed_step_key");
+        let local_step_key = localUtil.getAutoValue("speed_step_key");
 
         if (control_step_key == null || control_step_key == ''|| control_step_key == undefined) {
             if (local_step_key == null) {
@@ -574,7 +576,7 @@
             }
         });
 
-        localUtil.setSValue("speed_step_key", speed);
+        localUtil.setAutoValue("speed_step_key", speed);
     }
 
     /**
@@ -891,7 +893,7 @@
                     const sliderValue = sliderContainer.querySelector("span.progressStr");
 
                     // 从 localUtil 中读取滑块的值，如果存在则更新滑块和滑块值
-                    const storedData = localUtil.getSValue(slider.id);
+                    const storedData = localUtil.getAutoValue(slider.id);
                     if (storedData) {
                         const {value,textContent} = JSON.parse(storedData);
                         slider.value = value;
@@ -905,7 +907,7 @@
                         sliderValue.textContent = textContent;
                         const data = {value,textContent};
 
-                        localUtil.setSValue(this.id, JSON.stringify(data));
+                        localUtil.setAutoValue(this.id, JSON.stringify(data));
                         initStartEnd();
                     });
                 });
@@ -1023,8 +1025,8 @@
      */
     function initStartEnd(){
 
-        let storedData1 = localUtil.getSValue("speed_slider_start");
-        let storedData2 = localUtil.getSValue("speed_slider_end");
+        let storedData1 = localUtil.getAutoValue("speed_slider_start");
+        let storedData2 = localUtil.getAutoValue("speed_slider_end");
         let speed_skip_start = storedData1 ? JSON.parse(storedData1).value : 0;
         let speed_skip_end = storedData2 ? JSON.parse(storedData2).value : 0;
 
@@ -1051,7 +1053,7 @@
 
     // ====================================== mobile start==================================================
 
-    let playbackRate = parseFloat(localUtil.getSValue("speed_step_key")) || 1.0;
+    let playbackRate = parseFloat(localUtil.getAutoValue("speed_step_key")) || 1.0;
     let longPressTimer = null;
     let longPressSpeed = 2.0;
 
