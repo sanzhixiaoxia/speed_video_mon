@@ -69,7 +69,7 @@
     // 自定义样式
     function addStyle() {
         let customCss=`
-            #rangeId{z-index:2147483647;position:fixed;top:100px;right:100px;width:50px;background-color:#E3EDCD;display:inline-block;text-align:center;padding:0 6px 0 7px;height:16px;line-height:16px;border-radius:9px;border:1px solid;outline: none;color:black!important;font-size:12px;margin-right:4px;transition:background 0.3s,color 0.3s;flex-shrink:0;filter: opacity(0.7);cursor:move;user-select:none;}
+            #rangeId{z-index:2147483647;position:fixed;top:15%;right:85%;width:50px;background-color:#E3EDCD;display:inline-block;text-align:center;padding:0 6px 0 7px;height:16px;line-height:16px;border-radius:9px;border:1px solid;outline: none;color:black!important;font-size:12px;margin-right:4px;transition:background 0.3s,color 0.3s;flex-shrink:0;filter: opacity(0.7);cursor:move;user-select:none;}
             #rangeId:hover{filter: opacity(1);}
             .slider-container{display:flex;align-items:center;justify-content:flex-start;}
             .toggle-container{display:inline-block;position:relative;}
@@ -160,18 +160,19 @@
 
     // 自定义节点
     function addDocument() {
+        debugger;
         const rangeId = "rangeId";
         const buttonPositionKey = "buttonPosition";
 
         const addButton = () => {
             const rangeInput = `<input id="${rangeId}" type="number" step="0.1" min="0.1" max="20" autofocus="autofocus" value="" />`;
-            if (checkInIframe()) {
-                // 在iframe中
-                window.parent.postMessage({ type: "addButton" }, "*");
-            } else {
+            // if (checkInIframe()) {
+            //     在iframe中
+                // window.parent.postMessage({ type: "addButton" }, "*");
+            // } else {
                 // 不在iframe中
                 $("body").prepend(rangeInput);
-            }
+            // }
 
             const element = document.getElementById(rangeId);
             element.style.opacity = 0.7;
