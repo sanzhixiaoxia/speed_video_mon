@@ -61,7 +61,7 @@
         "www.bilibili.com"
        ,"www.iqiyi.com"
        ,"www.youtube.com"
-       ,""
+       ,"127.0.0.1"
     ];
 
     // 自定义样式
