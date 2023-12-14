@@ -52,9 +52,13 @@
     const curLang = navigator.language.slice(0, 2);
     const MSG = messages[curLang] || messages.en;
 
-    // 本地存储数组
-    // new URL(window.location.href).hostname;
-    let localUrlDataArray = ["www.bilibili.com", "www.iqiyi.com", "www.youtube.com", "", "5"];
+    // 本地存储域数组 new URL(window.location.href).hostname;
+    let localUrlDataArray = [
+        "www.bilibili.com"
+       ,"www.iqiyi.com"
+       ,"www.youtube.com"
+       ,""
+    ];
 
     // 自定义样式
     function addStyle() {
