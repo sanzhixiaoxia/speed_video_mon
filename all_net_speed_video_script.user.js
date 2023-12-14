@@ -52,7 +52,11 @@
     const curLang = navigator.language.slice(0, 2);
     const MSG = messages[curLang] || messages.en;
 
-    // 本地存储域数组 new URL(window.location.href).hostname;
+    /**
+     * 本地存储域数组
+     * new URL(window.location.href).hostname;
+     * @type {string[]}
+     */
     let localUrlDataArray = [
         "www.bilibili.com"
        ,"www.iqiyi.com"
