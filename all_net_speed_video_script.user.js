@@ -83,21 +83,37 @@
         }
     }
 
+    let localUrlDataArray = ["", "2", "3", "", "5"]; // 示例数组
+
     // 本地存储封装
     const localUtil = {
         getSValue(name) {
-            // return localStorage.getItem(name);
-            return window.GM_getValue(name);
+            return localStorage.getItem(name);
         },
         setSValue(name, value) {
-            // localStorage.setItem(name, value);
-            window.GM_setValue(name, value);
+            localStorage.setItem(name, value);
         },
         getGValue(name) {
             return window.GM_getValue(name);
         },
         setGValue(name, value) {
             window.GM_setValue(name, value);
+        },
+        getAutoValue(name) {
+            let hostname = new URL(window.location.href).hostname;
+            if (localUrlDataArray.includes(hostname)) {
+                return localUtil.getSValue(name);
+            } else {
+                return localUtil.getGValue(name);
+            }
+        },
+        setAutoValue(name, value) {
+            let hostname = new URL(window.location.href).hostname;
+            if (localUrlDataArray.includes(hostname)) {
+                localUtil.setSValue(name, value);
+            } else {
+                localUtil.setGValue(name, value);
+            }
         }
     };
 
