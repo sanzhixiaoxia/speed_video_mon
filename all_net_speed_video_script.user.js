@@ -284,18 +284,22 @@
             switch (e.key.toLowerCase()) {
                 case "x":
                     speedFun("-");
+                    e.preventDefault(); // 取消默认行为
+                    e.stopPropagation(); // 阻止事件传播
                     break;
                 case "c":
                     speedFun("+");
+                    e.preventDefault(); // 取消默认行为
+                    e.stopPropagation(); // 阻止事件传播
                     break;
                 case "t":
                 case "z":
                     speedFun("1");
+                    e.preventDefault(); // 取消默认行为
+                    e.stopPropagation(); // 阻止事件传播
                     break;
             }
         }
-        e.preventDefault(); // 取消默认行为
-        e.stopPropagation(); // 阻止事件传播
     }
 
     function speedFun(speed) {
