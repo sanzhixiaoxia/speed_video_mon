@@ -1100,7 +1100,7 @@
 
     // ====================================== mobile end===================================================
 
-    window.addEventListener("keydown", handleKeyPress);
+    window.addEventListener("keydown", handleKeyPress, true);
 
     if (checkInIframe()) {
         window.addEventListener("keydown", handleParentKeyPress);
