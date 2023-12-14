@@ -281,21 +281,28 @@
         const videos = document.querySelectorAll("video").length;
 
         if (videos > 0) {
-            e.preventDefault(); // 取消默认行为
-            e.stopPropagation(); // 阻止事件传播
             switch (e.key.toLowerCase()) {
                 case "x":
                     speedFun("-");
+                    stopPropa(e);
                     break;
                 case "c":
                     speedFun("+");
+                    stopPropa(e);
                     break;
                 case "t":
                 case "z":
                     speedFun("1");
+                    stopPropa(e);
                     break;
             }
+
         }
+    }
+
+    function stopPropa(e){
+        e.preventDefault(); // 取消默认行为
+        e.stopPropagation(); // 阻止事件传播
     }
 
     function speedFun(speed) {
