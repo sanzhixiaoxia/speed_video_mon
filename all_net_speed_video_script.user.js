@@ -294,6 +294,8 @@
                     break;
             }
         }
+        e.preventDefault(); // 取消默认行为
+        e.stopPropagation(); // 阻止事件传播
     }
 
     function speedFun(speed) {
