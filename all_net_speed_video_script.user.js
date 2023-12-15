@@ -167,7 +167,7 @@
         const buttonPositionKey = "buttonPosition";
 
         const addButton = () => {
-            const rangeInput = `<input id="${rangeId}" type="number" step="0.1" min="0.1" max="20" autofocus="autofocus" value="" />`;
+            const rangeInput = `<input id="${rangeId}" type="number" step="0.1" min="0.1" max="16" autofocus="autofocus" value="" />`;
             $("body").prepend(rangeInput);
         };
 
