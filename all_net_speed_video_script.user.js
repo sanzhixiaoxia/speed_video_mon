@@ -69,7 +69,9 @@
     // 自定义样式
     function addStyle() {
         let customCss=`
-            #rangeId{z-index:2147483647;position:fixed;top:15%;right:85%;width:3vw;background-color:#E3EDCD;display:inline-block;text-align:center;padding:0 6px 0 7px;height:16px;line-height:16px;border-radius:9px;border:1px solid;outline: none;color:black!important;font-size:12px;margin-right:4px;transition:background 0.3s,color 0.3s;flex-shrink:0;filter: opacity(0.7);cursor:move;user-select:none;}
+            #rangeId{position:fixed;top:15%;left:85%;width:3vw;height:1vw;z-index:2147483647!important;text-align:center;background-color:#E3EDCD!important;color:black!important;
+            flex-shrink:0;filter: opacity(0.7);cursor:move;user-select:none;outline: none;border:1px solid;border-radius:9px;
+            display:inline-block;padding:0 6px 0 7px;line-height:16px;font-size:12px;margin-right:4px;transition:background 0.3s,color 0.3s;}
             #rangeId:hover{filter: opacity(1);}
             .slider-container{display:flex;align-items:center;justify-content:flex-start;}
             .toggle-container{display:inline-block;position:relative;}
