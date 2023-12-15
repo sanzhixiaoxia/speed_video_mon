@@ -69,7 +69,7 @@
     // 自定义样式
     function addStyle() {
         let customCss=`
-            #rangeId{z-index:2147483647;position:fixed;top:15%;right:85%;width:50px;background-color:#E3EDCD;display:inline-block;text-align:center;padding:0 6px 0 7px;height:16px;line-height:16px;border-radius:9px;border:1px solid;outline: none;color:black!important;font-size:12px;margin-right:4px;transition:background 0.3s,color 0.3s;flex-shrink:0;filter: opacity(0.7);cursor:move;user-select:none;}
+            #rangeId{z-index:2147483647;position:fixed;top:15%;right:85%;width:3vw;background-color:#E3EDCD;display:inline-block;text-align:center;padding:0 6px 0 7px;height:16px;line-height:16px;border-radius:9px;border:1px solid;outline: none;color:black!important;font-size:12px;margin-right:4px;transition:background 0.3s,color 0.3s;flex-shrink:0;filter: opacity(0.7);cursor:move;user-select:none;}
             #rangeId:hover{filter: opacity(1);}
             .slider-container{display:flex;align-items:center;justify-content:flex-start;}
             .toggle-container{display:inline-block;position:relative;}
@@ -81,9 +81,9 @@
             .swal2-popup{font-family:"Arial",sans-serif;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.1);background-color:#fff;color:#333;}.swal2-title{font-size:24px;margin-bottom:10px;}
             .swal2-content{font-size:12px;margin-bottom:20px;}.swal2-actions{display:flex;justify-content:center;}.swal2-confirm,.swal2-cancel{font-size:18px;padding:10px 20px;border-radius:5px;background-color:#ffcc00;color:#fff;border:none;cursor:pointer;transition:background-color 0.3s;}.swal2-confirm:hover,.swal2-cancel:hover{background-color:#ffdd33;}
             .swal2-close{font-size:20px;width:30px;height:30px;line-height:30px;padding:0;border-radius:50%;background-color:#fff;color:#000;}
-            #switch_table table{width:100%;border-collapse:collapse;}
-            #switch_table table th, td{padding:10px;white-space:nowrap;}
-            #switch_table table th{background-color:#f5f5f5;font-weight:bold;}
+            #switch_table>table{width:100%;border-collapse:collapse;}
+            #switch_table>table>th,#switch_table>table>td{padding:10px;white-space:nowrap;}
+            #switch_table>table>th{background-color:#f5f5f5;font-weight:bold;}
             .message-content-sweetalert2{text-align:left;max-height:200px;overflow-y:auto;}
         `;
         GM_addStyle(customCss);
