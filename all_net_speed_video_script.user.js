@@ -70,9 +70,9 @@
     function addStyle() {
         let customCss=`
             #rangeId{position:fixed;top:15%;left:85%;width:3vw;height:1vw;z-index:2147483647!important;text-align:center;background-color:#E3EDCD!important;color:black!important;
-            flex-shrink:0;filter: opacity(0.7);cursor:move;user-select:none;outline: none;border:1px solid;border-radius:9px;
+            flex-shrink:0;opacity:0.7;cursor:move;user-select:none;outline: none;border:1px solid;border-radius:9px;
             display:inline-block;padding:0 6px 0 7px;line-height:16px;font-size:12px;margin-right:4px;transition:background 0.3s,color 0.3s;}
-            #rangeId:hover{filter: opacity(1);}
+            #rangeId:hover{opacity:1;}
             .slider-container{display:flex;align-items:center;justify-content:flex-start;}
             .toggle-container{display:inline-block;position:relative;}
             .toggle-input{display:none;}
@@ -162,44 +162,22 @@
 
     // 自定义节点
     function addDocument() {
-        debugger;
+
         const rangeId = "rangeId";
         const buttonPositionKey = "buttonPosition";
 
         const addButton = () => {
             const rangeInput = `<input id="${rangeId}" type="number" step="0.1" min="0.1" max="20" autofocus="autofocus" value="" />`;
-            // if (checkInIframe()) {
-            //     在iframe中
-                // window.parent.postMessage({ type: "addButton" }, "*");
-            // } else {
-                // 不在iframe中
-                $("body").prepend(rangeInput);
-            // }
-
-            const element = document.getElementById(rangeId);
-            element.style.opacity = 0.7;
-            element.style.zIndex = "2147483647";
+            $("body").prepend(rangeInput);
         };
 
         const addListeners = () => {
-            const element = document.getElementById(rangeId);
 
+            const element = document.getElementById(rangeId);
             const handleChange = () => {
-                element.style.opacity = 1;
                 addToast(MSG.speedChanged + element.value);
             };
-
-            const handleMouseOver = () => {
-                element.style.opacity = 1;
-            };
-
-            const handleMouseOut = () => {
-                element.style.opacity = 0.7;
-            };
-
             element.addEventListener("change", handleChange);
-            element.addEventListener("mouseover", handleMouseOver);
-            element.addEventListener("mouseout", handleMouseOut);
 
             const handleMouseDown = (e) => {
                 const offsetX = e.clientX - element.offsetLeft;
@@ -261,15 +239,6 @@
         addButton();
         addListeners();
         initializeButtonPosition();
-    }
-
-    // 在iframe中接收父级页面的消息，并执行添加按钮的操作
-    if (checkInIframe()) {
-        window.addEventListener("message", (event) => {
-            if (event.data.type === "addButton") {
-                addDocument();
-            }
-        });
     }
 
     function handleParentKeyPress(e) {
