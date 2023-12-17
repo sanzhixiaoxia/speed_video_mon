@@ -62,6 +62,8 @@
     let localUrlDataArray = [
         "www.bilibili.com"
        ,"www.iqiyi.com"
+       ,"www.douyin.com"
+       ,"If-zt.douyin.com"
        ,"www.youtube.com"
        ,"127.0.0.1"
     ];
