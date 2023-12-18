@@ -6,7 +6,7 @@
 
 <p align="center">
 	<a target="_blank" href="https://greasyfork.org/zh-CN/scripts/421170">
-        <img src="https://img.shields.io/badge/release-v1.6.6-brig1htgreen.svg">
+        <img src="https://img.shields.io/badge/release-v1.6.7-brig1htgreen.svg">
     </a>
 	<a target="_blank" href="https://spdx.org/licenses/AGPL-3.0-or-later.html">
         <img alt="code style" src="https://img.shields.io/badge/license-AGPL--3.0--or--later-4EB1BA.svg?style=flat-square">
