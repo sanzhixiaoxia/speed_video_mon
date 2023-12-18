@@ -1095,6 +1095,7 @@
         },
         init() {
             addDocument();
+            videoListener();
         },
         run() {
             initRun();
@@ -1104,6 +1105,17 @@
     // 设备判断：pc/移动
     function isMobileDevice() {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    function handleVideoEvent() {
+        main.run();
+    }
+
+    // 监听可能导致重置的事件，并重新设置速度
+    function videoListener() {
+        document.addEventListener('click', handleVideoEvent, true);
+        document.addEventListener('play', handleVideoEvent, true);
+        document.addEventListener('loadeddata', handleVideoEvent, true);
     }
 
     window.onload = function() {
