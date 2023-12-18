@@ -1107,6 +1107,17 @@
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
 
+    // const setSpeed = (event) => {
+    //     event.target.playbackRate = 2.0;
+    // };
+    //
+    // // 为所有现有和未来的视频元素添加事件监听器
+    // document.addEventListener('play', (event) => {
+    //     if (event.target.tagName.toLowerCase() === 'video') {
+    //         setSpeed(event);
+    //     }
+    // }, true);
+
     function handleVideoEvent() {
         main.run();
     }
