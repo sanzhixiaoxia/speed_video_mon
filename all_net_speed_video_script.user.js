@@ -65,7 +65,13 @@
        ,"www.douyin.com"
        ,"If-zt.douyin.com"
        ,"www.youtube.com"
-       ,"127.0.0.1"
+       ,"haokan.baidu.com"
+       ,"www.youku.com"
+       ,"v.youku.com"
+       ,"www.iqiyi.com"
+       ,"v.qq.com"
+       ,"www.le.com"
+        ,"127.0.0.1"
     ];
 
     // 自定义样式
@@ -1095,7 +1101,6 @@
         },
         init() {
             addDocument();
-            videoListener();
         },
         run() {
             initRun();
@@ -1107,27 +1112,16 @@
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
 
-    // const setSpeed = (event) => {
-    //     event.target.playbackRate = 2.0;
-    // };
-    //
-    // // 为所有现有和未来的视频元素添加事件监听器
-    // document.addEventListener('play', (event) => {
-    //     if (event.target.tagName.toLowerCase() === 'video') {
-    //         setSpeed(event);
-    //     }
-    // }, true);
+    const setSpeed = (event) => {
+        event.target.playbackRate = parseFloat(localUtil.getAutoValue("speed_step_key")).toFixed(1);
+    };
 
-    function handleVideoEvent() {
-        main.run();
-    }
-
-    // 监听可能导致重置的事件，并重新设置速度
-    function videoListener() {
-        document.addEventListener('click', handleVideoEvent, true);
-        document.addEventListener('play', handleVideoEvent, true);
-        document.addEventListener('loadeddata', handleVideoEvent, true);
-    }
+    // 为所有现有和未来的视频元素添加事件监听器
+    document.addEventListener('play', (event) => {
+        if (event.target.tagName.toLowerCase() === 'video') {
+            setSpeed(event);
+        }
+    }, true);
 
     window.onload = function() {
 
