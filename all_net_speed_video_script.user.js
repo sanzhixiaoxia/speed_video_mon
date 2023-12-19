@@ -1114,6 +1114,8 @@
 
     const setSpeed = (event) => {
         event.target.playbackRate = parseFloat(localUtil.getAutoValue("speed_step_key")).toFixed(1);
+        event.target.focus(); // 聚焦到视频元素
+        event.target.preload = 'auto';// 设置preload属性为"auto"
     };
 
     // 为所有现有和未来的视频元素添加事件监听器
