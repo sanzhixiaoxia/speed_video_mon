@@ -253,11 +253,11 @@
             switch (e.key.toLowerCase()) {
                 case "x":
                     speedFun("-");
-                    stopPropa(e);
+                    // stopPropa(e);
                     break;
                 case "c":
                     speedFun("+");
-                    stopPropa(e);
+                    // stopPropa(e);
                     break;
                 case "t":
                 case "z":
