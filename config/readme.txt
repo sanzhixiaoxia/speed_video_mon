@@ -13,3 +13,5 @@ https://simpleicons.org/
 https://img.shields.io/badge/%20-%20-white?logo=nodedotjs
 https://img.shields.io/badge/%20-%20-black?logo=googleplay
 https://img.shields.io/badge/%20-%20-black?logo=platformio
+https://img.shields.io/badge/video-speed-blue
+https://img.shields.io/badge/v-s-blue
