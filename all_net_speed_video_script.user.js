@@ -175,7 +175,11 @@
             const handleChange = () => {
                 addToast(MSG.speedChanged + element.value);
             };
+            const handleDoubleClick = () => {
+                speedFun("1");
+            };
             element.addEventListener("change", handleChange);
+            element.addEventListener("dblclick", handleDoubleClick);
 
             const handleMouseDown = (e) => {
                 const offsetX = e.clientX - element.offsetLeft;
@@ -263,7 +267,7 @@
                 case "t":
                 case "z":
                     speedFun("1");
-                    stopPropa(e);
+                    // stopPropa(e);
                     break;
             }
 
