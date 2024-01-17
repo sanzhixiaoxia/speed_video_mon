@@ -72,6 +72,7 @@
        ,"www.iqiyi.com"
        ,"v.qq.com"
        ,"www.le.com"
+       ,"www.feishu.cn"
        ,"fehmg.feishu.cn"
        ,"127.0.0.1"
     ];
