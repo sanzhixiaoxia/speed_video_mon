@@ -64,12 +64,11 @@
         "www.bilibili.com"
        ,"www.iqiyi.com"
        ,"www.douyin.com"
-       ,"If-zt.douyin.com"
+       ,"lf-zt.douyin.com"
        ,"www.youtube.com"
        ,"haokan.baidu.com"
        ,"www.youku.com"
        ,"v.youku.com"
-       ,"www.iqiyi.com"
        ,"v.qq.com"
        ,"www.le.com"
        ,"www.feishu.cn"
@@ -259,17 +258,17 @@
         if (videos > 0) {
             switch (e.key.toLowerCase()) {
                 case "x":
-                    speedFun("-");
-                    // stopPropa(e);
+                    speedFun("+");
+                    stopPropa(e);
                     break;
                 case "c":
-                    speedFun("+");
-                    // stopPropa(e);
+                    speedFun("-");
+                    stopPropa(e);
                     break;
                 case "t":
                 case "z":
                     speedFun("1");
-                    // stopPropa(e);
+                    stopPropa(e);
                     break;
             }
 
@@ -302,6 +301,9 @@
         addToast(MSG.speedChanged + `${numVal.toFixed(1)}`);
     }
 
+    // 存储已创建的 MutationObserver，避免内存泄漏
+    const videoObservers = new WeakMap();
+
     function controlVideoProperty(propertyName, desiredValue) {
         const videos = document.querySelectorAll("video");
 
@@ -309,6 +311,12 @@
             videos.forEach((video) => {
                 if (isVideoValid(video)) {
                     overrideSetter(video, propertyName, desiredValue);
+
+                    // 清理旧的观察者
+                    if (videoObservers.has(video)) {
+                        const oldObserver = videoObservers.get(video);
+                        oldObserver.disconnect();
+                    }
 
                     const observer = new MutationObserver(function (mutations) {
                         mutations.forEach(function (mutation) {
@@ -320,6 +328,8 @@
 
                     const config = { attributes: true };
                     observer.observe(video, config);
+                    // 存储观察者引用
+                    videoObservers.set(video, observer);
                 }
             });
         }
@@ -998,15 +1008,19 @@
         speed_skip_end = parseInt(speed_skip_end);
 
         findNodeWithSelector('video', video => {
-            if (isVideoValid(video)) {
-                if (parseInt(video.duration) > speed_skip_start + speed_skip_end) {
+            if (isVideoValid(video) && !isNaN(video.duration)) {
+                const duration = parseInt(video.duration);
+                const currentTime = parseInt(video.currentTime);
+                
+                if (duration > speed_skip_start + speed_skip_end) {
                     // 跳转到视频末尾
-                    if (parseInt(video.duration) - parseInt(video.currentTime) < speed_skip_end) {
-                        video.currentTime = parseInt(video.duration);
+                    if (duration - currentTime < speed_skip_end) {
+                        video.currentTime = duration;
                     }
                     // 跳过视频的开始
-                    if (video.currentTime > speed_skip_start) {return;}
-                    video.currentTime = speed_skip_start;
+                    else if (currentTime < speed_skip_start) {
+                        video.currentTime = speed_skip_start;
+                    }
                 }
             }
         });
@@ -1078,6 +1092,10 @@
             showVideoMessage(MSG.speedChanged + playbackRate.toFixed(1));
 
             log.warn(`init touch is mobile to : ${video}`);
+            // 移除旧的事件监听器
+            video.removeEventListener('touchstart', handleLongPressStart);
+            video.removeEventListener('touchend', handleLongPressEnd);
+            // 添加新的事件监听器
             video.addEventListener('touchstart', handleLongPressStart);
             video.addEventListener('touchend', handleLongPressEnd);
         });
